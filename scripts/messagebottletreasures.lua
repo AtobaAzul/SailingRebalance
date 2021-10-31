@@ -143,7 +143,7 @@ local treasure_templates =
 
 				guaranteed_loot =
 				{
-					trident_blueprint = 1,
+					trident = 1,
 					papyrus = {3, 5},
 					charcoal = {4, 7},
 					goldenpickaxe = 1,
