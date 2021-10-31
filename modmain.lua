@@ -16,6 +16,7 @@ local config_moreTreasure = GetModConfigData("config_moreTreasure")
 local config_foodRebalance = GetModConfigData("config_foodRebalance")
 --local config_moreKeys = GetModConfigData("config_unlockchestKeys")
 local config_moreShells = GetModConfigData("config_moreShells")
+local config_pearlRusher = GetModConfigData("config_pearlRusher")
 
 local unlockablechest = GLOBAL.KnownModIndex:IsModEnabled("workshop-2400387360")
 local faf = GLOBAL.KnownModIndex:IsModEnabled("workshop-1908933602")
@@ -24,7 +25,7 @@ local um = GLOBAL.KnownModIndex:IsModEnabled("workshop-2039181790")
 if config_tridentBuff == 1 then
     AddRecipe(
         "trident",
-        {Ingredient("boneshard", 3), Ingredient("kelp", 4), Ingredient("twigs", 4)},
+        {Ingredient("boneshard", 2), Ingredient("gnarwail_horn", 1), Ingredient("twigs", 4)},
         GLOBAL.RECIPETABS.WAR,
         GLOBAL.TECH.LOST,
         nil,
@@ -382,11 +383,6 @@ if config_moreShells == 1 then
     )
 end
 
-THING = {
-    ["hermithouse_construction3"] = {Ingredient("moonrocknugget", 10), Ingredient("petals", 15)}
-}
-
---if config_rusherPearl == 1 then
-require("recipes")
-table.insert(CONSTRUCTION_PLANS, "THING")
---end
+if config_pearlRusher == 1 then
+    GLOBAL.CONSTRUCTION_PLANS["hermithouse_construction3"] = { Ingredient("moonrocknugget", 5),   Ingredient("petals", 15), Ingredient("moonglass", 10) }
+end
