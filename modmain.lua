@@ -4,7 +4,7 @@ PrefabFiles = {}
 
 --TODO: Stop replacing messagebottletreasures and use a postinit on messagebottletreasuremanager instead.
 local multiplayer_attack_modifier = 1
- --0.6--0.75
+--0.6--0.75
 local wilson_attack = 34 * multiplayer_attack_modifier
 local config_tridentBuff = GetModConfigData("config_tridentBuff")
 local config_sweeterFish = GetModConfigData("config_sweeterFish")
@@ -14,9 +14,10 @@ local config_hermitRecipes = GetModConfigData("config_hermitRecipes")
 local config_livinglogGators = GetModConfigData("config_livinglogGators")
 local config_moreTreasure = GetModConfigData("config_moreTreasure")
 local config_foodRebalance = GetModConfigData("config_foodRebalance")
---local config_moreKeys = GetModConfigData("config_unlockchestKeys")
+local config_moreKeys = GetModConfigData("config_unlockchestKeys")
 local config_moreShells = GetModConfigData("config_moreShells")
 local config_pearlRusher = GetModConfigData("config_pearlRusher")
+local config_betterMoonstorms = GetModConfigData("config_betterMoonstorms")
 
 local unlockablechest = GLOBAL.KnownModIndex:IsModEnabled("workshop-2400387360")
 local faf = GLOBAL.KnownModIndex:IsModEnabled("workshop-1908933602")
@@ -48,9 +49,7 @@ elseif config_tridentBuff == 2 then
     GLOBAL.TUNING.TRIDENT.DAMAGE = wilson_attack * 1.5
     GLOBAL.TUNING.TRIDENT.USES = GLOBAL.TUNING.TRIDENT.USES + 50
     GLOBAL.TUNING.TRIDENT.SPELL.USE_COUNT = GLOBAL.TUNING.TRIDENT.USES
-
 end
-
 
 if config_sweeterFish == 1 then
     AddIngredientValues({"oceanfish_medium_9_inv"}, {meat = 0.5, sweetener = 1, honey = 1}, true, true)
@@ -399,5 +398,66 @@ if config_moreShells == 1 then
 end
 
 if config_pearlRusher == 1 then
-    GLOBAL.CONSTRUCTION_PLANS["hermithouse_construction3"] = { Ingredient("moonrocknugget", 5),   Ingredient("petals", 15), Ingredient("moonglass", 10) }
+    GLOBAL.CONSTRUCTION_PLANS["hermithouse_construction3"] = {
+        Ingredient("moonrocknugget", 5),
+        Ingredient("petals", 15),
+        Ingredient("moonglass", 10)
+    }
+end
+
+if config_betterMoonstorms == 1 then
+    AddRecipe(
+        "moonstorm_static_item",
+        {Ingredient("transistor", 1), Ingredient("moonstorm_spark", 2), Ingredient("goldnugget", 3)},
+        GLOBAL.RECIPETABS.REFINE,
+        GLOBAL.TECH.LOST,
+        nil,
+        nil,
+        false
+    )
+
+    AddPrefabPostInit(
+        "alterguardian_phase3",
+        function(inst)
+            if inst and inst.components.lootdropper ~= nil then
+                inst.components.lootdropper:AddChanceLoot("moonstorm_static_item_blueprint", 1)
+            end
+        end
+    )
+
+    GLOBAL.STRINGS.RECIPE_DESC.MOONSTORM_STATIC_ITEM = "The power of the moon, contained!"
+end
+if config_moreKeys == 1 then
+    if unlockablechest then
+        AddPrefabPostInit(
+            "malbatross",
+            function(inst)
+                if not GLOBAL.TheWorld.ismastersim then
+                    return
+                end
+                inst.components.lootdropper:AddChanceLoot("sunkenchest_key", 1)
+                inst.components.lootdropper:AddChanceLoot("sunkenchest_key", 0.25)
+            end
+        )
+
+        AddPrefabPostInit(
+            "shark",
+            function(inst)
+                if not GLOBAL.TheWorld.ismastersim then
+                    return
+                end
+                inst.components.lootdropper:AddChanceLoot("sunkenchest_key", 0.25)
+            end
+        )
+
+        AddPrefabPostInit(
+            "gnarwail",
+            function(inst)
+                if not GLOBAL.TheWorld.ismastersim then
+                    return
+                end
+                inst.components.lootdropper:AddChanceLoot("sunkenchest_key", 0.25)
+            end
+        )
+    end
 end
