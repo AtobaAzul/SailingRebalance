@@ -1,7 +1,29 @@
 name = "Sailing Rebalance"
-version = "1.7.21" 
+version = "1.8.21" 
 description = [[
 This mod aims to tweak ocean content, making it more rewarding, without adding new content.
+Main Features:
+
+Trident buff: Now has a chance to appear in the sunken chests, and costs 2 bone shards and 1 horn, instead of 3 horns.
+
+New Sunken treasure presets: Scientist, Inventor and Farmer, and many more, with some tweaks to existing ones!
+
+Food rebalance: Tweaks some foods, so they get a chance in the spotlight:
+
+-Surf N Turf: Now requires a total of 2 fish value.
+-Barnacle Nigiri - Now doesn't need eggs.
+-Barnacle Linguine - New stats: 40/15/75
+-Barnacle Pita - New stats: 20/15/37.5
+-Seafood Gumbo - Now cookable without eels New Stats: 12.5/5/150
+
+More treasure: The chance for treasure when reading a bottle is now 66% (Vanilla is 33%).
+
+Mod compatibility
+
+-Hermit sells Moon Oil (Uncompromising Mode)
+-Barnacle Pita and Linguine are even further buffed! (Feast & Famine)
+
+-A bunch of other misc. tweaks and changes!
 
 All features, except new treasure presets, can be configured.
 ]]
@@ -100,16 +122,16 @@ priority = -347
         default = 1,
         hover = "Tweak some ocean foods?",    
       },
- --[[           {
-        name = "config_unlockchestKeys",
-        label = "More treasure keys",
+      {
+        name = "config_pearlRusher",
+        label = "Easier Pearl's Pearl",
         options = {
                     {description = "Enabled", data = 1},
                     {description = "Disabled",data = 0},
                   },
         default = 1,
-        hover = "Treasure Keys from Gnarlwails and sharks? [REQUIRES UNLOCKABLE SUNKEN CHESTS MOD]",    
-      },]]
+        hover = "Make it so the Tier 3 house doesn't cost cactus flowers.",    
+      },
             {
         name = "config_moreShells",
         label = "More Shells",
