@@ -1,5 +1,5 @@
 name = "Sailing Rebalance"
-version = "1.8.21" 
+version = "1.8.3" 
 description = [[
 This mod aims to tweak ocean content, making it more rewarding, without adding new content.
 Main Features:
@@ -8,13 +8,7 @@ Trident buff: Now has a chance to appear in the sunken chests, and costs 2 bone 
 
 New Sunken treasure presets: Scientist, Inventor and Farmer, and many more, with some tweaks to existing ones!
 
-Food rebalance: Tweaks some foods, so they get a chance in the spotlight:
-
--Surf N Turf: Now requires a total of 2 fish value.
--Barnacle Nigiri - Now doesn't need eggs.
--Barnacle Linguine - New stats: 40/15/75
--Barnacle Pita - New stats: 20/15/37.5
--Seafood Gumbo - Now cookable without eels New Stats: 12.5/5/150
+Food rebalance: Tweaks some foods, so they get a chance in the spotlight!
 
 More treasure: The chance for treasure when reading a bottle is now 66% (Vanilla is 33%).
 
@@ -45,7 +39,8 @@ priority = -347
         name = "config_tridentBuff",
         label = "Trident Buff",
         options = {
-                    {description = "Enabled", data = 1},
+                    {description = "Easier(3 Bones)", data = 2},
+                    {description = "Default(1 Horn)", data = 1},
                     {description = "Disabled",data = 0},
                   },
         default = 1,
