@@ -1,5 +1,5 @@
 name = "Sailing Rebalance"
-version = "1.8.3" 
+version = "1.9.0" 
 description = [[
 This mod aims to tweak ocean content, making it more rewarding, without adding new content.
 Main Features:
@@ -137,6 +137,26 @@ priority = -347
         default = 1,
         hover = "Increase drop chance of Cookie Cutter Shells.",    
       },
+            {
+        name = "config_betterMoonstorms",
+        label = "Better Moonstorms",
+        options = {
+                    {description = "Enabled", data = 1},
+                    {description = "Disabled",data = 0},
+                  },
+        default = 1,
+        hover = "Makes the moonstorm event easier to repeat after the 1st.",    
+      },      
+            {
+        name = "config_moreKeys",
+        label = "More keys",
+        options = {
+                    {description = "Enabled", data = 1},
+                    {description = "Disabled",data = 0},
+                  },
+        default = 1,
+        hover = "Requires unlockable sunken chest mod. Makes more things drop the keys.",    
+      },                  
 }
 
 
