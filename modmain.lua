@@ -25,7 +25,7 @@ local um = GLOBAL.KnownModIndex:IsModEnabled("workshop-2039181790")
 if config_tridentBuff == 1 then
     AddRecipe(
         "trident",
-        {Ingredient("boneshard", 2), Ingredient("gnarwail_horn", 1), Ingredient("twigs", 4)},
+        {Ingredient("boneshard", 2), Ingredient("gnarwail_horn", 1), Ingredient("twigs", 6)},
         GLOBAL.RECIPETABS.WAR,
         GLOBAL.TECH.LOST,
         nil,
@@ -35,7 +35,22 @@ if config_tridentBuff == 1 then
     GLOBAL.TUNING.TRIDENT.DAMAGE = wilson_attack * 1.5
     GLOBAL.TUNING.TRIDENT.USES = GLOBAL.TUNING.TRIDENT.USES + 50
     GLOBAL.TUNING.TRIDENT.SPELL.USE_COUNT = GLOBAL.TUNING.TRIDENT.USES
+elseif config_tridentBuff == 2 then
+    AddRecipe(
+        "trident",
+        {Ingredient("boneshard", 3), Ingredient("kelp", 4), Ingredient("twigs", 2)},
+        GLOBAL.RECIPETABS.WAR,
+        GLOBAL.TECH.LOST,
+        nil,
+        nil,
+        false
+    )
+    GLOBAL.TUNING.TRIDENT.DAMAGE = wilson_attack * 1.5
+    GLOBAL.TUNING.TRIDENT.USES = GLOBAL.TUNING.TRIDENT.USES + 50
+    GLOBAL.TUNING.TRIDENT.SPELL.USE_COUNT = GLOBAL.TUNING.TRIDENT.USES
+
 end
+
 
 if config_sweeterFish == 1 then
     AddIngredientValues({"oceanfish_medium_9_inv"}, {meat = 0.5, sweetener = 1, honey = 1}, true, true)
