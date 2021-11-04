@@ -23,6 +23,8 @@ local unlockablechest = GLOBAL.KnownModIndex:IsModEnabled("workshop-2400387360")
 local faf = GLOBAL.KnownModIndex:IsModEnabled("workshop-1908933602")
 local um = GLOBAL.KnownModIndex:IsModEnabled("workshop-2039181790")
 
+
+
 if config_tridentBuff == 1 then
     AddRecipe(
         "trident",
@@ -51,6 +53,8 @@ elseif config_tridentBuff == 2 then
     GLOBAL.TUNING.TRIDENT.SPELL.USE_COUNT = GLOBAL.TUNING.TRIDENT.USES
 end
 
+
+
 if config_sweeterFish == 1 then
     AddIngredientValues({"oceanfish_medium_9_inv"}, {meat = 0.5, sweetener = 1, honey = 1}, true, true)
 
@@ -64,15 +68,22 @@ if config_sweeterFish == 1 then
     )
 end
 
+
+
 if config_easierSeaweed == 1 then
     modimport("postinit/waterplant_bomb") --Thanks, scrimbles.
     GLOBAL.TUNING.WATERPLANT.DAMAGE = GLOBAL.TUNING.WATERPLANT.DAMAGE * 0.75
     GLOBAL.TUNING.WATERPLANT.ITEM_DAMAGE = GLOBAL.TUNING.WATERPLANT.ITEM_DAMAGE * 1.75
 end
 
+
+
 if config_easierRockjaws == 1 then
     GLOBAL.TUNING.SHARK.DAMAGE = 50 / 3
 end
+
+
+
 
 if config_hermitRecipes == 1 then
     AddRecipe(
@@ -220,6 +231,8 @@ if config_hermitRecipes == 1 then
 end
 -- I *hate* how it doesn't fetch data from other mods, but I guess that's by design.
 
+
+
 if config_livinglogGators == 1 then
     AddPrefabPostInit(
         "grassgator",
@@ -231,7 +244,11 @@ if config_livinglogGators == 1 then
     )
 end
 
+
+
 GLOBAL.TUNING.MESSAGEBOTTLE_NOTE_CHANCE = config_moreTreasure
+
+
 
 if config_foodRebalance == 1 then
     modimport("postinit/foodpostinit")
@@ -327,6 +344,9 @@ if config_foodRebalance == 1 then
         )
     end
 end
+
+
+
 --[[
 if config_moreKeys == 1 and  unlockablechest then
     AddPrefabPostInit("shark", function(inst)
@@ -386,6 +406,9 @@ AddPrefabPostInit("shark", function(inst)
     end
 end)
 ]]
+
+
+
 if config_moreShells == 1 then
     AddPrefabPostInit(
         "cookiecutter",
@@ -397,6 +420,8 @@ if config_moreShells == 1 then
     )
 end
 
+
+
 if config_pearlRusher == 1 then
     GLOBAL.CONSTRUCTION_PLANS["hermithouse_construction3"] = {
         Ingredient("moonrocknugget", 5),
@@ -404,6 +429,8 @@ if config_pearlRusher == 1 then
         Ingredient("moonglass", 10)
     }
 end
+
+
 
 if config_betterMoonstorms == 1 then
     AddRecipe(
@@ -426,7 +453,32 @@ if config_betterMoonstorms == 1 then
     )
 
     GLOBAL.STRINGS.RECIPE_DESC.MOONSTORM_STATIC_ITEM = "The power of the moon, contained!"
+
+    AddRecipe(
+        "alterguardianhatshard",
+        {Ingredient("moonglass_charged", 1), Ingredient("moonstorm_spark", 2), Ingredient("lightbulb", 1)},
+        GLOBAL.RECIPETABS.LIGHT,
+        GLOBAL.TECH.LOST,
+        nil,
+        nil,
+        false
+    )
+    AddRecipe(
+        "alterguardianhat",
+        {Ingredient("alterguardianhatshard", 5), Ingredient("alterguardianhatshard_blueprint", 1)},
+        nil,
+        GLOBAL.TECH.LOST,
+        nil,
+        nil,
+        true
+    )
+    
+    GLOBAL.STRINGS.RECIPE_DESC.ALTERGUARDIANHATSHARD = "Harness the moonlight."
+    
 end
+
+
+
 if config_moreKeys == 1 then
     if unlockablechest then
         AddPrefabPostInit(
