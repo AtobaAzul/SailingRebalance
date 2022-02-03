@@ -1,31 +1,20 @@
 Assets = {}
 
-PrefabFiles = {}
+PrefabFiles = {
+    "royal_sunkenchest",
+}
 
 --TODO: Stop replacing messagebottletreasures and use a postinit on messagebottletreasuremanager instead.
-local multiplayer_attack_modifier = 1
---0.6--0.75
-local wilson_attack = 34 * multiplayer_attack_modifier
-local config_tridentBuff = GetModConfigData("config_tridentBuff")
-local config_sweeterFish = GetModConfigData("config_sweeterFish")
-local config_easierSeaweed = GetModConfigData("config_easierSeaweed")
-local config_easierRockjaws = GetModConfigData("config_easierRockjaws")
-local config_hermitRecipes = GetModConfigData("config_hermitRecipes")
-local config_livinglogGators = GetModConfigData("config_livinglogGators")
-local config_moreTreasure = GetModConfigData("config_moreTreasure")
-local config_foodRebalance = GetModConfigData("config_foodRebalance")
-local config_moreKeys = GetModConfigData("config_unlockchestKeys")
-local config_moreShells = GetModConfigData("config_moreShells")
-local config_pearlRusher = GetModConfigData("config_pearlRusher")
-local config_betterMoonstorms = GetModConfigData("config_betterMoonstorms")
+local wilson_attack = 34
 
+--mods
 local unlockablechest = GLOBAL.KnownModIndex:IsModEnabled("workshop-2400387360")
 local faf = GLOBAL.KnownModIndex:IsModEnabled("workshop-1908933602")
 local um = GLOBAL.KnownModIndex:IsModEnabled("workshop-2039181790")
 
+local treasures = GLOBAL.require("messagebottletreasures")
 
-
-if config_tridentBuff == 1 then
+if GetModConfigData("config_tridentBuff") == 1 then
     AddRecipe(
         "trident",
         {Ingredient("boneshard", 2), Ingredient("gnarwail_horn", 1), Ingredient("twigs", 6)},
@@ -38,7 +27,7 @@ if config_tridentBuff == 1 then
     GLOBAL.TUNING.TRIDENT.DAMAGE = wilson_attack * 1.5
     GLOBAL.TUNING.TRIDENT.USES = GLOBAL.TUNING.TRIDENT.USES + 50
     GLOBAL.TUNING.TRIDENT.SPELL.USE_COUNT = GLOBAL.TUNING.TRIDENT.USES
-elseif config_tridentBuff == 2 then
+elseif GetModConfigData("config_tridentBuff") == 2 then
     AddRecipe(
         "trident",
         {Ingredient("boneshard", 3), Ingredient("kelp", 4), Ingredient("twigs", 2)},
@@ -48,14 +37,12 @@ elseif config_tridentBuff == 2 then
         nil,
         false
     )
-    GLOBAL.TUNING.TRIDENT.DAMAGE = wilson_attack * 1.5
+    GLOBAL.TUNING.TRIDENT.DAMAGE = wilson_attack * 3.0
     GLOBAL.TUNING.TRIDENT.USES = GLOBAL.TUNING.TRIDENT.USES + 50
     GLOBAL.TUNING.TRIDENT.SPELL.USE_COUNT = GLOBAL.TUNING.TRIDENT.USES
 end
 
-
-
-if config_sweeterFish == 1 then
+if GetModConfigData("config_sweeterFish") == 1 then
     AddIngredientValues({"oceanfish_medium_9_inv"}, {meat = 0.5, sweetener = 1, honey = 1}, true, true)
 
     AddPrefabPostInit(
@@ -68,24 +55,17 @@ if config_sweeterFish == 1 then
     )
 end
 
-
-
-if config_easierSeaweed == 1 then
+if GetModConfigData("config_easierSeaweed") == 1 then
     modimport("postinit/waterplant_bomb") --Thanks, scrimbles.
     GLOBAL.TUNING.WATERPLANT.DAMAGE = GLOBAL.TUNING.WATERPLANT.DAMAGE * 0.75
     GLOBAL.TUNING.WATERPLANT.ITEM_DAMAGE = GLOBAL.TUNING.WATERPLANT.ITEM_DAMAGE * 1.75
 end
 
-
-
-if config_easierRockjaws == 1 then
+if GetModConfigData("config_easierRockjaws") == 1 then
     GLOBAL.TUNING.SHARK.DAMAGE = 50 / 3
 end
 
-
-
-
-if config_hermitRecipes == 1 then
+if GetModConfigData("config_hermitRecipes") == 1 then
     AddRecipe(
         "hermit_boat",
         {Ingredient("messagebottleempty", 1)},
@@ -147,6 +127,21 @@ if config_hermitRecipes == 1 then
         "steeringwheel_item"
     )
     AddRecipe(
+        "hermit_patch",
+        {Ingredient("messagebottleempty", 1)},
+        GLOBAL.RECIPETABS.HERMITCRABSHOP,
+        GLOBAL.TECH.HERMITCRABSHOP_ONE,
+        nil,
+        nil,
+        true,
+        3,
+        nil,
+        nil,
+        nil,
+        nil,
+        "boatpatch"
+    )
+    AddRecipe(
         "hermit_blueprint",
         {Ingredient("messagebottleempty", 1)},
         GLOBAL.RECIPETABS.HERMITCRABSHOP,
@@ -192,26 +187,29 @@ if config_hermitRecipes == 1 then
         "pumpkincookie"
     )
     AddRecipe(
-        "hermit_patch",
-        {Ingredient("messagebottleempty", 1)},
-        GLOBAL.RECIPETABS.HERMITCRABSHOP,
-        GLOBAL.TECH.HERMITCRABSHOP_ONE,
+        "normal_chum",
+        {Ingredient("spoiled_food", 2),
+        Ingredient("rope", 1)},
+        --{Ingredient("waterplant_petal", 1)},
+        GLOBAL.RECIPETABS.FISHING,
+        GLOBAL.TECH.FISHING_ONE,
         nil,
         nil,
         true,
-        3,
+        1,
         nil,
         nil,
         nil,
         nil,
-        "boatpatch"
+        "chum"
     )
+    AddRecipe("hermitshop_chum", {Ingredient("messagebottleempty", 1)}, GLOBAL.RECIPETABS.HERMITCRABSHOP, GLOBAL.TECH.HERMITCRABSHOP_ONE,          nil, nil, true, 3, nil, nil, nil, nil, "chum")
 
     GLOBAL.STRINGS.RECIPE_DESC.WATERPLANT_PLANTER = "Grow your very own Sea Weed."
     GLOBAL.STRINGS.RECIPE_DESC.BLUEPRINT = "Learn new things."
     GLOBAL.STRINGS.RECIPE_DESC.PUMPKINCOOKIE = "Grandma's cookies."
 
-    if uncomp then
+    if um then
         AddRecipe(
             "hermit_umoil",
             {Ingredient("messagebottleempty", 3)},
@@ -231,9 +229,7 @@ if config_hermitRecipes == 1 then
 end
 -- I *hate* how it doesn't fetch data from other mods, but I guess that's by design.
 
-
-
-if config_livinglogGators == 1 then
+if GetModConfigData("config_livinglogGators") == 1 then
     AddPrefabPostInit(
         "grassgator",
         function(inst)
@@ -244,13 +240,9 @@ if config_livinglogGators == 1 then
     )
 end
 
+GLOBAL.TUNING.MESSAGEBOTTLE_NOTE_CHANCE = GetModConfigData("config_moreTreasure")
 
-
-GLOBAL.TUNING.MESSAGEBOTTLE_NOTE_CHANCE = config_moreTreasure
-
-
-
-if config_foodRebalance == 1 then
+if GetModConfigData("config_foodRebalance") == 1 then
     modimport("postinit/foodpostinit")
     local linguine = {
         "barnaclinguine",
@@ -345,84 +337,21 @@ if config_foodRebalance == 1 then
     end
 end
 
-
-
---[[
-if config_moreKeys == 1 and  unlockablechest then
-    AddPrefabPostInit("shark", function(inst)
-      if inst ~= nil then
-            inst.components.lootdropper:AddChanceLoot("sunkenchest_key", 0.75)
-      end
-    end)
-    
-AddPrefabPostInit("malbatross", function(inst)
-SetSharedLootTable( 'malbatross',
-{
-    {'meat',                                1.00},
-    {'meat',                                1.00},
-    {'meat',                                1.00},
-    {'meat',                                1.00},
-    {'meat',                                1.00},
-    {'meat',                                1.00},
-    {'meat',                                1.00},
-    {'malbatross_beak',                     1.00},
-    {'mast_malbatross_item_blueprint',      1.00},
-    {'malbatross_feathered_weave_blueprint',1.00},
-    {'premiumwateringcan_blueprint',        1.00},
-    {'bluegem',                             1},
-    {'bluegem',                             1},
-    {'bluegem',                             0.3},
-    {'yellowgem',                           0.05},
-    {'oceanfishingbobber_malbatross_tacklesketch',1.00},
-    {'chesspiece_malbatross_sketch',    1.00},
-    { "sunkenchest_key", 2.75 },
-
-})
-    ------------------------------------------    
-    if not TheWorld.ismastersim then
-        return
-    end
-    ------------------------------------------
-    if inst.components.lootdropper ~= nil then
-        inst.components.lootdropper:SetChanceLootTable("malbatross")
-    end
-end)  
-end    
-AddPrefabPostInit("shark", function(inst)
-    SetSharedLootTable('shark', {
-    {'fishmeat',            1.00},
-    {'fishmeat',            1.00},
-    {'fishmeat',            1.00},
-    {'fishmeat',            1.00},
-    { "sunkenchest_key", 0.75 },
-    })
-    ------------------------------------------    
-    if not TheWorld.ismastersim then
-        return
-    end
-    ------------------------------------------
-    if inst.components.lootdropper ~= nil then
-        inst.components.lootdropper:SetChanceLootTable("shark")
-    end
-end)
-]]
-
-
-
-if config_moreShells == 1 then
+if GetModConfigData("config_moreShells") == 1 then
     AddPrefabPostInit(
         "cookiecutter",
         function(inst)
             if inst and inst.components.lootdropper ~= nil then
                 inst.components.lootdropper:AddChanceLoot("cookiecuttershell", 0.75)
             end
+            if inst and inst.components.stackable ~= nil then
+            inst.components.stackable.maxsize = GLOBAL.TUNING.STACK_SIZE_SMALLITEM
+            end
         end
     )
 end
 
-
-
-if config_pearlRusher == 1 then
+if GetModConfigData("config_pearlRusher") == 1 then
     GLOBAL.CONSTRUCTION_PLANS["hermithouse_construction3"] = {
         Ingredient("moonrocknugget", 5),
         Ingredient("petals", 15),
@@ -430,9 +359,7 @@ if config_pearlRusher == 1 then
     }
 end
 
-
-
-if config_betterMoonstorms == 1 then
+if GetModConfigData("config_betterMoonstorms") == 1 then
     AddRecipe(
         "moonstorm_static_item",
         {Ingredient("transistor", 1), Ingredient("moonstorm_spark", 2), Ingredient("goldnugget", 3)},
@@ -472,14 +399,11 @@ if config_betterMoonstorms == 1 then
         nil,
         true
     )
-    
+
     GLOBAL.STRINGS.RECIPE_DESC.ALTERGUARDIANHATSHARD = "Harness the moonlight."
-    
 end
 
-
-
-if config_moreKeys == 1 then
+if GetModConfigData("config_moreKeys") == 1 then
     if unlockablechest then
         AddPrefabPostInit(
             "malbatross",
@@ -513,3 +437,70 @@ if config_moreKeys == 1 then
         )
     end
 end
+
+if GetModConfigData("config_cheapBoats") == 1 then
+    AddRecipe("anchor_item", 		   {Ingredient("boards", 1), 		Ingredient("rope", 2), Ingredient("cutstone", 2)}, GLOBAL.RECIPETABS.SEAFARING, GLOBAL.TECH.SEAFARING_TWO)
+    AddRecipe("mast_item", 		   {Ingredient("boards", 1), 		Ingredient("rope", 2), Ingredient("silk", 6)}, GLOBAL.RECIPETABS.SEAFARING, GLOBAL.TECH.SEAFARING_TWO)
+    AddRecipe("mast_malbatross_item", {Ingredient("driftwood_log", 2), Ingredient("rope", 3), Ingredient("malbatross_feathered_weave", 4)}, GLOBAL.RECIPETABS.SEAFARING, GLOBAL.TECH.LOST)
+    AddRecipe("steeringwheel_item",   {Ingredient("boards", 1), 		Ingredient("rope", 1)}, GLOBAL.RECIPETABS.SEAFARING, GLOBAL.TECH.SEAFARING_TWO)
+    AddRecipe("fish_box",			   {Ingredient("cutstone", 1), 		Ingredient("rope", 2)}, GLOBAL.RECIPETABS.SEAFARING, GLOBAL.TECH.SEAFARING_TWO, nil, 1.5, nil, nil, nil, nil, nil)
+elseif GetModConfigData("config_cheapBoats") == 2 then
+    AddRecipe("anchor_item", 		   {Ingredient("boards", 2), 		Ingredient("rope", 1), Ingredient("cutstone", 1)}, GLOBAL.RECIPETABS.SEAFARING, GLOBAL.TECH.SEAFARING_TWO)
+    AddRecipe("mast_item", 		   {Ingredient("boards", 1), 		Ingredient("rope", 2), Ingredient("silk", 4)}, GLOBAL.RECIPETABS.SEAFARING, GLOBAL.TECH.SEAFARING_TWO)        
+    AddRecipe("mast_malbatross_item", {Ingredient("driftwood_log", 1), Ingredient("rope", 2), Ingredient("malbatross_feathered_weave", 2)}, GLOBAL.RECIPETABS.SEAFARING, GLOBAL.TECH.LOST)
+    AddRecipe("steeringwheel_item",   {Ingredient("boards", 1), 		Ingredient("rope", 1)}, GLOBAL.RECIPETABS.SEAFARING, GLOBAL.TECH.SEAFARING_TWO)
+    AddRecipe("fish_box",			   {Ingredient("cutstone", 1), 		Ingredient("rope", 1)}, GLOBAL.RECIPETABS.SEAFARING, GLOBAL.TECH.SEAFARING_TWO, nil, 1.5, nil, nil, nil, nil, nil) 
+    AddRecipe("waterpump",            {Ingredient("boards", 2),Ingredient("rope", 1)},               GLOBAL.RECIPETABS.SEAFARING, GLOBAL.TECH.SEAFARING_TWO, nil, 1.5, nil, nil, nil, nil, nil)
+end
+
+if GetModConfigData("config_logicalRepairs") == 1 then
+    GLOBAL.TUNING.REPAIR_LOGS_HEALTH = 13 --25/4
+    GLOBAL.TUNING.REPAIR_STICK_HEALTH = 6 --13
+end
+
+if GetModConfigData("config_turningBoats") == 1 then
+    AddPrefabPostInit("boat", function(inst)
+        if inst.components.boatphysics ~= nil then
+            inst.components.boatphysics:SetCanSteeringRotate(true)
+        end
+    end)
+end
+
+if GetModConfigData("config_seasonalShoals") == 1 then
+    AddPrefabPostInit("oceanfish_shoalspawner", function(inst)
+        if GLOBAL.TheWorld ~= nil and inst.components.childspawner ~= nil then
+            --todo: remove old fish on season change       
+            if GLOBAL.TheWorld.state.isautumn == true then
+                inst.components.childspawner:SetRareChild("oceanfish_small_6", 0.1)
+            elseif GLOBAL.TheWorld.state.iswinter == true then
+                inst.components.childspawner:SetRareChild("oceanfish_medium_8", 0.1)
+                inst.components.childspawner.childname = "oceanfish_medium_4"
+            elseif GLOBAL.TheWorld.state.isspring == true then
+                inst.components.childspawner:SetRareChild("oceanfish_small_7", 0.1)
+                inst.components.childspawner.childname = "oceanfish_medium_5"
+            elseif GLOBAL.TheWorld.state.issummer == true then
+                inst.components.childspawner:SetRareChild("oceanfish_small_8", 0.1)
+                inst.components.childspawner.childname = "oceanfish_medium_7"
+            end
+        end
+    end)
+end
+
+--if GetModConfigData("config_hoarderCrabking") == then
+    AddPrefabPostInit("crabking", function(inst)
+        inst:ListenForEvent("death", function(inst)
+            local pos = inst:GetPosition()
+            local messagebottletreasures = require("messagebottletreasures")
+            local treasure = messagebottletreasures.GenerateTreasure(pos, "royal_sunkenchest")
+            local opalcount = 4 + inst.countgems(inst).opal
+            for i = 1, opalcount do
+                print(opalcount)
+                messagebottletreasures.GenerateTreasure(pos, "royal_sunkenchest")
+            end
+        end)
+    end)
+--end
+
+--if GetModConfigData("config_theukonBoats")
+
+--end
