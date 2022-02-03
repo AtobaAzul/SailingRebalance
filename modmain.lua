@@ -480,9 +480,21 @@ if GetModConfigData("config_seasonalShoals") == 1 then
                 inst.components.childspawner.childname = "oceanfish_medium_5"
             elseif GLOBAL.TheWorld.state.issummer == true then
                 inst.components.childspawner:SetRareChild("oceanfish_small_8", 0.1)
-                inst.components.childspawner.childname = "oceanfish_medium_7"
+                inst.components.childspawner.childname = "oceanfish_medium_3"
             end
         end
+    end)
+    
+    AddPrefabPostInit("oceanfish_medium_4", function(inst)
+                    if inst and components.lootdropper ~= nil then
+                inst.components.lootdropper:AddChanceLoot("fishmeat", 1.0, "fishmeat_small", 1.0)
+            end
+    end)
+
+    AddPrefabPostInit("oceanfish_medium_3", function(inst)
+                    if inst and components.lootdropper ~= nil then
+                inst.components.lootdropper:AddChanceLoot("fishmeat", 1.0, "fishmeat", 1.0)
+            end
     end)
 end
 
