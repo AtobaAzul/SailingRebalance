@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Atlas>
-	<Texture filename="boat.tex" />
-	<Elements>
-		<Element name="boat.tex" u1="0.001" u2="0.500953125" v2="0.999" v1="0.02053125" variant="" />
-	</Elements>
-</Atlas>
