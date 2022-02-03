@@ -1,23 +1,18 @@
 name = "Sailing Rebalance"
-version = "1.9.1" 
+version = "1.8.5"
 description = [[
+Version 1.8.5
+
 This mod aims to tweak ocean content, making it more rewarding, without adding new content.
 Main Features:
 
-Trident buff: Now has a chance to appear in the sunken chests, and costs 2 bone shards and 1 horn, instead of 3 horns.
+Trident Buff: Stats increased and costs 1 horn and 2 Bone shards.
 
 New Sunken treasure presets: Scientist, Inventor and Farmer, and many more, with some tweaks to existing ones!
 
-Food rebalance: Tweaks some foods, so they get a chance in the spotlight!
-
 More treasure: The chance for treasure when reading a bottle is now 66% (Vanilla is 33%).
 
-Mod compatibility
-
--Hermit sells Moon Oil (Uncompromising Mode)
--Barnacle Pita and Linguine are even further buffed! (Feast & Famine)
-
--A bunch of other misc. tweaks and changes!
+A bunch of other misc. tweaks and changes!
 
 All features, except new treasure presets, can be configured.
 ]]
@@ -28,12 +23,12 @@ api_version = 10
 dst_compatible = true
 all_clients_require_mod = true
 
-icon_atlas = "boat.xml"
-icon = "boat.tex" --need something original.
+icon_atlas = "sailingRebalance.xml"
+icon = "sailingRebalance.tex"
 
 server_filter_tags = {"boat","sea","ocean","sailingrebalance","rebalance","tweak"}
 priority = -347
-               
+
 	configuration_options = {
        {
         name = "config_tridentBuff",
@@ -44,7 +39,7 @@ priority = -347
                     {description = "Disabled",data = 0},
                   },
         default = 1,
-        hover = "Buff trident?",    
+        hover = "Buff trident?",
       },
       {
         name = "config_sweeterFish",
@@ -54,7 +49,7 @@ priority = -347
                     {description = "Disabled",data = 0},
                   },
         default = 1,
-        hover = "Buff Sweetish Fish?",    
+        hover = "Buff Sweetish Fish?",
       },
       {
         name = "config_easierSeaweed",
@@ -64,7 +59,7 @@ priority = -347
                     {description = "Disabled",data = 0},
                   },
         default = 1,
-        hover = "Make Seaweeds easier to fight?",    
+        hover = "Make Seaweeds easier to fight?",
       },
       {
         name = "config_easierRockjaws",
@@ -74,7 +69,7 @@ priority = -347
                     {description = "Disabled",data = 0},
                   },
         default = 1,
-        hover = "Make Rockjaws easier to fight?", 
+        hover = "Make Rockjaws easier to fight?",
       },
       {
         name = "config_hermitRecipes",
@@ -84,7 +79,7 @@ priority = -347
                     {description = "Disabled",data = 0},
                   },
         default = 1,
-        hover = "Add more trades to Pearl's shop?",    
+        hover = "Add more trades to Pearl's shop?",
       },
       {
         name = "config_livinglogGators",
@@ -94,7 +89,7 @@ priority = -347
                     {description = "Disabled",data = 0},
                   },
         default = 1,
-        hover = "Make Grass Gators drop living logs?"    
+        hover = "Make Grass Gators drop living logs?"
       },
       {
         name = "config_moreTreasure",
@@ -105,7 +100,7 @@ priority = -347
                     {description = "100%", data = 0.00},
                   },
         default = 0.33,
-        hover = "Choose how common treasures are.",    
+        hover = "Choose how common treasures are.",
       },
             {
         name = "config_foodRebalance",
@@ -115,7 +110,7 @@ priority = -347
                     {description = "Disabled",data = 0},
                   },
         default = 1,
-        hover = "Tweak some ocean foods?",    
+        hover = "Tweak some ocean foods?",
       },
       {
         name = "config_pearlRusher",
@@ -125,7 +120,7 @@ priority = -347
                     {description = "Disabled",data = 0},
                   },
         default = 1,
-        hover = "Make it so the Tier 3 house doesn't cost cactus flowers.",    
+        hover = "Make it so the Tier 3 house doesn't cost cactus flowers.",
       },
             {
         name = "config_moreShells",
@@ -135,7 +130,7 @@ priority = -347
                     {description = "Disabled",data = 0},
                   },
         default = 1,
-        hover = "Increase drop chance of Cookie Cutter Shells.",    
+        hover = "Increase drop chance of Cookie Cutter Shells.",
       },
             {
         name = "config_betterMoonstorms",
@@ -145,8 +140,8 @@ priority = -347
                     {description = "Disabled",data = 0},
                   },
         default = 1,
-        hover = "Makes the moonstorm event easier to repeat after the 1st.",    
-      },      
+        hover = "Makes the moonstorm event easier to repeat after the 1st.",
+      },
             {
         name = "config_moreKeys",
         label = "More keys",
@@ -155,9 +150,51 @@ priority = -347
                     {description = "Disabled",data = 0},
                   },
         default = 1,
-        hover = "Requires unlockable sunken chest mod. Makes more things drop the keys.",    
-      },                  
+        hover = "Requires unlockable sunken chest mod. Makes more things drop keys.",
+      },
+      {
+        name = "config_cheapBoats",
+        label = "Boat Cost",
+        options = {
+                    {description = "Default", data = 0},
+                    {description = "Cheap",data = 1},
+                    {description = "Cheapest",data = 2},
+
+                  },
+        default = 0,
+        hover = "Choose how cheap you want boat parts to be.",
+      },
+      {
+        name = "config_logicalRepairs",
+        label = "Logical Repair Values",
+        options = {
+                    {description = "Enabled", data = 1},
+                    {description = "Disabled",data = 0},
+                  },
+        default = 1,
+        hover = "Tweaks the repair values of twigs, logs and boards to be a little bit more logical.",
+      },
+      {
+        name = "config_turningBoats",
+        label = "Boat Turning",
+        options = {
+                    {description = "Enabled", data = 1},
+                    {description = "Disabled",data = 0},
+                  },
+        default = 1,
+        hover = "Enables the boat turning logic, which is off by default in vanilla.",
+      },
+      {
+        name = "config_seasonalShoals",
+        label = "Seasonal Shoals",
+        options = {
+                    {description = "Enabled", data = 1},
+                    {description = "Disabled",data = 0},
+                  },
+        default = 1,
+        hover = "Shoals have different kinds of fish, depending on the season.",
+      },
 }
 
 
-
+      
