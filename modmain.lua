@@ -1,499 +1,506 @@
+Assets = {}
 
-local treasure_templates =
-{
---	TREASUREPREFAB1 = -- Prefab to spawn at point
---	{
---		treasure_type_weight = 1, -- Relative container prefab appearance rate
---
---		presets = -- OPTIONAL! If there are no presets the treasureprefab will simply spawn as is
---		{
---			PRESET1 = -- Preset names have no functionality other than making it easier to keep track of which one is which
---			{
---				preset_weight = 1, -- Relative preset appearance rate
---
---				guaranteed_loot =
---				{
---					-- Container is guaranteed to contain this many of these prefabs
---					ITEMPREFAB1 = {5, 8},
---					ITEMPREFAB2 = 7,
---					ITEMPREFAB3 = 9,
---				},
---				randomly_selected_loot =
---				{
---					-- One entry from each of these tables is randomly chosen based on weight and added to the container
---					{
---						ITEMPREFAB4 = 10,
---						ITEMPREFAB5 = 5,
---						ITEMPREFAB6 = 1,
---					},
---					... {}, ...
---				},
---			},
---			... PRESET2, PRESET3 ...
---		}
---	},
---	... TREASUREPREFAB2, TREASUREPREFAB3 ...
-
-sunkenchest =
-{
-	treasure_type_weight = 1,
-
-	presets =
-	{
-		saltminer =
-		{
-			preset_weight = 1,
-
-			guaranteed_loot =
-			{
-				cookiecuttershell = {4, 6},
-				boatpatch = {2, 4},
-				saltrock = {5, 8},
-				goldenpickaxe = 1,
-			},
-			randomly_selected_loot =
-			{
-				{ bluegem = 1, redgem = 1 },
-			},
-		},
-		---------------------------------------------------------------------------
-		traveler =
-		{
-			preset_weight = 1,
-
-			guaranteed_loot =
-			{
-				cane = 1,
-				heatrock = 1,
-				gnarwail_horn = 1,
-				papyrus = {4, 8},
-				featherpencil = {2, 4},
-				spoiled_fish = {3, 5},
-			},
-			randomly_selected_loot =
-			{
-				{ compass = .25, goggleshat = .75 },
-			},
-		},
-		---------------------------------------------------------------------------
-		fisher =
-		{
-			preset_weight = 1,
-
-			guaranteed_loot =
-			{
-				boatpatch = {4, 8},
-				malbatross_feather = {4, 10},
-				oceanfishingrod = 1,
-				oceanfishingbobber_robin_winter = {2, 5},
-				oceanfishinglure_spoon_green = {1, 4},
-				oceanfishinglure_hermit_heavy = {0, 2},
-			},
-			randomly_selected_loot =
-			{
-				{ boat_item = 1, anchor_item = 1, mast_item = 1, steeringwheel_item = 1, fish_box_blueprint = 1 },
-			},
-		},
-		---------------------------------------------------------------------------
-		miner =
-		{
-			preset_weight = 1,
-
-			guaranteed_loot =
-			{
-				cutstone = {3, 6},
-				goldnugget = {3, 6},
-				moonglass = {3, 6},
-				moonrocknugget = {3, 6},
-				goldenpickaxe = 1,
-			},
-			randomly_selected_loot =
-			{
-				{ purplegem = 0.5, greengem = 0.1, yellowgem = 0.2, orangegem = 0.2, },
-			},
-
-		},
-		---------------------------------------------------------------------------
-		
-			splunker =  --tweaked
-			   {
-				   preset_weight = 1,
-
-				   guaranteed_loot =
-				   {
-					   gears = {2, 4}, --more gears?
-					   thulecite = {4, 8},
-					   thulecite_pieces = {8, 12, 16},
-					   lantern = 1,
-				   },
-				   randomly_selected_loot =
-				   {
-
-					   {yellowstaff = 0.33, greenstaff = 0.33, orangestaff = 0.33,}, --staffs and amulets instead of raw gems, lowered chance.
-					   {yellowamulet = 0.33, greenamulet = 0.33, orangeamulet = 0.33, },
-					   {ruinshat = 0.33, armor_ruins = 0.33, ruins_bat = 0.33}, --chance for both thule suit and crown.
-
-				   },
-			   },
-
-			   -------- Modded presets.
-
-			 inventor =
-			   {
-				   preset_weight = 1,
-
-				   guaranteed_loot =
-				   {
-					   trident = 1,
-					   papyrus = {3, 5},
-					   charcoal = {4, 7},
-					   goldenpickaxe = 1,
-					   blueprint = {1, 2, 3},
-				   },
-				   randomly_selected_loot =
-				   {
-					   {stinger = 0.5, nitre = 0.5 },
-					   {stinger = 0.5, nitre = 0.5 },
-					   {stinger = 0.5, nitre = 0.5 },
-						{stinger = 0.5, nitre = 0.5 },
-
-				   },
-
-			   },
-			   ------------------
-			scientist =
-			   {
-				   preset_weight = 1,
-
-				   guaranteed_loot =
-				   {
-					   molehat = 1,
-					   nightstick = 1,
-					   transistor = {1, 2},
-					   goldenpickaxe = 1,
-				   },
-				   randomly_selected_loot =
-				   {
-					   { gunpowder = 0.30, slurtleslime = 0.50, wormlight = 0.20 },
-				   },
-
-			   },
-			   ------------------
-			farmer =
-			   {
-				   preset_weight = 1,
-
-				   guaranteed_loot =
-				   {
-					   treegrowthsolution = {3, 5},
-					   fig = {5, 10},
-					   gnarwail_horn = 1,
-					   glommerfuel = {5, 7, 10},
-					   dug_berrybush = {0, 5},
-					   dug_berrybush2 = {0, 5},
-
-				   },
-				   randomly_selected_loot =
-				   {
-					   { gnarwail_horn = 0.5, malbatross_beak = 0.25},
-					   {nutrientsgoggleshat = 0.10, plantregistryhat = 0.90},
-				   },
-			   },
-
-				------------------
-			   cave_hunter =
-			   {
-				   preset_weight = 1,
-
-				   guaranteed_loot =
-				   {
-					   multitool_axe_pickaxe = 1,
-					   slurper_pelt = {3, 6},
-					   silk = {6, 8, 10},
-					   mole = {2,3},
-					   goldnugget = {4,7,10},
-				   },
-				   randomly_selected_loot =
-				   {
-					   { tentaclespike = 0.5, batbat = 0.5  },
-					   { wormlight = 0.2, wormlight_lesser = 0.6, minerhat = 0.2,  },
-				   },
-			   },
-		   ------------------
-			resource_stash =
-			   {
-				   preset_weight = 1,
-
-				   guaranteed_loot =
-				   {
-					   cutgrass = {20, 30,  40},
-					   twigs = {20, 30,  40},
-					   silk = {6, 8, 10},
-					   rocks = {10, 15, 20, 25, 30},
-					   goldnugget = {4,7,10},
-				   },
-				   randomly_selected_loot =
-				   {
-
-				   },
-			   },
-		   ------------------
-				kings_stash =
-			   {
-				   preset_weight = 1,
-
-				   guaranteed_loot =
-				   {
-					   greengem = {1, 2, 3},
-					   yellowgem = {1, 2, 3},
-					   purplegem = {1, 2, 3},
-					   orangegem = {1, 2, 3},
-					   bluegem = {1, 2, 3},
-					   redgem = {1, 2, 3},
-				   },
-				   randomly_selected_loot =
-				   {
-					   {opalpreciousgem = 0.25},
-				   },
-			   }
-			   
-		}
-	},
-royal_sunkenchest =
-{
-	treasure_type_weight = 0,
-
-	presets =
-	{
-		traveler =
-		{
-			preset_weight = 1,
-
-			guaranteed_loot =
-			{
-				cane = 1,
-				heatrock = 1,
-				gnarwail_horn = 1,
-				papyrus = {4, 8},
-				featherpencil = {2, 4},
-				spoiled_fish = {3, 5},
-			},
-			randomly_selected_loot =
-			{
-				{ compass = .25, goggleshat = .75 },
-			},
-		},
-		----------------
-		cave_hunter =
-		{
-			preset_weight = 1,
-
-			guaranteed_loot =
-			{
-				multitool_axe_pickaxe = 1,
-				slurper_pelt = {3, 6},
-				silk = {6, 8, 10},
-				mole = {2,3},
-				goldnugget = {4,7,10},
-			},
-			randomly_selected_loot =
-			{
-				{ tentaclespike = 0.5, batbat = 0.5  },
-				{ wormlight = 0.2, wormlight_lesser = 0.6, minerhat = 0.2,  },
-			},
-		},
-		------------------
-		scientist =
-		{
-			preset_weight = 1,
-
-			guaranteed_loot =
-			{
-				molehat = 1,
-				nightstick = 1,
-				transistor = {1, 2},
-				goldenpickaxe = 1,
-			},
-			randomly_selected_loot =
-			{
-				{ gunpowder = 0.30, slurtleslime = 0.50, wormlight = 0.20 },
-			},
-
-		},
-		-------------	
-		splunker =  --tweaked
-		{
-			preset_weight = 1,
-
-			guaranteed_loot =
-			{
-				gears = {2, 4}, --more gears?
-				thulecite = {4, 8},
-				thulecite_pieces = {8, 12, 16},
-				lantern = 1,
-			},
-			randomly_selected_loot =
-			{
-
-				{yellowstaff = 0.33, greenstaff = 0.33, orangestaff = 0.33,}, --staffs and amulets instead of raw gems, lowered chance.
-				{yellowamulet = 0.33, greenamulet = 0.33, orangeamulet = 0.33, },
-				{ruinshat = 0.33, armor_ruins = 0.33, ruins_bat = 0.33}, --chance for both thule suit and crown.
-
-			},
-		},
-		--------
-		kings_stash =
-		{
-			preset_weight = 1,
-
-			guaranteed_loot =
-			{
-				greengem = {1, 2, 3},
-				yellowgem = {1, 2, 3},
-				purplegem = {1, 2, 3},
-				orangegem = {1, 2, 3},
-				bluegem = {1, 2, 3},
-				redgem = {1, 2, 3},
-			},
-			randomly_selected_loot =
-			{
-				{opalpreciousgem = 0.25},
-			},
-		}
-	},
-
-}
+PrefabFiles = {
+    "royal_sunkenchest",
 }
 
+--TODO: Stop replacing messagebottletreasures and use a postinit on messagebottletreasuremanager instead.
+local wilson_attack = 34
 
-local trinkets =
-{
-	"trinket_3",
-	"trinket_4",
-	"trinket_5",
-	"trinket_6",
-	"trinket_7",
-	"trinket_8",
-	"trinket_9",
-	"trinket_17",
-	"trinket_22",
-	"trinket_27",
-}
+--mods
+local unlockablechest = GLOBAL.KnownModIndex:IsModEnabled("workshop-2400387360")
+local faf = GLOBAL.KnownModIndex:IsModEnabled("workshop-1908933602")
+local um = GLOBAL.KnownModIndex:IsModEnabled("workshop-2039181790")
 
-local TRINKET_CHANCE = 0.02
+local treasures = GLOBAL.require("messagebottletreasures")
 
-local weighted_treasure_prefabs = {}
-local weighted_treasure_contents = {}
-for prefabname, data in pairs(treasure_templates) do
-	weighted_treasure_prefabs[prefabname] = data.treasure_type_weight
-
-	if data.presets ~= nil then -- If nil the prefab being spawned is not a container
-		weighted_treasure_contents[prefabname] = {}
-		for _, loottable in pairs(data.presets) do
-			weighted_treasure_contents[prefabname][loottable] = loottable.preset_weight
-		end
-	end
+if GetModConfigData("config_tridentBuff") == 1 then
+    AddRecipe(
+        "trident",
+        {Ingredient("boneshard", 2), Ingredient("gnarwail_horn", 1), Ingredient("twigs", 6)},
+        GLOBAL.RECIPETABS.WAR,
+        GLOBAL.TECH.LOST,
+        nil,
+        nil,
+        false
+    )
+    GLOBAL.TUNING.TRIDENT.DAMAGE = wilson_attack * 1.5
+    GLOBAL.TUNING.TRIDENT.USES = GLOBAL.TUNING.TRIDENT.USES + 50
+    GLOBAL.TUNING.TRIDENT.SPELL.USE_COUNT = GLOBAL.TUNING.TRIDENT.USES
+elseif GetModConfigData("config_tridentBuff") == 2 then
+    AddRecipe(
+        "trident",
+        {Ingredient("boneshard", 3), Ingredient("kelp", 4), Ingredient("twigs", 2)},
+        GLOBAL.RECIPETABS.WAR,
+        GLOBAL.TECH.LOST,
+        nil,
+        nil,
+        false
+    )
+    GLOBAL.TUNING.TRIDENT.DAMAGE = wilson_attack * 3.0
+    GLOBAL.TUNING.TRIDENT.USES = GLOBAL.TUNING.TRIDENT.USES + 50
+    GLOBAL.TUNING.TRIDENT.SPELL.USE_COUNT = GLOBAL.TUNING.TRIDENT.USES
 end
 
-local function GenerateTreasure(pt, overrideprefab, spawn_as_empty, postfn)
-	local prefab = overrideprefab or weighted_random_choice(weighted_treasure_prefabs)
+if GetModConfigData("config_sweeterFish") == 1 then
+    AddIngredientValues({"oceanfish_medium_9_inv"}, {meat = 0.5, sweetener = 1, honey = 1}, true, true)
 
-	local treasure = SpawnPrefab(prefab)
-	if treasure ~= nil then
-		local x, y, z = pt.x, pt.y, pt.z
-		treasure.Transform:SetPosition(x, y, z)
-
-		-- If overrideprefab is supplied but it has no entry in the 'treasure_templates' loot
-		-- table in this file the prefab instance will be empty regardless of spawn_as_empty.
-
-		if not spawn_as_empty and (treasure.components.container ~= nil or treasure.components.inventory ~= nil) and weighted_treasure_contents[prefab] ~= nil and type(weighted_treasure_contents) == "table" and next(weighted_treasure_contents[prefab]) ~= nil then
-			local lootpreset = weighted_random_choice(weighted_treasure_contents[prefab])
-			local prefabstospawn = {}
-
-			if lootpreset.guaranteed_loot ~= nil then
-				for itemprefab, count in pairs(lootpreset.guaranteed_loot) do
-					local total = type(count) ~= "table" and count or math.random(count[1], count[2])
-					for i = 1, total do
-						table.insert(prefabstospawn, itemprefab)
-					end
-				end
-			end
-
-			if lootpreset.randomly_selected_loot ~= nil then
-				for i, one_of in ipairs(lootpreset.randomly_selected_loot) do
-					table.insert(prefabstospawn, weighted_random_choice(one_of))
-				end
-			end
-
-
-			local item = nil
-			for i, itemprefab in ipairs(prefabstospawn) do
-				item = SpawnPrefab(itemprefab)
-				item.Transform:SetPosition(x, y, z)
-				if treasure.components.container ~= nil then
-					treasure.components.container:GiveItem(item)
-					print("loot inserted into container!")
-				else
-					treasure.components.inventory:GiveItem(item)
-					print("loot inserted into inventory!!")
-				end
-			end
-
-			if math.random() < TRINKET_CHANCE then
-				if treasure.components.container ~= nil then
-					if not treasure.components.container:IsFull() then
-						treasure.components.container:GiveItem(SpawnPrefab(trinkets[math.random(#trinkets)]))
-					end
-				elseif treasure.components.inventory ~= nil then
-					if not treasure.components.inventory:IsFull() then
-						treasure.components.inventory:GiveItem(SpawnPrefab(trinkets[math.random(#trinkets)]))
-					end
-				end
-			end
-		end
-
-		if postfn ~= nil then
-			postfn(treasure)
-		end
-	end
-
-	return treasure
+    AddPrefabPostInit(
+        "oceanfish_medium_9_inv",
+        function(inst)
+            if inst and components.lootdropper ~= nil then
+                inst.components.lootdropper:AddChanceLoot("honey", 1.0, "fishmeat_small", 1.0)
+            end
+        end
+    )
 end
 
-local function GetPrefabs()
-	local prefabscontain = {}
-	for treasureprefab, weighted_lists in pairs(weighted_treasure_contents) do
-		prefabscontain[treasureprefab] = true -- Chests, etc
-
-		if weighted_lists ~= nil and type(weighted_lists) == "table" and next(weighted_lists) ~= nil then
-			for weighted_list, _--[[weight]] in pairs(weighted_lists) do
-				if weighted_list.guaranteed_loot ~= nil then
-					for itemprefab, _--[[count]] in pairs(weighted_list.guaranteed_loot) do
-						prefabscontain[itemprefab] = true
-					end
-				end
-
-				if weighted_list.randomly_selected_loot ~= nil then
-					for i, v in ipairs(weighted_list.randomly_selected_loot) do
-						for itemprefab, _--[[weight]] in pairs(v) do
-							prefabscontain[itemprefab] = true
-						end
-					end
-				end
-			end
-		end
-	end
-
-	local prefablist = {}
-	for prefab, _ in pairs(prefabscontain) do
-		table.insert(prefablist, prefab)
-	end
-
-	for i, trinketprefab in ipairs(trinkets) do
-		table.insert(prefablist, trinketprefab)
-	end
-
-	return prefablist
+if GetModConfigData("config_easierSeaweed") == 1 then
+    modimport("postinit/waterplant_bomb") --Thanks, scrimbles.
+    GLOBAL.TUNING.WATERPLANT.DAMAGE = GLOBAL.TUNING.WATERPLANT.DAMAGE * 0.75
+    GLOBAL.TUNING.WATERPLANT.ITEM_DAMAGE = GLOBAL.TUNING.WATERPLANT.ITEM_DAMAGE * 1.75
 end
 
-return { GenerateTreasure = GenerateTreasure, GetPrefabs = GetPrefabs, treasure_templates = treasure_templates }
+if GetModConfigData("config_easierRockjaws") == 1 then
+    GLOBAL.TUNING.SHARK.DAMAGE = 50 / 3
+end
+
+if GetModConfigData("config_hermitRecipes") == 1 then
+    AddRecipe(
+        "hermit_boat",
+        {Ingredient("messagebottleempty", 1)},
+        GLOBAL.RECIPETABS.HERMITCRABSHOP,
+        GLOBAL.TECH.HERMITCRABSHOP_ONE,
+        nil,
+        nil,
+        true,
+        nil,
+        nil,
+        nil,
+        nil,
+        nil,
+        "boat_item"
+    )
+    AddRecipe(
+        "hermit_mast",
+        {Ingredient("messagebottleempty", 1)},
+        GLOBAL.RECIPETABS.HERMITCRABSHOP,
+        GLOBAL.TECH.HERMITCRABSHOP_ONE,
+        nil,
+        nil,
+        true,
+        nil,
+        nil,
+        nil,
+        nil,
+        nil,
+        "mast_item"
+    )
+    AddRecipe(
+        "hermit_anchor",
+        {Ingredient("messagebottleempty", 1)},
+        GLOBAL.RECIPETABS.HERMITCRABSHOP,
+        GLOBAL.TECH.HERMITCRABSHOP_ONE,
+        nil,
+        nil,
+        true,
+        nil,
+        nil,
+        nil,
+        nil,
+        nil,
+        "anchor_item"
+    )
+    AddRecipe(
+        "hermit_steeringwheel",
+        {Ingredient("messagebottleempty", 1)},
+        GLOBAL.RECIPETABS.HERMITCRABSHOP,
+        GLOBAL.TECH.HERMITCRABSHOP_ONE,
+        nil,
+        nil,
+        true,
+        nil,
+        nil,
+        nil,
+        nil,
+        nil,
+        "steeringwheel_item"
+    )
+    AddRecipe(
+        "hermit_patch",
+        {Ingredient("messagebottleempty", 1)},
+        GLOBAL.RECIPETABS.HERMITCRABSHOP,
+        GLOBAL.TECH.HERMITCRABSHOP_ONE,
+        nil,
+        nil,
+        true,
+        3,
+        nil,
+        nil,
+        nil,
+        nil,
+        "boatpatch"
+    )
+    AddRecipe(
+        "hermit_blueprint",
+        {Ingredient("messagebottleempty", 1)},
+        GLOBAL.RECIPETABS.HERMITCRABSHOP,
+        GLOBAL.TECH.HERMITCRABSHOP_THREE,
+        nil,
+        nil,
+        true,
+        nil,
+        nil,
+        nil,
+        nil,
+        nil,
+        "blueprint"
+    )
+    AddRecipe(
+        "hermit_waterplant",
+        {Ingredient("messagebottleempty", 3)},
+        GLOBAL.RECIPETABS.HERMITCRABSHOP,
+        GLOBAL.TECH.HERMITCRABSHOP_FIVE,
+        nil,
+        nil,
+        true,
+        nil,
+        nil,
+        nil,
+        nil,
+        nil,
+        "waterplant_planter"
+    )
+    AddRecipe(
+        "hermit_cookies",
+        {Ingredient("messagebottleempty", 1)},
+        GLOBAL.RECIPETABS.HERMITCRABSHOP,
+        GLOBAL.TECH.HERMITCRABSHOP_SEVEN,
+        nil,
+        nil,
+        true,
+        nil,
+        nil,
+        nil,
+        nil,
+        nil,
+        "pumpkincookie"
+    )
+    AddRecipe(
+        "normal_chum",
+        {Ingredient("spoiled_food", 2),
+        Ingredient("rope", 1)},
+        --{Ingredient("waterplant_petal", 1)},
+        GLOBAL.RECIPETABS.FISHING,
+        GLOBAL.TECH.FISHING_ONE,
+        nil,
+        nil,
+        true,
+        1,
+        nil,
+        nil,
+        nil,
+        nil,
+        "chum"
+    )
+    AddRecipe("hermitshop_chum", {Ingredient("messagebottleempty", 1)}, GLOBAL.RECIPETABS.HERMITCRABSHOP, GLOBAL.TECH.HERMITCRABSHOP_ONE,          nil, nil, true, 3, nil, nil, nil, nil, "chum")
+
+    GLOBAL.STRINGS.RECIPE_DESC.WATERPLANT_PLANTER = "Grow your very own Sea Weed."
+    GLOBAL.STRINGS.RECIPE_DESC.BLUEPRINT = "Learn new things."
+    GLOBAL.STRINGS.RECIPE_DESC.PUMPKINCOOKIE = "Grandma's cookies."
+
+    if um then
+        AddRecipe(
+            "hermit_umoil",
+            {Ingredient("messagebottleempty", 3)},
+            GLOBAL.RECIPETABS.HERMITCRABSHOP,
+            GLOBAL.TECH.HERMITCRABSHOP_FIVE,
+            nil,
+            nil,
+            true,
+            nil,
+            nil,
+            nil,
+            nil,
+            nil,
+            "diseasecurebomb"
+        )
+    end
+end
+-- I *hate* how it doesn't fetch data from other mods, but I guess that's by design.
+
+if GetModConfigData("config_livinglogGators") == 1 then
+    AddPrefabPostInit(
+        "grassgator",
+        function(inst)
+            if inst and inst.components.lootdropper ~= nil then
+                inst.components.lootdropper:AddChanceLoot("livinglog", 1, "livinglog", 1, "livinglog", 0.5)
+            end
+        end
+    )
+end
+
+GLOBAL.TUNING.MESSAGEBOTTLE_NOTE_CHANCE = GetModConfigData("config_moreTreasure")
+
+if GetModConfigData("config_foodRebalance") == 1 then
+    modimport("postinit/foodpostinit")
+    local linguine = {
+        "barnaclinguine",
+        "barnaclinguine_spice_chili",
+        "barnaclinguine_spice_garlic",
+        "barnaclinguine_spice_salt",
+        "barnaclinguine_spice_sugar"
+    }
+
+    if faf then
+        for k, v in pairs(linguine) do
+            AddPrefabPostInit(
+                v,
+                function(inst)
+                    if inst ~= nil and inst.components.edible ~= nil then
+                        inst.components.edible.hungervalue = 150
+                        inst.components.edible.healthvalue = 40
+                        inst.components.edible.sanityvalue = 33
+                    end
+                end
+            )
+        end
+    else
+        for k, v in pairs(linguine) do
+            AddPrefabPostInit(
+                v,
+                function(inst)
+                    if inst ~= nil and inst.components.edible ~= nil then
+                        inst.components.edible.hungervalue = 75
+                        inst.components.edible.sanityvalue = 15
+                        inst.components.edible.healthvalue = 40
+                    end
+                end
+            )
+        end
+    end
+
+    local pita = {
+        "barnaclepita",
+        "barnaclepita_spice_chili",
+        "barnaclepita_spice_garlic",
+        "barnaclepita_spice_salt",
+        "barnaclepita_spice_sugar"
+    }
+
+    if faf then
+        for k, v in pairs(pita) do
+            AddPrefabPostInit(
+                v,
+                function(inst)
+                    if inst ~= nil and inst.components.edible ~= nil then
+                        inst.components.edible.hungervalue = 37.5
+                        inst.components.edible.sanityvalue = 33
+                        inst.components.edible.healthvalue = 20
+                    end
+                end
+            )
+        end
+    else
+        for k, v in pairs(pita) do
+            AddPrefabPostInit(
+                v,
+                function(inst)
+                    if inst ~= nil and inst.components.edible ~= nil then
+                        inst.components.edible.hungervalue = 37.5
+                        inst.components.edible.sanityvalue = 15
+                        inst.components.edible.healthvalue = 20
+                    end
+                end
+            )
+        end
+    end
+
+    local fishstew = {
+        "seafoodgumbo",
+        "seafoodgumbo_spice_chili",
+        "seafoodgumbo_spice_garlic",
+        "seafoodgumbo_spice_salt",
+        "seafoodgumbo_spice_sugar"
+    }
+    for k, v in pairs(fishstew) do
+        AddPrefabPostInit(
+            v,
+            function(inst)
+                if inst ~= nil and inst.components.edible ~= nil then
+                    inst.components.edible.hungervalue = 150
+                    inst.components.edible.sanityvalue = 5
+                    inst.components.edible.healthvalue = 12.5
+                end
+            end
+        )
+    end
+end
+
+if GetModConfigData("config_moreShells") == 1 then
+    AddPrefabPostInit(
+        "cookiecutter",
+        function(inst)
+            if inst and inst.components.lootdropper ~= nil then
+                inst.components.lootdropper:AddChanceLoot("cookiecuttershell", 0.75)
+            end
+            if inst and inst.components.stackable ~= nil then
+            inst.components.stackable.maxsize = GLOBAL.TUNING.STACK_SIZE_SMALLITEM
+            end
+        end
+    )
+end
+
+if GetModConfigData("config_pearlRusher") == 1 then
+    GLOBAL.CONSTRUCTION_PLANS["hermithouse_construction3"] = {
+        Ingredient("moonrocknugget", 5),
+        Ingredient("petals", 15),
+        Ingredient("moonglass", 10)
+    }
+end
+
+if GetModConfigData("config_betterMoonstorms") == 1 then
+    AddRecipe(
+        "moonstorm_static_item",
+        {Ingredient("transistor", 1), Ingredient("moonstorm_spark", 2), Ingredient("goldnugget", 3)},
+        GLOBAL.RECIPETABS.REFINE,
+        GLOBAL.TECH.LOST,
+        nil,
+        nil,
+        false
+    )
+
+    AddPrefabPostInit(
+        "alterguardian_phase3",
+        function(inst)
+            if inst and inst.components.lootdropper ~= nil then
+                inst.components.lootdropper:AddChanceLoot("moonstorm_static_item_blueprint", 1)
+            end
+        end
+    )
+
+    GLOBAL.STRINGS.RECIPE_DESC.MOONSTORM_STATIC_ITEM = "The power of the moon, contained!"
+
+    AddRecipe(
+        "alterguardianhatshard",
+        {Ingredient("moonglass_charged", 1), Ingredient("moonstorm_spark", 2), Ingredient("lightbulb", 1)},
+        GLOBAL.RECIPETABS.LIGHT,
+        GLOBAL.TECH.LOST,
+        nil,
+        nil,
+        false
+    )
+    AddRecipe(
+        "alterguardianhat",
+        {Ingredient("alterguardianhatshard", 5), Ingredient("alterguardianhatshard_blueprint", 1)},
+        nil,
+        GLOBAL.TECH.LOST,
+        nil,
+        nil,
+        true
+    )
+
+    GLOBAL.STRINGS.RECIPE_DESC.ALTERGUARDIANHATSHARD = "Harness the moonlight."
+end
+
+if GetModConfigData("config_moreKeys") == 1 then
+    if unlockablechest then
+        AddPrefabPostInit(
+            "malbatross",
+            function(inst)
+                if not GLOBAL.TheWorld.ismastersim then
+                    return
+                end
+                inst.components.lootdropper:AddChanceLoot("sunkenchest_key", 1)
+                inst.components.lootdropper:AddChanceLoot("sunkenchest_key", 0.25)
+            end
+        )
+
+        AddPrefabPostInit(
+            "shark",
+            function(inst)
+                if not GLOBAL.TheWorld.ismastersim then
+                    return
+                end
+                inst.components.lootdropper:AddChanceLoot("sunkenchest_key", 0.25)
+            end
+        )
+
+        AddPrefabPostInit(
+            "gnarwail",
+            function(inst)
+                if not GLOBAL.TheWorld.ismastersim then
+                    return
+                end
+                inst.components.lootdropper:AddChanceLoot("sunkenchest_key", 0.25)
+            end
+        )
+    end
+end
+
+if GetModConfigData("config_cheapBoats") == 1 then
+    AddRecipe("anchor_item", 		   {Ingredient("boards", 1), 		Ingredient("rope", 2), Ingredient("cutstone", 2)}, GLOBAL.RECIPETABS.SEAFARING, GLOBAL.TECH.SEAFARING_TWO)
+    AddRecipe("mast_item", 		   {Ingredient("boards", 1), 		Ingredient("rope", 2), Ingredient("silk", 6)}, GLOBAL.RECIPETABS.SEAFARING, GLOBAL.TECH.SEAFARING_TWO)
+    AddRecipe("mast_malbatross_item", {Ingredient("driftwood_log", 2), Ingredient("rope", 3), Ingredient("malbatross_feathered_weave", 4)}, GLOBAL.RECIPETABS.SEAFARING, GLOBAL.TECH.LOST)
+    AddRecipe("steeringwheel_item",   {Ingredient("boards", 1), 		Ingredient("rope", 1)}, GLOBAL.RECIPETABS.SEAFARING, GLOBAL.TECH.SEAFARING_TWO)
+    AddRecipe("fish_box",			   {Ingredient("cutstone", 1), 		Ingredient("rope", 2)}, GLOBAL.RECIPETABS.SEAFARING, GLOBAL.TECH.SEAFARING_TWO, nil, 1.5, nil, nil, nil, nil, nil)
+elseif GetModConfigData("config_cheapBoats") == 2 then
+    AddRecipe("anchor_item", 		   {Ingredient("boards", 2), 		Ingredient("rope", 1), Ingredient("cutstone", 1)}, GLOBAL.RECIPETABS.SEAFARING, GLOBAL.TECH.SEAFARING_TWO)
+    AddRecipe("mast_item", 		   {Ingredient("boards", 1), 		Ingredient("rope", 2), Ingredient("silk", 4)}, GLOBAL.RECIPETABS.SEAFARING, GLOBAL.TECH.SEAFARING_TWO)        
+    AddRecipe("mast_malbatross_item", {Ingredient("driftwood_log", 1), Ingredient("rope", 2), Ingredient("malbatross_feathered_weave", 2)}, GLOBAL.RECIPETABS.SEAFARING, GLOBAL.TECH.LOST)
+    AddRecipe("steeringwheel_item",   {Ingredient("boards", 1), 		Ingredient("rope", 1)}, GLOBAL.RECIPETABS.SEAFARING, GLOBAL.TECH.SEAFARING_TWO)
+    AddRecipe("fish_box",			   {Ingredient("cutstone", 1), 		Ingredient("rope", 1)}, GLOBAL.RECIPETABS.SEAFARING, GLOBAL.TECH.SEAFARING_TWO, nil, 1.5, nil, nil, nil, nil, nil) 
+    AddRecipe("waterpump",            {Ingredient("boards", 2),Ingredient("rope", 1)},               GLOBAL.RECIPETABS.SEAFARING, GLOBAL.TECH.SEAFARING_TWO, nil, 1.5, nil, nil, nil, nil, nil)
+end
+
+if GetModConfigData("config_logicalRepairs") == 1 then
+    GLOBAL.TUNING.REPAIR_LOGS_HEALTH = 13 --25/4
+    GLOBAL.TUNING.REPAIR_STICK_HEALTH = 6 --13
+end
+
+if GetModConfigData("config_turningBoats") == 1 then
+    AddPrefabPostInit("boat", function(inst)
+        if inst.components.boatphysics ~= nil then
+            inst.components.boatphysics:SetCanSteeringRotate(true)
+        end
+    end)
+end
+
+if GetModConfigData("config_seasonalShoals") == 1 then
+    AddPrefabPostInit("oceanfish_shoalspawner", function(inst)
+        if GLOBAL.TheWorld ~= nil and inst.components.childspawner ~= nil then
+            --todo: remove old fish on season change       
+            if GLOBAL.TheWorld.state.isautumn == true then
+                inst.components.childspawner:SetRareChild("oceanfish_small_6", 0.1)
+            elseif GLOBAL.TheWorld.state.iswinter == true then
+                inst.components.childspawner:SetRareChild("oceanfish_medium_8", 0.1)
+                inst.components.childspawner.childname = "oceanfish_medium_4"
+            elseif GLOBAL.TheWorld.state.isspring == true then
+                inst.components.childspawner:SetRareChild("oceanfish_small_7", 0.1)
+                inst.components.childspawner.childname = "oceanfish_medium_5"
+            elseif GLOBAL.TheWorld.state.issummer == true then
+                inst.components.childspawner:SetRareChild("oceanfish_small_8", 0.1)
+                inst.components.childspawner.childname = "oceanfish_medium_7"
+            end
+        end
+    end)
+end
+
+--if GetModConfigData("config_hoarderCrabking") == then
+    AddPrefabPostInit("crabking", function(inst)
+        inst:ListenForEvent("death", function(inst)
+            local pos = inst:GetPosition()
+            local messagebottletreasures = require("messagebottletreasures")
+            local treasure = messagebottletreasures.GenerateTreasure(pos, "royal_sunkenchest")
+            local opalcount = 4 + inst.countgems(inst).opal
+            for i = 1, opalcount do
+                print(opalcount)
+                messagebottletreasures.GenerateTreasure(pos, "royal_sunkenchest")
+            end
+        end)
+    end)
+--end
+
+--if GetModConfigData("config_theukonBoats")
+
+--end
