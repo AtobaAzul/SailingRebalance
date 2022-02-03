@@ -261,108 +261,127 @@ sunkenchest =
 	},
 royal_sunkenchest =
 {
-	treasure_type_weight = 0,
+    treasure_type_weight = 0,
 
-	presets =
-	{
-		traveler =
-		{
-			preset_weight = 1,
+    presets =
+    {
+        traveler =
+        {
+            preset_weight = 1,
 
-			guaranteed_loot =
-			{
-				cane = 1,
-				heatrock = 1,
-				gnarwail_horn = 1,
-				papyrus = {4, 8},
-				featherpencil = {2, 4},
-				spoiled_fish = {3, 5},
-			},
-			randomly_selected_loot =
-			{
-				{ compass = .25, goggleshat = .75 },
-			},
-		},
-		----------------
-		cave_hunter =
-		{
-			preset_weight = 1,
+            guaranteed_loot =
+            {
+                cane = 1,
+                heatrock = 1,
+                gnarwail_horn = 1,
+                papyrus = {4, 8},
+                featherpencil = {2, 4},
+                spoiled_fish = {3, 5},
+            },
+            randomly_selected_loot =
+            {
+                { compass = .25, goggleshat = .75 },
+            },
+        },
+        ----------------
+        cave_hunter =
+        {
+            preset_weight = 1,
 
-			guaranteed_loot =
-			{
-				multitool_axe_pickaxe = 1,
-				slurper_pelt = {3, 6},
-				silk = {6, 8, 10},
-				mole = {2,3},
-				goldnugget = {4,7,10},
-			},
-			randomly_selected_loot =
-			{
-				{ tentaclespike = 0.5, batbat = 0.5  },
-				{ wormlight = 0.2, wormlight_lesser = 0.6, minerhat = 0.2,  },
-			},
-		},
-		------------------
-		scientist =
-		{
-			preset_weight = 1,
+            guaranteed_loot =
+            {
+                multitool_axe_pickaxe = 1,
+                slurper_pelt = {3, 6},
+                silk = {6, 8, 10},
+                mole = {2,3},
+                goldnugget = {4,7,10},
+            },
+            randomly_selected_loot =
+            {
+                { tentaclespike = 0.5, batbat = 0.5  },
+                { wormlight = 0.2, wormlight_lesser = 0.6, minerhat = 0.2,  },
+            },
+        },
+        ------------------
+        scientist =
+        {
+            preset_weight = 1,
 
-			guaranteed_loot =
-			{
-				molehat = 1,
-				nightstick = 1,
-				transistor = {1, 2},
-				goldenpickaxe = 1,
-			},
-			randomly_selected_loot =
-			{
-				{ gunpowder = 0.30, slurtleslime = 0.50, wormlight = 0.20 },
-			},
+            guaranteed_loot =
+            {
+                molehat = 1,
+                nightstick = 1,
+                transistor = {1, 2},
+                goldenpickaxe = 1,
+            },
+            randomly_selected_loot =
+            {
+                { gunpowder = 0.30, slurtleslime = 0.50, wormlight = 0.20 },
+            },
 
-		},
-		-------------	
-		splunker =  --tweaked
-		{
-			preset_weight = 1,
+        },
+        -------------
+        splunker =  --tweaked
+        {
+            preset_weight = 1,
 
-			guaranteed_loot =
-			{
-				gears = {2, 4}, --more gears?
-				thulecite = {4, 8},
-				thulecite_pieces = {8, 12, 16},
-				lantern = 1,
-			},
-			randomly_selected_loot =
-			{
+            guaranteed_loot =
+            {
+                gears = {2, 4}, --more gears?
+                thulecite = {4, 8},
+                thulecite_pieces = {8, 12, 16},
+                lantern = 1,
+            },
+            randomly_selected_loot =
+            {
 
-				{yellowstaff = 0.33, greenstaff = 0.33, orangestaff = 0.33,}, --staffs and amulets instead of raw gems, lowered chance.
-				{yellowamulet = 0.33, greenamulet = 0.33, orangeamulet = 0.33, },
-				{ruinshat = 0.33, armor_ruins = 0.33, ruins_bat = 0.33}, --chance for both thule suit and crown.
+                {yellowstaff = 0.33, greenstaff = 0.33, orangestaff = 0.33,}, --staffs and amulets instead of raw gems, lowered chance.
+                {yellowamulet = 0.33, greenamulet = 0.33, orangeamulet = 0.33, },
+                {ruinshat = 0.33, armor_ruins = 0.33, ruins_bat = 0.33}, --chance for both thule suit and crown.
 
-			},
-		},
-		--------
-		kings_stash =
-		{
-			preset_weight = 1,
+            },
+        },
+        --------
+        kings_stash =
+        {
+            preset_weight = 1,
 
-			guaranteed_loot =
-			{
-				greengem = {1, 2, 3},
-				yellowgem = {1, 2, 3},
-				purplegem = {1, 2, 3},
-				orangegem = {1, 2, 3},
-				bluegem = {1, 2, 3},
-				redgem = {1, 2, 3},
-			},
-			randomly_selected_loot =
-			{
-				{opalpreciousgem = 0.25},
-			},
-		}
-	},
+            guaranteed_loot =
+            {
+                greengem = {1, 2, 3},
+                yellowgem = {1, 2, 3},
+                purplegem = {1, 2, 3},
+                orangegem = {1, 2, 3},
+                bluegem = {1, 2, 3},
+                redgem = {1, 2, 3},
+            },
+            randomly_selected_loot =
+            {
+                {opalpreciousgem = 0.25},
+            },
+        },
+        mrkrabs_loot =
+        {
+            preset_weight = 1,
 
+            guaranteed_loot =
+            {
+                moonglass = {15, 20},
+                messagebottleempty = {10, 15},
+                messagebottle = 2,  --These should always have messages from Pearl in them instead of maps, to show that CK knew she was looking for him, and actively chose power over her.
+                alterguardianhatshard = {3, 4},
+            },
+            randomly_selected_loot =
+            {
+                {opalstaff = 0.8, yellowstaff = 0.2},
+                {greenstaff = 0.33, orangestaff = 0.33, telestaff = 0.33},
+                {yellowamulet = 0.33, orangeamulet = 0.33, greenamulet = 0.33, purpleamulet = 0.33},
+                {trinket_26 = 0.1},
+            },
+        }
+    }
 }
+
 }
 
 
