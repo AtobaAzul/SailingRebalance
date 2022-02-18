@@ -169,9 +169,7 @@ local function sunken_OnSubmerge(inst)
 	if inst.components.container ~= nil then
 		inst.components.container:Close()
 	end
-    DoPeriodTask(0.1, function(inst) --temp solution...
-    inst:Remove()
-    end)
+    inst:Remove() --temp solution...
 end
 
 local function sunken_GetStatus(inst)
@@ -207,6 +205,8 @@ local function sunken_master_postinit(inst)
 	inst:AddComponent("submersible")
 	inst:AddComponent("symbolswapdata")
     inst.components.symbolswapdata:SetData("swap_sunken_treasurechest", "swap_body")
+
+
 
 	inst:ListenForEvent("on_submerge", sunken_OnSubmerge)
 end

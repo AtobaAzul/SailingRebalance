@@ -1,4 +1,7 @@
-Assets = {}
+Assets = {
+	Asset("ATLAS", "images/inventoryimages/diseasecurebomb.xml"),
+	Asset("IMAGE", "images/inventoryimages/diseasecurebomb.tex"),
+}
 
 PrefabFiles = {
     "royal_sunkenchest",
@@ -48,7 +51,7 @@ if GetModConfigData("config_sweeterFish") == 1 then
     AddPrefabPostInit(
         "oceanfish_medium_9_inv",
         function(inst)
-            if inst and components.lootdropper ~= nil then
+            if inst and inst.components.lootdropper ~= nil then
                 inst.components.lootdropper:AddChanceLoot("honey", 1.0, "fishmeat_small", 1.0)
             end
         end
@@ -220,8 +223,8 @@ if GetModConfigData("config_hermitRecipes") == 1 then
             true,
             nil,
             nil,
-            nil,
-            nil,
+            "images/inventoryimages/diseasecurebomb.xml",
+            "diseasecurebomb.tex",
             nil,
             "diseasecurebomb"
         )
@@ -469,50 +472,128 @@ end
 if GetModConfigData("config_seasonalShoals") == 1 then
     AddPrefabPostInit("oceanfish_shoalspawner", function(inst)
         if GLOBAL.TheWorld ~= nil and inst.components.childspawner ~= nil then
-            --todo: remove old fish on season change       
             if GLOBAL.TheWorld.state.isautumn == true then
-                inst.components.childspawner:SetRareChild("oceanfish_small_6", 0.1)
+                inst.components.childspawner:SetRareChild("oceanfish_small_6", 0.2)
             elseif GLOBAL.TheWorld.state.iswinter == true then
-                inst.components.childspawner:SetRareChild("oceanfish_medium_8", 0.1)
+                inst.components.childspawner:SetRareChild("oceanfish_medium_8", 0.2)
                 inst.components.childspawner.childname = "oceanfish_medium_4"
             elseif GLOBAL.TheWorld.state.isspring == true then
-                inst.components.childspawner:SetRareChild("oceanfish_small_7", 0.1)
+                inst.components.childspawner:SetRareChild("oceanfish_small_7", 0.2)
                 inst.components.childspawner.childname = "oceanfish_medium_5"
             elseif GLOBAL.TheWorld.state.issummer == true then
-                inst.components.childspawner:SetRareChild("oceanfish_small_8", 0.1)
+                inst.components.childspawner:SetRareChild("oceanfish_small_8", 0.2)
                 inst.components.childspawner.childname = "oceanfish_medium_3"
             end
         end
     end)
-    
-    AddPrefabPostInit("oceanfish_medium_4", function(inst)
-                    if inst and components.lootdropper ~= nil then
-                inst.components.lootdropper:AddChanceLoot("fishmeat", 1.0, "fishmeat_small", 1.0)
+
+    AddPrefabPostInit("oceanfish_medium_2", function(inst)
+        local function OnSeasonChange(inst, season)
+			if inst.sg ~= nil then
+			    inst.sg:GoToState("leave")
+            else
+                inst:Remove()
             end
+        end
+        inst:WatchWorldState("season", OnSeasonChange)
+    end)
+
+    AddPrefabPostInit("oceanfish_medium_4", function(inst)
+        local function OnSeasonChange(inst, season)
+			if inst.sg ~= nil then
+			    inst.sg:GoToState("leave")
+            else
+                inst:Remove()
+            end
+        end
+        inst:WatchWorldState("season", OnSeasonChange)
+    end)
+
+    AddPrefabPostInit("oceanfish_small_6", function(inst)
+        local function OnSeasonChange(inst, season)
+			if inst.sg ~= nil then
+			    inst.sg:GoToState("leave")
+            else
+                inst:Remove()
+            end
+        end
+        inst:WatchWorldState("season", OnSeasonChange)
+    end)
+
+    AddPrefabPostInit("oceanfish_medium_8", function(inst)
+        local function OnSeasonChange(inst, season)
+            if inst.sg ~= nil then
+			    inst.sg:GoToState("leave")
+            else
+                inst:Remove()
+            end
+        end
+        inst:WatchWorldState("season", OnSeasonChange)
+    end)
+
+    AddPrefabPostInit("oceanfish_medium_5", function(inst)
+        local function OnSeasonChange(inst, season)
+            if inst.sg ~= nil then
+			    inst.sg:GoToState("leave")
+            else
+                inst:Remove()
+            end
+        end
+        inst:WatchWorldState("season", OnSeasonChange)
+    end)
+
+    AddPrefabPostInit("oceanfish_small_7", function(inst)
+        local function OnSeasonChange(inst, season)
+            if inst.sg ~= nil then
+			    inst.sg:GoToState("leave")
+            else
+                inst:Remove()
+            end
+        end
+        inst:WatchWorldState("season", OnSeasonChange)
     end)
 
     AddPrefabPostInit("oceanfish_medium_3", function(inst)
-                    if inst and components.lootdropper ~= nil then
-                inst.components.lootdropper:AddChanceLoot("fishmeat", 1.0, "fishmeat", 1.0)
+        local function OnSeasonChange(inst, season)
+            if inst.sg ~= nil then
+			    inst.sg:GoToState("leave")
+            else
+                inst:Remove()
             end
+        end
+        inst:WatchWorldState("season", OnSeasonChange)
+    end)
+
+    AddPrefabPostInit("oceanfish_small_8", function(inst)
+        local function OnSeasonChange(inst, season)
+            if inst.sg ~= nil then
+			    inst.sg:GoToState("leave")
+            else
+                inst:Remove()
+            end
+        end
+        inst:WatchWorldState("season", OnSeasonChange)
     end)
 end
 
---if GetModConfigData("config_hoarderCrabking") == then
+if GetModConfigData("config_hoarderCrabking") == 1 then
+    --TODO: make chests not removethemselves on sinking and make them meaninful.
     AddPrefabPostInit("crabking", function(inst)
         inst:ListenForEvent("death", function(inst)
             local pos = inst:GetPosition()
             local messagebottletreasures = require("messagebottletreasures")
-            local treasure = messagebottletreasures.GenerateTreasure(pos, "royal_sunkenchest")
             local opalcount = 4 + inst.countgems(inst).opal
             for i = 1, opalcount do
                 print(opalcount)
                 messagebottletreasures.GenerateTreasure(pos, "royal_sunkenchest")
+                --messagebottletreasures.GenerateTreasure(pos, "royal_sunkenchest").Transform:SetPosition(pos.x + math.random(-2, 2), pos.y, pos.z + math.random(-2, 2)) When I get the chests fixed.
             end
         end)
     end)
---end
+end
 
---if GetModConfigData("config_theukonBoats")
-
---end
+--[[if GetModConfigData("config_theukonBoats")
+    AddPrefabPostInit("boat", function(inst)
+        inst.components.boatphysics.damageable_velocity = 200
+    end)
+--end]]
