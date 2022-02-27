@@ -443,17 +443,17 @@ end
 
 if GetModConfigData("config_cheapBoats") == 1 then
     AddRecipe("anchor_item", 		   {Ingredient("boards", 1), 		Ingredient("rope", 2), Ingredient("cutstone", 2)}, GLOBAL.RECIPETABS.SEAFARING, GLOBAL.TECH.SEAFARING_TWO)
-    AddRecipe("mast_item", 		   {Ingredient("boards", 1), 		Ingredient("rope", 2), Ingredient("silk", 6)}, GLOBAL.RECIPETABS.SEAFARING, GLOBAL.TECH.SEAFARING_TWO)
-    AddRecipe("mast_malbatross_item", {Ingredient("driftwood_log", 2), Ingredient("rope", 3), Ingredient("malbatross_feathered_weave", 4)}, GLOBAL.RECIPETABS.SEAFARING, GLOBAL.TECH.LOST)
-    AddRecipe("steeringwheel_item",   {Ingredient("boards", 1), 		Ingredient("rope", 1)}, GLOBAL.RECIPETABS.SEAFARING, GLOBAL.TECH.SEAFARING_TWO)
-    AddRecipe("fish_box",			   {Ingredient("cutstone", 1), 		Ingredient("rope", 2)}, GLOBAL.RECIPETABS.SEAFARING, GLOBAL.TECH.SEAFARING_TWO, nil, 1.5, nil, nil, nil, nil, nil)
+    AddRecipe("mast_item", 		       {Ingredient("boards", 1), 		Ingredient("rope", 2), Ingredient("silk", 6)}, GLOBAL.RECIPETABS.SEAFARING, GLOBAL.TECH.SEAFARING_TWO)
+    AddRecipe("mast_malbatross_item",  {Ingredient("driftwood_log", 2), Ingredient("rope", 3), Ingredient("malbatross_feathered_weave", 4)}, GLOBAL.RECIPETABS.SEAFARING, GLOBAL.TECH.LOST)
+    AddRecipe("steeringwheel_item",    {Ingredient("boards", 1), 		Ingredient("rope", 1)}, GLOBAL.RECIPETABS.SEAFARING, GLOBAL.TECH.SEAFARING_TWO)
+    AddRecipe("fish_box",			   {Ingredient("cutstone", 1), 		Ingredient("rope", 2)}, GLOBAL.RECIPETABS.SEAFARING, GLOBAL.TECH.SEAFARING_TWO, nil, 1.5)
 elseif GetModConfigData("config_cheapBoats") == 2 then
     AddRecipe("anchor_item", 		   {Ingredient("boards", 2), 		Ingredient("rope", 1), Ingredient("cutstone", 1)}, GLOBAL.RECIPETABS.SEAFARING, GLOBAL.TECH.SEAFARING_TWO)
-    AddRecipe("mast_item", 		   {Ingredient("boards", 1), 		Ingredient("rope", 2), Ingredient("silk", 4)}, GLOBAL.RECIPETABS.SEAFARING, GLOBAL.TECH.SEAFARING_TWO)        
-    AddRecipe("mast_malbatross_item", {Ingredient("driftwood_log", 1), Ingredient("rope", 2), Ingredient("malbatross_feathered_weave", 2)}, GLOBAL.RECIPETABS.SEAFARING, GLOBAL.TECH.LOST)
-    AddRecipe("steeringwheel_item",   {Ingredient("boards", 1), 		Ingredient("rope", 1)}, GLOBAL.RECIPETABS.SEAFARING, GLOBAL.TECH.SEAFARING_TWO)
-    AddRecipe("fish_box",			   {Ingredient("cutstone", 1), 		Ingredient("rope", 1)}, GLOBAL.RECIPETABS.SEAFARING, GLOBAL.TECH.SEAFARING_TWO, nil, 1.5, nil, nil, nil, nil, nil) 
-    AddRecipe("waterpump",            {Ingredient("boards", 2),Ingredient("rope", 1)},               GLOBAL.RECIPETABS.SEAFARING, GLOBAL.TECH.SEAFARING_TWO, nil, 1.5, nil, nil, nil, nil, nil)
+    AddRecipe("mast_item", 		       {Ingredient("boards", 1), 		Ingredient("rope", 2), Ingredient("silk", 4)}, GLOBAL.RECIPETABS.SEAFARING, GLOBAL.TECH.SEAFARING_TWO)        
+    AddRecipe("mast_malbatross_item",  {Ingredient("driftwood_log", 1), Ingredient("rope", 2), Ingredient("malbatross_feathered_weave", 2)}, GLOBAL.RECIPETABS.SEAFARING, GLOBAL.TECH.LOST)
+    AddRecipe("steeringwheel_item",    {Ingredient("boards", 1), 		Ingredient("rope", 1)}, GLOBAL.RECIPETABS.SEAFARING, GLOBAL.TECH.SEAFARING_TWO)
+    AddRecipe("fish_box",			   {Ingredient("cutstone", 1), 		Ingredient("rope", 1)}, GLOBAL.RECIPETABS.SEAFARING, GLOBAL.TECH.SEAFARING_TWO, "fish_box_placer", 1.5)
+    AddRecipe("waterpump",             {Ingredient("boards", 2),        Ingredient("rope", 1)}, GLOBAL.RECIPETABS.SEAFARING, GLOBAL.TECH.SEAFARING_TWO, nil, 1.5)
 end
 
 if GetModConfigData("config_logicalRepairs") == 1 then
