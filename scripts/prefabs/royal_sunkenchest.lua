@@ -169,6 +169,7 @@ local function sunken_OnSubmerge(inst)
 	if inst.components.container ~= nil then
 		inst.components.container:Close()
 	end
+    inst:Remove() --temp solution...
 end
 
 local function sunken_GetStatus(inst)
@@ -205,8 +206,7 @@ local function sunken_master_postinit(inst)
 	inst:AddComponent("symbolswapdata")
     inst.components.symbolswapdata:SetData("swap_sunken_treasurechest", "swap_body")
 
-    inst:AddComponent("inventory")
-    inst.components.inventory.ignorescangoincontainer = true
+
 
 	inst:ListenForEvent("on_submerge", sunken_OnSubmerge)
 end
