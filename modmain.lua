@@ -15,22 +15,32 @@ local unlockablechest = GLOBAL.KnownModIndex:IsModEnabled("workshop-2400387360")
 local faf = GLOBAL.KnownModIndex:IsModEnabled("workshop-1908933602")
 local um = GLOBAL.KnownModIndex:IsModEnabled("workshop-2039181790")
 
+GLOBAL.require("recipe")
+TechTree = GLOBAL.require("techtree")
+TECH = GLOBAL.TECH
+Recipe = GLOBAL.Recipe
+RECIPETABS = GLOBAL.RECIPETABS
+Ingredient = GLOBAL.Ingredient
+AllRecipes = GLOBAL.AllRecipes
+TUNING = GLOBAL.TUNING
+STRINGS = GLOBAL.STRINGS
+
 local treasures = GLOBAL.require("messagebottletreasures")
 
 if GetModConfigData("config_tridentBuff") == 1 then
 
     AllRecipes["trident"].ingredients = {Ingredient("boneshard", 2), Ingredient("gnarwail_horn", 1),Ingredient("twigs", 2)}
 
-    GLOBAL.TUNING.TRIDENT.DAMAGE = wilson_attack * 1.5
-    GLOBAL.TUNING.TRIDENT.USES = GLOBAL.TUNING.TRIDENT.USES + 50
-    GLOBAL.TUNING.TRIDENT.SPELL.USE_COUNT = GLOBAL.TUNING.TRIDENT.USES
+    TUNING.TRIDENT.DAMAGE = wilson_attack * 1.5
+    TUNING.TRIDENT.USES = TUNING.TRIDENT.USES + 50
+    TUNING.TRIDENT.SPELL.USE_COUNT = TUNING.TRIDENT.USES
 elseif GetModConfigData("config_tridentBuff") == 2 then
     
     AllRecipes["trident"].ingredients = {Ingredient("boneshard", 3), Ingredient("kelp", 4),Ingredient("twigs", 2)}
    
-    GLOBAL.TUNING.TRIDENT.DAMAGE = wilson_attack * 3.0
-    GLOBAL.TUNING.TRIDENT.USES = GLOBAL.TUNING.TRIDENT.USES + 50
-    GLOBAL.TUNING.TRIDENT.SPELL.USE_COUNT = GLOBAL.TUNING.TRIDENT.USES
+    TUNING.TRIDENT.DAMAGE = wilson_attack * 3.0
+    TUNING.TRIDENT.USES = TUNING.TRIDENT.USES + 50
+    TUNING.TRIDENT.SPELL.USE_COUNT = TUNING.TRIDENT.USES
 end
 
 if GetModConfigData("config_sweeterFish") == 1 then
@@ -48,95 +58,91 @@ end
 
 if GetModConfigData("config_easierSeaweed") == 1 then
     modimport("postinit/waterplant_bomb") --Thanks, scrimbles.
-    GLOBAL.TUNING.WATERPLANT.DAMAGE = GLOBAL.TUNING.WATERPLANT.DAMAGE * 0.75
-    GLOBAL.TUNING.WATERPLANT.ITEM_DAMAGE = GLOBAL.TUNING.WATERPLANT.ITEM_DAMAGE * 1.75
+    TUNING.WATERPLANT.DAMAGE = TUNING.WATERPLANT.DAMAGE * 0.75
+    TUNING.WATERPLANT.ITEM_DAMAGE = TUNING.WATERPLANT.ITEM_DAMAGE * 1.75
 end
 
 if GetModConfigData("config_easierRockjaws") == 1 then
-    GLOBAL.TUNING.SHARK.DAMAGE = 50 / 3
+    TUNING.SHARK.DAMAGE = 50 / 3
 end
 
 if GetModConfigData("config_hermitRecipes") == 1 then
     AddRecipe2(
         "hermit_boat",
         {Ingredient("messagebottleempty", 1)},
-        GLOBAL.RECIPETABS.HERMITCRABSHOP,
-        GLOBAL.TECH.HERMITCRABSHOP_ONE,
-        {nounlock = true, product = "boat_item", sg_state("give")}, {"PROTOTYPER"}
+        TECH.HERMITCRABSHOP_ONE,
+        {nounlock = true, product = "boat_item", sg_state = "give"}, {"CRAFTING_STATION"}
     )
     AddRecipe2(
         "hermit_mast",
         {Ingredient("messagebottleempty", 1)},
-        GLOBAL.RECIPETABS.HERMITCRABSHOP,
-        GLOBAL.TECH.HERMITCRABSHOP_ONE,
-        {nounlock = true, product = "mast_item", sg_state("give")}, {"PROTOTYPER"}
+        TECH.HERMITCRABSHOP_ONE,
+        {nounlock = true, product = "mast_item", sg_state = "give"}, {"CRAFTING_STATION"}
     )
     AddRecipe2(
         "hermit_anchor",
         {Ingredient("messagebottleempty", 1)},
-        GLOBAL.RECIPETABS.HERMITCRABSHOP,
-        GLOBAL.TECH.HERMITCRABSHOP_ONE,
-        {nounlock = true, product = "anchor_item", sg_state("give")}, {"PROTOTYPER"}
+        TECH.HERMITCRABSHOP_ONE,
+        {nounlock = true, product = "anchor_item", sg_state = "give"}, {"CRAFTING_STATION"}
     )
     AddRecipe2(
         "hermit_steeringwheel",
         {Ingredient("messagebottleempty", 1)},
-        GLOBAL.TECH.HERMITCRABSHOP_ONE,
-        {nounlock = true, product = "steeringwheel_item", sg_state("give")}, {"PROTOTYPER"}
+        TECH.HERMITCRABSHOP_ONE,
+        {nounlock = true, product = "steeringwheel_item", sg_state = "give"}, {"CRAFTING_STATION"}
 
     )
     AddRecipe2(
         "hermit_patch",
         {Ingredient("messagebottleempty", 1)},
-        GLOBAL.TECH.HERMITCRABSHOP_ONE,
-        {nounlock = true, product = "blueprint", sg_state("give"), num_to_give = 4}, {"PROTOTYPER"}
+        TECH.HERMITCRABSHOP_ONE,
+        {nounlock = true, product = "blueprint", sg_state = "give", num_to_give = 4}, {"CRAFTING_STATION"}
     )
-    --[[AddRecipe2(
+    AddRecipe2(
         "hermit_blueprint",
         {Ingredient("messagebottleempty", 1)},
         GLOBAL.TECH.HERMITCRABSHOP_THREE,
-        {nounlock = true, product = "blueprint", sg_state("give")}, {"PROTOTYPER"}
-    )]]
+        {nounlock = true, product = "blueprint", sg_state = "give"}, {"CRAFTING_STATION"}
+    )
     AddRecipe2(
         "hermit_waterplant",
         {Ingredient("messagebottleempty", 3)},
-        GLOBAL.RECIPETABS.HERMITCRABSHOP,
-        GLOBAL.TECH.HERMITCRABSHOP_FIVE,
-        {nounlock = true, product = "waterplant_planter", sg_state("give")}, {"PROTOTYPER"}
+        TECH.HERMITCRABSHOP_FIVE,
+        {nounlock = true, product = "waterplant_planter", sg_state = "give"}, {"CRAFTING_STATION"}
     )
 
     AddRecipe2(
         "hermit_cookies",
         {Ingredient("messagebottleempty", 1)},
-        GLOBAL.TECH.HERMITCRABSHOP_SEVEN,
-        {nounlock = true, product = "pumpkincookie", sg_state("give")}, {"PROTOTYPER"}
+        TECH.HERMITCRABSHOP_SEVEN,
+        {nounlock = true, product = "pumpkincookie", sg_state = "give"}, {"CRAFTING_STATION"}
     )
 
     AddRecipe2(
         "normal_chum",
         {Ingredient("spoiled_food", 2),
         Ingredient("rope", 1)},
-        GLOBAL.TECH.FISHING_ONE,
+        TECH.FISHING_ONE,
         {product = "chum"}, {"FISHING"}
     )
 
     AddRecipe2("hermitshop_chum",
     {Ingredient("messagebottleempty", 1)}, 
-    GLOBAL.TECH.HERMITCRABSHOP_ONE,          
-    {nounlock = true, product = "chum", num_to_give = 3}, {"PROTOTYPER"}
+    TECH.HERMITCRABSHOP_ONE,          
+    {nounlock = true, product = "chum", num_to_give = 3}, {"CRAFTING_STATION"}
     )
 
-    GLOBAL.STRINGS.RECIPE_DESC.WATERPLANT_PLANTER = "Grow your very own Sea Weed."
-    GLOBAL.STRINGS.RECIPE_DESC.BLUEPRINT = "Learn new things."
-    GLOBAL.STRINGS.RECIPE_DESC.PUMPKINCOOKIE = "Grandma's cookies."
+    STRINGS.RECIPE_DESC.WATERPLANT_PLANTER = "Grow your very own Sea Weed."
+    STRINGS.RECIPE_DESC.BLUEPRINT = "Learn new things."
+    STRINGS.RECIPE_DESC.PUMPKINCOOKIE = "Grandma's cookies."
 
     if um then
         AddRecipe2(
             "hermit_umoil",
             {Ingredient("messagebottleempty", 3)},
             GLOBAL.TECH.HERMITCRABSHOP_FIVE,
-            {nounlock = true, product = "diseasecurebomb", sg_state("give"), atlas = "images/inventoryimages/diseasecurebomb.xml", image = diseasecurebomb.tex},
-            {"PROTOTYPER"}
+            {nounlock = true, product = "diseasecurebomb", sg_state = "give", atlas = "images/inventoryimages/diseasecurebomb.xml", image = diseasecurebomb.tex},
+            {"CRAFTING_STATION"}
         )
     end
 end
@@ -152,7 +158,7 @@ if GetModConfigData("config_livinglogGators") == 1 then
     )
 end
 
-GLOBAL.TUNING.MESSAGEBOTTLE_NOTE_CHANCE = GetModConfigData("config_moreTreasure")
+TUNING.MESSAGEBOTTLE_NOTE_CHANCE = GetModConfigData("config_moreTreasure")
 
 if GetModConfigData("config_foodRebalance") == 1 then
     modimport("postinit/foodpostinit")
@@ -261,7 +267,7 @@ if GetModConfigData("config_betterMoonstorms") == 1 then
     AddRecipe2(
         "moonstorm_static_item",
         {Ingredient("transistor", 1), Ingredient("moonstorm_spark", 2), Ingredient("goldnugget", 3)},
-        GLOBAL.TECH.LOST,
+        TECH.LOST,
         nil,
         {"REFINE"}
     )
@@ -275,12 +281,12 @@ if GetModConfigData("config_betterMoonstorms") == 1 then
         end
     )
 
-    GLOBAL.STRINGS.RECIPE_DESC.MOONSTORM_STATIC_ITEM = "The power of the moon, contained!"
+    STRINGS.RECIPE_DESC.MOONSTORM_STATIC_ITEM = "The power of the moon, contained!"
 
     AddRecipe2(
         "alterguardianhatshard",
         {Ingredient("moonglass_charged", 1), Ingredient("moonstorm_spark", 2), Ingredient("lightbulb", 1)},
-        GLOBAL.TECH.LOST,
+        TECH.LOST,
         nil,
         {"LIGHT"}
     )
@@ -289,7 +295,7 @@ if GetModConfigData("config_betterMoonstorms") == 1 then
         {Ingredient("alterguardianhatshard", 5), Ingredient("alterguardianhatshard_blueprint", 1)}
     )
 
-    GLOBAL.STRINGS.RECIPE_DESC.ALTERGUARDIANHATSHARD = "Harness the moonlight."
+    STRINGS.RECIPE_DESC.ALTERGUARDIANHATSHARD = "Harness the moonlight."
 end
 
 if GetModConfigData("config_moreKeys") == 1 then
