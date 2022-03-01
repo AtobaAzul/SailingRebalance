@@ -86,18 +86,6 @@ end
         default = 1,
         hover = "Make it so the Tier 3 house doesn't cost cactus flowers.",
       },
-
-      {
-        name = "config_moreShells",
-        label = "More Shells",
-        options = {
-                    {description = "Enabled", data = 1},
-                    {description = "Disabled",data = 0},
-                  },
-        default = 1,
-        hover = "Increase drop chance of Cookie Cutter Shells.",
-      },
-
       {
         name = "config_betterMoonstorms",
         label = "Better Moonstorms",
@@ -202,17 +190,6 @@ end
       SkipSpace(),
       Header("Boats & Ocean"),
       SkipSpace(),
-      {
-        name = "config_logicalRepairs",
-        label = "Logical Repair Values",
-        options = {
-                    {description = "Enabled", data = 1},
-                    {description = "Disabled",data = 0},
-                  },
-        default = 1,
-        hover = "Tweaks the repair values of twigs, logs and boards to be a little bit more logical.",
-      },
-
       {
         name = "config_turningBoats",
         label = "Boat Turning",
