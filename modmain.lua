@@ -35,9 +35,9 @@ if GetModConfigData("config_tridentBuff") == 1 then
     TUNING.TRIDENT.USES = TUNING.TRIDENT.USES + 50
     TUNING.TRIDENT.SPELL.USE_COUNT = TUNING.TRIDENT.USES
 elseif GetModConfigData("config_tridentBuff") == 2 then
-    
+
     AllRecipes["trident"].ingredients = {Ingredient("boneshard", 3), Ingredient("kelp", 4),Ingredient("twigs", 2)}
-   
+
     TUNING.TRIDENT.DAMAGE = wilson_attack * 3.0
     TUNING.TRIDENT.USES = TUNING.TRIDENT.USES + 50
     TUNING.TRIDENT.SPELL.USE_COUNT = TUNING.TRIDENT.USES
@@ -127,8 +127,8 @@ if GetModConfigData("config_hermitRecipes") == 1 then
     )
 
     AddRecipe2("hermitshop_chum",
-    {Ingredient("messagebottleempty", 1)}, 
-    TECH.HERMITCRABSHOP_ONE,          
+    {Ingredient("messagebottleempty", 1)},
+    TECH.HERMITCRABSHOP_ONE,
     {nounlock = true, product = "chum", num_to_give = 3}, {"CRAFTING_STATION"}
     )
 
@@ -375,91 +375,150 @@ if GetModConfigData("config_seasonalShoals") == 1 then
     end)
 
     AddPrefabPostInit("oceanfish_medium_2", function(inst)
-        local function OnSeasonChange(inst, season)
-			if inst.sg ~= nil then
-			    inst.sg:GoToState("leave")
-            else
-                inst:Remove()
+        local function OnLoad(inst, data)
+            if data ~= nil and data.herdprefab ~= nil then
+                inst.components.herdmember.herdprefab = data.herdprefab
             end
-        end
-        inst:WatchWorldState("season", OnSeasonChange)
-    end)
 
-    AddPrefabPostInit("oceanfish_medium_4", function(inst)
-        local function OnSeasonChange(inst, season)
-			if inst.sg ~= nil then
-			    inst.sg:GoToState("leave")
-            else
-                inst:Remove()
+            if data ~= nil and data.heavy then
+                inst.heavy = data.heavy
+            end
+
+            if not GLOBAL.TheWorld.state.isautumn then
+                if inst.sg ~= nil then
+                    inst.sg:GoToState("leave")
+                else
+                    inst:Remove()
+                end
             end
         end
-        inst:WatchWorldState("season", OnSeasonChange)
+        inst.OnLoad = OnLoad
     end)
 
     AddPrefabPostInit("oceanfish_small_6", function(inst)
-        local function OnSeasonChange(inst, season)
-			if inst.sg ~= nil then
-			    inst.sg:GoToState("leave")
-            else
-                inst:Remove()
+        local function OnLoad(inst, data)
+            if data ~= nil and data.herdprefab ~= nil then
+                inst.components.herdmember.herdprefab = data.herdprefab
+            end
+
+            if data ~= nil and data.heavy then
+                inst.heavy = data.heavy
+            end
+
+            if not GLOBAL.TheWorld.state.isautumn then
+                if inst.sg ~= nil then
+                    inst.sg:GoToState("leave")
+                else
+                    inst:Remove()
+                end
             end
         end
-        inst:WatchWorldState("season", OnSeasonChange)
+        inst.OnLoad = OnLoad
+    end)
+
+    AddPrefabPostInit("oceanfish_medium_4", function(inst)
+        local function OnLoad(inst, data)
+            if data ~= nil and data.herdprefab ~= nil then
+                inst.components.herdmember.herdprefab = data.herdprefab
+            end
+
+            if data ~= nil and data.heavy then
+                inst.heavy = data.heavy
+            end
+
+            if not GLOBAL.TheWorld.state.iswinter then
+                if inst.sg ~= nil then
+                    inst.sg:GoToState("leave")
+                else
+                    inst:Remove()
+                end
+            end
+        end
+        inst.OnLoad = OnLoad
     end)
 
     AddPrefabPostInit("oceanfish_medium_8", function(inst)
-        local function OnSeasonChange(inst, season)
-            if inst.sg ~= nil then
-			    inst.sg:GoToState("leave")
-            else
-                inst:Remove()
+        local function OnLoad(inst, data)
+            if data ~= nil and data.herdprefab ~= nil then
+                inst.components.herdmember.herdprefab = data.herdprefab
+            end
+
+            if data ~= nil and data.heavy then
+                inst.heavy = data.heavy
+            end
+
+            if not GLOBAL.TheWorld.state.iswinter then
+                if inst.sg ~= nil then
+                    inst.sg:GoToState("leave")
+                else
+                    inst:Remove()
+                end
             end
         end
-        inst:WatchWorldState("season", OnSeasonChange)
+        inst.OnLoad = OnLoad
     end)
 
     AddPrefabPostInit("oceanfish_medium_5", function(inst)
-        local function OnSeasonChange(inst, season)
-            if inst.sg ~= nil then
-			    inst.sg:GoToState("leave")
-            else
-                inst:Remove()
+        local function OnLoad(inst, data)
+            if data ~= nil and data.herdprefab ~= nil then
+                inst.components.herdmember.herdprefab = data.herdprefab
+            end
+
+            if data ~= nil and data.heavy then
+                inst.heavy = data.heavy
+            end
+
+            if not GLOBAL.TheWorld.state.isspring then
+                if inst.sg ~= nil then
+                    inst.sg:GoToState("leave")
+                else
+                    inst:Remove()
+                end
             end
         end
-        inst:WatchWorldState("season", OnSeasonChange)
+        inst.OnLoad = OnLoad
     end)
 
     AddPrefabPostInit("oceanfish_small_7", function(inst)
-        local function OnSeasonChange(inst, season)
-            if inst.sg ~= nil then
-			    inst.sg:GoToState("leave")
-            else
-                inst:Remove()
+        local function OnLoad(inst, data)
+            if data ~= nil and data.herdprefab ~= nil then
+                inst.components.herdmember.herdprefab = data.herdprefab
             end
-        end
-        inst:WatchWorldState("season", OnSeasonChange)
-    end)
 
-    AddPrefabPostInit("oceanfish_medium_3", function(inst)
-        local function OnSeasonChange(inst, season)
-            if inst.sg ~= nil then
-			    inst.sg:GoToState("leave")
-            else
-                inst:Remove()
+            if data ~= nil and data.heavy then
+                inst.heavy = data.heavy
+            end
+
+            if not GLOBAL.TheWorld.state.isspring then
+                if inst.sg ~= nil then
+                    inst.sg:GoToState("leave")
+                else
+                    inst:Remove()
+                end
             end
         end
-        inst:WatchWorldState("season", OnSeasonChange)
+        inst.OnLoad = OnLoad
     end)
 
     AddPrefabPostInit("oceanfish_small_8", function(inst)
-        local function OnSeasonChange(inst, season)
-            if inst.sg ~= nil then
-			    inst.sg:GoToState("leave")
-            else
-                inst:Remove()
+        local function OnLoad(inst, data)
+            if data ~= nil and data.herdprefab ~= nil then
+                inst.components.herdmember.herdprefab = data.herdprefab
+            end
+
+            if data ~= nil and data.heavy then
+                inst.heavy = data.heavy
+            end
+
+            if not GLOBAL.TheWorld.state.issummer then
+                if inst.sg ~= nil then
+                    inst.sg:GoToState("leave")
+                else
+                    inst:Remove()
+                end
             end
         end
-        inst:WatchWorldState("season", OnSeasonChange)
+        inst.OnLoad = OnLoad
     end)
 end
 
@@ -478,9 +537,72 @@ if GetModConfigData("config_hoarderCrabking") == 1 then
         end)
     end)
 end
+--if GetModConfigData("config_thiccFish") == 1 then
+    local largerfish =
+    {
+        "oceanfish_medium_3_inv",
+        "oceanfish_medium_4_inv",
+        "oceanfish_medium_3",
+        "oceanfish_medium_4",
+    }
+    local allfish =
+    {
+        "oceanfish_medium_1",
+        "oceanfish_medium_2",
+        "oceanfish_medium_3",
+        "oceanfish_medium_4",
+        "oceanfish_medium_5",
+        "oceanfish_medium_6",
+        "oceanfish_medium_7",
+        "oceanfish_medium_8",
+        "oceanfish_medium_9",
+        "oceanfish_medium_1_inv",
+        "oceanfish_medium_2_inv",
+        "oceanfish_medium_3_inv",
+        "oceanfish_medium_4_inv",
+        "oceanfish_medium_5_inv",
+        "oceanfish_medium_6_inv",
+        "oceanfish_medium_7_inv",
+        "oceanfish_medium_8_inv",
+        "oceanfish_medium_9_inv",
 
---[[if GetModConfigData("config_theukonBoats")
-    AddPrefabPostInit("boat", function(inst)
-        inst.components.boatphysics.damageable_velocity = 200
-    end)
---end]]
+        "oceanfish_small_1",
+        "oceanfish_small_2",
+        "oceanfish_small_3",
+        "oceanfish_small_4",
+        "oceanfish_small_5",
+        "oceanfish_small_6",
+        "oceanfish_small_7",
+        "oceanfish_small_8",
+        "oceanfish_small_9",
+        "oceanfish_small_1_inv",
+        "oceanfish_small_2_inv",
+        "oceanfish_small_3_inv",
+        "oceanfish_small_4_inv",
+        "oceanfish_small_5_inv",
+        "oceanfish_small_6_inv",
+        "oceanfish_small_7_inv",
+        "oceanfish_small_8_inv",
+        "oceanfish_small_9_inv",
+    }
+    local largefish_loot = {"fishmeat", "fishmeat"}
+
+    AddIngredientValues(largerfish, {meat = 2, fish = 2}, true, true)
+
+    for k,v in ipairs(largerfish) do
+        AddPrefabPostInit(v, function(inst)
+            if inst and inst.components.lootdropper ~= nil then
+                inst.components.lootdropper:SetLoot(largefish_loot)
+            end
+        end)
+    end
+--[[
+    for k,v in ipairs(allfish) do
+        AddPrefabPostInit(v, function(inst)
+            if inst ~= nil and data ~= nil and data.item.components.weighable:GetWeightPercent() >= GLOBAL.TUNING.HERMITCRAB.HEAVY_FISH_THRESHHOLD then
+                inst.components.lootdropper:AddChanceLoot("fishmeat_small", 1.0)
+            end
+        end)
+    end
+    ]]
+--end

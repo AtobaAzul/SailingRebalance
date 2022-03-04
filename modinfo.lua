@@ -131,6 +131,17 @@ end
         default = 1,
         hover = "Tweak some ocean foods?",
       },
+
+      {
+        name = "config_thiccFish",
+        label = "Meaty Fish",
+        options = {
+                    {description = "Enabled", data = 1},
+                    {description = "Disabled",data = 0},
+                  },
+        default = 1,
+        hover = "Catfish and Lionfish drop more meat. Heavyweight fish drop an extra morsel.",
+      },
       SkipSpace(),
       Header("Creatures"),
       SkipSpace(),
