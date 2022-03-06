@@ -136,7 +136,7 @@ end
 
       {
         name = "config_thiccFish",
-        label = "Meaty Fish",
+        label = "Weight-based Fish",
         options = {
                     {description = "Enabled", data = 1},
                     {description = "Disabled",data = 0},

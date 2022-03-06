@@ -538,26 +538,6 @@ if GetModConfigData("config_hoarderCrabking") == 1 then
 end
 
 if GetModConfigData("config_thiccFish") == 1 then
-    local largerfish =
-    {
-        "oceanfish_medium_3_inv",
-        "oceanfish_medium_4_inv",
-        "oceanfish_medium_3",
-        "oceanfish_medium_4",
-    }
-
-    local largefish_loot = {"fishmeat", "fishmeat"}
-
-    AddIngredientValues(largerfish, {meat = 2, fish = 2}, true, true)
-
-    for k,v in ipairs(largerfish) do
-        AddPrefabPostInit(v, function(inst)
-            if inst and inst.components.lootdropper ~= nil then
-                inst.components.lootdropper:SetLoot(largefish_loot)
-            end
-        end)
-    end
-
 --fish meat buff code by Electroely#0066, tysm!!
 --1. remove existing drops (cook, perish, murder)
 --2. add fns in place of those drops to give the meat according to a variable inst.meatvalue
