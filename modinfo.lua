@@ -142,7 +142,7 @@ end
                     {description = "Disabled",data = 0},
                   },
         default = 1,
-        hover = "Catfish and Lionfish drop more meat.\nFish drop meat based on weight.",
+        hover = "Fish drop meat based on weight.",
       },
 
       {
