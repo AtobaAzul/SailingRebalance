@@ -53,6 +53,7 @@ end
         default = 0.33,
         hover = "Choose how common treasures are.",
         },
+        
         {
         name = "config_tridentBuff",
         label = "Trident Buff",
@@ -62,7 +63,7 @@ end
                     {description = "Disabled",data = 0},
                   },
         default = 1,
-        hover = "Buff trident?",
+        hover = "Buffs trident.\nTrident's stats generally have been improved and recipe made easier.",
       },
 
       {
@@ -73,7 +74,7 @@ end
                     {description = "Disabled",data = 0},
                   },
         default = 1,
-        hover = "Add more trades to Pearl's shop?",
+        hover = "Adds more trades to Pearl's shop.",
       },
 
       {
@@ -86,6 +87,7 @@ end
         default = 1,
         hover = "Make it so the Tier 3 house doesn't cost cactus flowers.",
       },
+
       {
         name = "config_betterMoonstorms",
         label = "Better Moonstorms",
@@ -129,7 +131,7 @@ end
                     {description = "Disabled",data = 0},
                   },
         default = 1,
-        hover = "Tweak some ocean foods?",
+        hover = "Tweaks some weaker ocean foods so they get a chance in the spotlight.",
       },
 
       {
@@ -140,11 +142,9 @@ end
                     {description = "Disabled",data = 0},
                   },
         default = 1,
-        hover = "Catfish and Lionfish drop more meat. Heavyweight fish drop an extra morsel.",
+        hover = "Catfish and Lionfish drop more meat.\nFish drop meat based on weight.",
       },
-      SkipSpace(),
-      Header("Creatures"),
-      SkipSpace(),
+
       {
         name = "config_sweeterFish",
         label = "Sweetish Fish Buff",
@@ -155,7 +155,9 @@ end
         default = 1,
         hover = "Buff Sweetish Fish?",
       },
-
+      SkipSpace(),
+      Header("Creatures"),
+      SkipSpace(),
       {
         name = "config_easierSeaweed",
         label = "Easier Seaweeds",
@@ -164,7 +166,7 @@ end
                     {description = "Disabled",data = 0},
                   },
         default = 1,
-        hover = "Make Seaweeds easier to fight?",
+        hover = "Makes Seaweeds easier to fight.\nThey no longer cause leaks and deal less damage.",
       },
       {
         name = "config_easierRockjaws",
@@ -174,18 +176,18 @@ end
                     {description = "Disabled",data = 0},
                   },
         default = 1,
-        hover = "Make Rockjaws easier to fight?",
+        hover = "Makes Rockjaws easier to fight.\nThey now deal 50 total.",
       },
 
       {
         name = "config_livinglogGators",
-        label = "Grassgators drop Living Logs",
+        label = "Grassgators Buff",
         options = {
                     {description = "Enabled", data = 1},
                     {description = "Disabled",data = 0},
                   },
         default = 1,
-        hover = "Make Grass Gators drop living logs?"
+        hover = "Makes grass gators drop living logs."
       },
 
       {
@@ -196,7 +198,7 @@ end
                     {description = "Disabled",data = 0},
                   },
         default = 1,
-        hover = "Make CK drop the treasures he hoarded?"
+        hover = "Makes CK drop the treasures he hoarded."
       },
       SkipSpace(),
       Header("Boats & Ocean"),

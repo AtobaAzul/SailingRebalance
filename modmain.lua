@@ -96,7 +96,7 @@ if GetModConfigData("config_hermitRecipes") == 1 then
         "hermit_patch",
         {Ingredient("messagebottleempty", 1)},
         TECH.HERMITCRABSHOP_ONE,
-        {nounlock = true, product = "blueprint", sg_state = "give", num_to_give = 4}, {"CRAFTING_STATION"}
+        {nounlock = true, product = "boatpatch", sg_state = "give", numtogive = 4}, {"CRAFTING_STATION"}
     )
     AddRecipe2(
         "hermit_blueprint",
@@ -126,24 +126,21 @@ if GetModConfigData("config_hermitRecipes") == 1 then
         {product = "chum"}, {"FISHING"}
     )
 
-    AddRecipe2("hermitshop_chum",
-    {Ingredient("messagebottleempty", 1)},
-    TECH.HERMITCRABSHOP_ONE,
-    {nounlock = true, product = "chum", num_to_give = 3}, {"CRAFTING_STATION"}
-    )
+    AllRecipes["hermitshop_chum"].ingredients = {Ingredient("messagebottleempty", 1)}
+    AllRecipes["hermitshop_chum"].numtogive = true
 
     STRINGS.RECIPE_DESC.WATERPLANT_PLANTER = "Grow your very own Sea Weed."
     STRINGS.RECIPE_DESC.BLUEPRINT = "Learn new things."
     STRINGS.RECIPE_DESC.PUMPKINCOOKIE = "Grandma's cookies."
 
     if um then
-        AddRecipe2(
+    --[[    AddRecipe2(
             "hermit_umoil",
             {Ingredient("messagebottleempty", 3)},
             GLOBAL.TECH.HERMITCRABSHOP_FIVE,
             {nounlock = true, product = "diseasecurebomb", sg_state = "give", atlas = "images/inventoryimages/diseasecurebomb.xml", image = diseasecurebomb.tex},
             {"CRAFTING_STATION"}
-        )
+        ) Damn you Klei!!]]
     end
 end
 
@@ -334,14 +331,16 @@ if GetModConfigData("config_moreKeys") == 1 then
 end
 
 if GetModConfigData("config_cheapBoats") == 1 then
+    AllRecipes["boat_item"].ingredients = {Ingredient("log", 12)}
     AllRecipes["anchor_item"].ingredients = {Ingredient("boards", 2), Ingredient("rope", 2),Ingredient("cutstone", 2)}
-    AllRecipes["mast_item"].ingredients = {Ingredient("boards", 2), Ingredient("rope", 2),Ingredient("cutstone", 6)}
+    AllRecipes["mast_item"].ingredients = {Ingredient("boards", 2), Ingredient("rope", 2),Ingredient("silk", 6)}
     AllRecipes["mast_malbatross_item"].ingredients = {Ingredient("driftwood_log", 2), Ingredient("rope", 3),Ingredient("malbatross_feathered_weave", 4)}
     AllRecipes["steeringwheel_item"].ingredients = {Ingredient("boards", 1), Ingredient("rope", 1)}
     AllRecipes["fish_box"].ingredients = {Ingredient("cutstone", 1), 		Ingredient("rope", 2)}
 elseif GetModConfigData("config_cheapBoats") == 2 then
+    AllRecipes["boat_item"].ingredients = {Ingredient("log", 8)}
     AllRecipes["anchor_item"].ingredients = {Ingredient("boards", 2), Ingredient("rope", 1),Ingredient("cutstone", 1)}
-    AllRecipes["mast_item"].ingredients = {Ingredient("boards", 1), Ingredient("rope", 2),Ingredient("cutstone", 4)}
+    AllRecipes["mast_item"].ingredients = {Ingredient("boards", 1), Ingredient("rope", 2),Ingredient("silk", 4)}
     AllRecipes["mast_malbatross_item"].ingredients = {Ingredient("driftwood_log", 1), Ingredient("rope", 2),Ingredient("malbatross_feathered_weave", 2)}
     AllRecipes["steeringwheel_item"].ingredients = {Ingredient("boards", 1), Ingredient("rope", 1)}
     AllRecipes["fish_box"].ingredients = {Ingredient("cutstone", 1), 		Ingredient("rope", 1)}
@@ -538,7 +537,7 @@ if GetModConfigData("config_hoarderCrabking") == 1 then
     end)
 end
 
---if GetModConfigData("config_thiccFish") == 1 then
+if GetModConfigData("config_thiccFish") == 1 then
     local largerfish =
     {
         "oceanfish_medium_3_inv",
@@ -703,4 +702,4 @@ AddComponentPostInit("weighable", function(self)
 	end
 end)
 
---end
+end
