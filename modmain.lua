@@ -134,13 +134,13 @@ if GetModConfigData("config_hermitRecipes") == 1 then
     STRINGS.RECIPE_DESC.PUMPKINCOOKIE = "Grandma's cookies."
 
     if um then
-    --[[    AddRecipe2(
+        AddRecipe2(
             "hermit_umoil",
             {Ingredient("messagebottleempty", 3)},
             GLOBAL.TECH.HERMITCRABSHOP_FIVE,
-            {nounlock = true, product = "diseasecurebomb", sg_state = "give", atlas = "images/inventoryimages/diseasecurebomb.xml", image = diseasecurebomb.tex},
+            {nounlock = true, product = "diseasecurebomb", sg_state = "give", atlas = "images/inventoryimages/diseasecurebomb.xml", image = "diseasecurebomb.tex"},
             {"CRAFTING_STATION"}
-        ) Damn you Klei!!]]
+        )
     end
 end
 
@@ -357,7 +357,7 @@ end
 
 if GetModConfigData("config_seasonalShoals") == 1 then
     AddPrefabPostInit("oceanfish_shoalspawner", function(inst)
-        if GLOBAL.TheWorld ~= nil and inst.components.childspawner ~= nil then
+        if inst.components.childspawner ~= nil then
             if GLOBAL.TheWorld.state.isautumn == true then
                 inst.components.childspawner:SetRareChild("oceanfish_small_6", 0.2)
             elseif GLOBAL.TheWorld.state.iswinter == true then
