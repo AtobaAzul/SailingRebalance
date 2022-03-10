@@ -71,51 +71,51 @@ if GetModConfigData("config_hermitRecipes") == 1 then
         "hermit_boat",
         {Ingredient("messagebottleempty", 1)},
         TECH.HERMITCRABSHOP_ONE,
-        {nounlock = true, product = "boat_item", sg_state = "give"}, {"CRAFTING_STATION"}
+        {nounlock = true, product = "boat_item", sg_state = "give"}
     )
     AddRecipe2(
         "hermit_mast",
         {Ingredient("messagebottleempty", 1)},
         TECH.HERMITCRABSHOP_ONE,
-        {nounlock = true, product = "mast_item", sg_state = "give"}, {"CRAFTING_STATION"}
+        {nounlock = true, product = "mast_item", sg_state = "give"}
     )
     AddRecipe2(
         "hermit_anchor",
         {Ingredient("messagebottleempty", 1)},
         TECH.HERMITCRABSHOP_ONE,
-        {nounlock = true, product = "anchor_item", sg_state = "give"}, {"CRAFTING_STATION"}
+        {nounlock = true, product = "anchor_item", sg_state = "give"}
     )
     AddRecipe2(
         "hermit_steeringwheel",
         {Ingredient("messagebottleempty", 1)},
         TECH.HERMITCRABSHOP_ONE,
-        {nounlock = true, product = "steeringwheel_item", sg_state = "give"}, {"CRAFTING_STATION"}
+        {nounlock = true, product = "steeringwheel_item", sg_state = "give"}
 
     )
     AddRecipe2(
         "hermit_patch",
         {Ingredient("messagebottleempty", 1)},
         TECH.HERMITCRABSHOP_ONE,
-        {nounlock = true, product = "boatpatch", sg_state = "give", numtogive = 4}, {"CRAFTING_STATION"}
+        {nounlock = true, product = "boatpatch", sg_state = "give", numtogive = 4}
     )
     AddRecipe2(
         "hermit_blueprint",
         {Ingredient("messagebottleempty", 1)},
         GLOBAL.TECH.HERMITCRABSHOP_THREE,
-        {nounlock = true, product = "blueprint", sg_state = "give"}, {"CRAFTING_STATION"}
+        {nounlock = true, product = "blueprint", sg_state = "give"}
     )
     AddRecipe2(
         "hermit_waterplant",
         {Ingredient("messagebottleempty", 3)},
         TECH.HERMITCRABSHOP_FIVE,
-        {nounlock = true, product = "waterplant_planter", sg_state = "give"}, {"CRAFTING_STATION"}
+        {nounlock = true, product = "waterplant_planter", sg_state = "give"}
     )
 
     AddRecipe2(
         "hermit_cookies",
         {Ingredient("messagebottleempty", 1)},
         TECH.HERMITCRABSHOP_SEVEN,
-        {nounlock = true, product = "pumpkincookie", sg_state = "give"}, {"CRAFTING_STATION"}
+        {nounlock = true, product = "pumpkincookie", sg_state = "give"}
     )
 
     AddRecipe2(
