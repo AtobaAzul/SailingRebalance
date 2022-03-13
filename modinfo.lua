@@ -1,7 +1,7 @@
-name = "[DEV] Sailing Rebalance"
-version = "1.9.0"
+name = "[BETA] Sailing Rebalance"
+version = "1.9.2.3"
 description = [[
-Version 1.9.0
+Version 1.9.2
 
 This mod aims to tweak ocean content, making it more rewarding, without adding new content.
 Main Features:
@@ -119,7 +119,7 @@ end
                     {description = "Cheapest",data = 2},
 
                   },
-        default = 0,
+        default = 1,
         hover = "Choose how cheap you want boat parts to be.",
       },
 

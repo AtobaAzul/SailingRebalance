@@ -127,13 +127,13 @@ if GetModConfigData("config_hermitRecipes") == 1 then
     )
 
     AllRecipes["hermitshop_chum"].ingredients = {Ingredient("messagebottleempty", 1)}
-    AllRecipes["hermitshop_chum"].numtogive = true
+    AllRecipes["hermitshop_chum"].numtogive = 3
 
     STRINGS.RECIPE_DESC.WATERPLANT_PLANTER = "Grow your very own Sea Weed."
     STRINGS.RECIPE_DESC.BLUEPRINT = "Learn new things."
     STRINGS.RECIPE_DESC.PUMPKINCOOKIE = "Grandma's cookies."
 
-    if um then
+    --[[if um then
         AddRecipe2(
             "hermit_umoil",
             {Ingredient("messagebottleempty", 3)},
@@ -141,7 +141,7 @@ if GetModConfigData("config_hermitRecipes") == 1 then
             {nounlock = true, product = "diseasecurebomb", sg_state = "give", atlas = "images/inventoryimages/diseasecurebomb.xml", image = "diseasecurebomb.tex"},
             {"CRAFTING_STATION"}
         )
-    end
+    end AAAAAAAAAAAAAAAAAA]]
 end
 
 if GetModConfigData("config_livinglogGators") == 1 then
@@ -349,6 +349,9 @@ end
 
 if GetModConfigData("config_turningBoats") == 1 then
     AddPrefabPostInit("boat", function(inst)
+        if not GLOBAL.TheWorld.ismastersim then
+            return
+        end
         if inst.components.boatphysics ~= nil then
             inst.components.boatphysics:SetCanSteeringRotate(true)
         end
@@ -357,6 +360,9 @@ end
 
 if GetModConfigData("config_seasonalShoals") == 1 then
     AddPrefabPostInit("oceanfish_shoalspawner", function(inst)
+        if not GLOBAL.TheWorld.ismastersim then
+            return
+        end
         if inst.components.childspawner ~= nil then
             if GLOBAL.TheWorld.state.isautumn == true then
                 inst.components.childspawner:SetRareChild("oceanfish_small_6", 0.2)
@@ -500,6 +506,9 @@ if GetModConfigData("config_seasonalShoals") == 1 then
     end)
 
     AddPrefabPostInit("oceanfish_small_8", function(inst)
+        if not GLOBAL.TheWorld.ismastersim then
+			return
+		end
         local function OnLoad(inst, data)
             if data ~= nil and data.herdprefab ~= nil then
                 inst.components.herdmember.herdprefab = data.herdprefab
