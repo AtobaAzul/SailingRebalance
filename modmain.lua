@@ -11,9 +11,8 @@ PrefabFiles = {
 local wilson_attack = 34
 
 --mods
-local unlockablechest = GLOBAL.KnownModIndex:IsModEnabled("workshop-2400387360")
+
 local faf = GLOBAL.KnownModIndex:IsModEnabled("workshop-1908933602")
-local um = GLOBAL.KnownModIndex:IsModEnabled("workshop-2039181790")
 
 GLOBAL.require("recipe")
 TechTree = GLOBAL.require("techtree")
@@ -133,9 +132,9 @@ if GetModConfigData("config_hermitRecipes") == 1 then
     STRINGS.RECIPE_DESC.BLUEPRINT = "Learn new things."
     STRINGS.RECIPE_DESC.PUMPKINCOOKIE = "Grandma's cookies."
 
-    --[[if um then
+    --[[if GLOBAL.KnownModIndex:IsModEnabled("workshop-2039181790") then
         AddRecipe2(
-            "hermit_umoil",
+            "hermit_oil",
             {Ingredient("messagebottleempty", 3)},
             GLOBAL.TECH.HERMITCRABSHOP_FIVE,
             {nounlock = true, product = "diseasecurebomb", sg_state = "give", atlas = "images/inventoryimages/diseasecurebomb.xml", image = "diseasecurebomb.tex"},
@@ -296,7 +295,7 @@ if GetModConfigData("config_betterMoonstorms") == 1 then
 end
 
 if GetModConfigData("config_moreKeys") == 1 then
-    if unlockablechest then
+    if GLOBAL.KnownModIndex:IsModEnabled("workshop-2400387360") then
         AddPrefabPostInit(
             "malbatross",
             function(inst)
