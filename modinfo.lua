@@ -144,17 +144,6 @@ end
         default = 1,
         hover = "Fish drop meat based on weight.",
       },
-
-      {
-        name = "config_sweeterFish",
-        label = "Sweetish Fish Buff",
-        options = {
-                    {description = "Enabled", data = 1},
-                    {description = "Disabled",data = 0},
-                  },
-        default = 1,
-        hover = "Buff Sweetish Fish?",
-      },
       SkipSpace(),
       Header("Creatures"),
       SkipSpace(),
@@ -198,7 +187,7 @@ end
                     {description = "Disabled",data = 0},
                   },
         default = 1,
-        hover = "Makes CK drop the treasures he hoarded."
+        hover = "Makes CK drop the treasures he once hoarded."
       },
       SkipSpace(),
       Header("Boats & Ocean"),

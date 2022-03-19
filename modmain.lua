@@ -42,19 +42,6 @@ elseif GetModConfigData("config_tridentBuff") == 2 then
     TUNING.TRIDENT.SPELL.USE_COUNT = TUNING.TRIDENT.USES
 end
 
-if GetModConfigData("config_sweeterFish") == 1 then
-    AddIngredientValues({"oceanfish_medium_9_inv"}, {meat = 0.5, sweetener = 1, honey = 1}, true, true)
-
-    AddPrefabPostInit(
-        "oceanfish_medium_9_inv",
-        function(inst)
-            if inst and inst.components.lootdropper ~= nil then
-                inst.components.lootdropper:AddChanceLoot("honey", 1.0, "fishmeat_small", 1.0)
-            end
-        end
-    )
-end
-
 if GetModConfigData("config_easierSeaweed") == 1 then
     modimport("postinit/waterplant_bomb") --Thanks, scrimbles.
     TUNING.WATERPLANT.DAMAGE = TUNING.WATERPLANT.DAMAGE * 0.75
@@ -330,7 +317,7 @@ if GetModConfigData("config_moreKeys") == 1 then
 end
 
 if GetModConfigData("config_cheapBoats") == 1 then
-    AllRecipes["boat_item"].ingredients = {Ingredient("log", 12)}
+    AllRecipes["boat_item"].ingredients = {Ingredient("boards", 3)}
     AllRecipes["anchor_item"].ingredients = {Ingredient("boards", 2), Ingredient("rope", 2),Ingredient("cutstone", 2)}
     AllRecipes["mast_item"].ingredients = {Ingredient("boards", 2), Ingredient("rope", 2),Ingredient("silk", 6)}
     AllRecipes["mast_malbatross_item"].ingredients = {Ingredient("driftwood_log", 2), Ingredient("rope", 3),Ingredient("malbatross_feathered_weave", 4)}
@@ -556,16 +543,17 @@ local fishdata = { --{meatprefab, meatvalue, extraitems, israre }
 	oceanfish_medium_2 = { "fishmeat", 2 }, --deep bass
 	oceanfish_medium_3 = { "fishmeat", 3, nil, true }, --dandy lionfish
 	oceanfish_medium_4 = { "fishmeat", 4 }, --black catfish
-	oceanfish_medium_5 = { "corn",     2 }, --corn cod
+	oceanfish_medium_5 = { "corn",     2, {"corn_seeds"} }, --corn cod
 	oceanfish_medium_6 = { "fishmeat", 2, nil, true }, --dappled koi
 	oceanfish_medium_7 = { "fishmeat", 2, nil, true }, --golden koi
 	oceanfish_medium_8 = { "fishmeat", 3, {"ice", "ice"} }, --ice bream
-	
+	oceanfish_medium_9 = { "fishmeat", 2, {"honey", "honey"} }, --sweetish fish
+
 	oceanfish_small_1 = { "fishmeat_small", 1 }, --runty guppy
 	oceanfish_small_2 = { "fishmeat_small", 1 }, --needlenosed squirt
 	oceanfish_small_3 = { "fishmeat_small", 2, nil, true }, --bitty baitfish
 	oceanfish_small_4 = { "fishmeat_small", 1 }, --smolt fry
-	oceanfish_small_5 = { "corn_cooked",    1 }, --popperfish
+	oceanfish_small_5 = { "corn_cooked",    1, {"corn_seeds"} }, --popperfish
 	oceanfish_small_6 = { "plantmeat", 1 }, --fallounder
 	oceanfish_small_7 = { "plantmeat", 1 }, --bloomfin tuna
 	oceanfish_small_8 = { "fishmeat_small_cooked", 1 }, --scorching sunfish
