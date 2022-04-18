@@ -1,7 +1,7 @@
 name = "[BETA] Sailing Rebalance"
-version = "1.9.2.3"
+version = "1.10.1"
 description = [[
-Version 1.9.2
+Version 1.9.2.4
 
 This mod aims to tweak ocean content, making it more rewarding, without adding new content.
 Main Features:
@@ -10,7 +10,7 @@ Trident Buff: Stats increased and costs 1 horn and 2 Bone shards.
 
 New Sunken treasure presets: Scientist, Inventor and Farmer, and many more, with some tweaks to existing ones!
 
-More treasure: The chance for treasure when reading a bottle is now 66% (Vanilla is 33%).
+Reworked Fish: Fish now drop meat based on their weight and some have extra drops!
 
 A bunch of other misc. tweaks and changes!
 
@@ -37,23 +37,13 @@ local function SkipSpace()
 	return { name = "", label = "", hover = "", options = { {description = "", data = false}, }, default = false, }
 end
 
-
+local function BinaryConfig(name, label, hover, default)
+    return { name = name, label = label, hover = hover, options = { {description = "Enabled", data = true}, {description = "Disabled", data = false}, }, default = default, }
+end
 
 	configuration_options = {
     Header("Items, Food & Recipes"),
     SkipSpace(),
-        {
-        name = "config_moreTreasure",
-        label = "Higher treasure chance",
-        options = {
-                    {description = "33% (Default)", data = 0.66},
-                    {description = "66%", data = 0.33},
-                    {description = "100%", data = 0.00},
-                  },
-        default = 0.33,
-        hover = "Choose how common treasures are.",
-        },
-        
         {
         name = "config_tridentBuff",
         label = "Trident Buff",
@@ -65,154 +55,50 @@ end
         default = 1,
         hover = "Buffs trident.\nTrident's stats generally have been improved and recipe made easier.",
       },
+    BinaryConfig("config_hermitRecipes", "More Pearl trades", "Adds more trades to Pearl's shop.", true),
+    BinaryConfig("config_pearlRusher", "Easier Hermit House Upgrade", "Makes it so the Tier 3 house doesn't cost cactus flowers.", true),
+    BinaryConfig("config_betterMoonstorms", "Better Moonstorms", "Makes the moonstorm event easier to repeat after the 1st.", true),
+    BinaryConfig("config_moreKeys", "More keys", "Requires unlockable sunken chest mod.\nMakes more things drop keys.", true),
+    BinaryConfig("config_foodRebalance", "Food Rebalance", "Tweaks some weaker ocean foods so they get a chance in the spotlight.\nCertain foods are further buffed if Feast & Famine is active.", true),
+    BinaryConfig("config_thiccFish", "Better Ocean fish", "Changes ocean fishes to drop meat based on their weight.\nSome fish have extra loot.", true),
+    
+    SkipSpace(),
+    Header("Creatures"),
+    SkipSpace(),
 
-      {
-        name = "config_hermitRecipes",
-        label = "More Pearl trades",
-        options = {
-                    {description = "Enabled", data = 1},
-                    {description = "Disabled",data = 0},
-                  },
-        default = 1,
-        hover = "Adds more trades to Pearl's shop.",
-      },
+    BinaryConfig("config_easierSeaweed", "Easier Seaweeds", "Makes Seaweeds easier to fight.\nThey no longer cause leaks and deal less damage.", true),
+    BinaryConfig("config_easierRockjaws", "Easier Rockjaws", "Makes Rockjaws easier to fight.\nThey now deal 50 total damage.", true),
+    BinaryConfig("config_livinglogGators", "Grassgators Buff", "Makes grass gators drop living logs.", true),
+    BinaryConfig("config_hoarderCrabking", "Crab King Treasure", "Makes CK drop the treasures he once hoarded.", true),
+      
+    SkipSpace(),
+    Header("Boats & Ocean"),
+    SkipSpace(),
 
+    BinaryConfig("config_turningBoats", "Boat Turning", "Enables the boat turning logic, which is off by default in vanilla.", true),
+    {
+      name = "config_moreTreasure",
+      label = "Higher treasure chance",
+      options =
       {
-        name = "config_pearlRusher",
-        label = "Easier Pearl's Pearl",
-        options = {
-                    {description = "Enabled", data = 1},
-                    {description = "Disabled",data = 0},
-                  },
-        default = 1,
-        hover = "Make it so the Tier 3 house doesn't cost cactus flowers.",
+        {description = "33% (Default)", data = 0.66},
+        {description = "66%", data = 0.33},
+        {description = "100%", data = 0.00},
       },
-
+      default = 0.33,
+      hover = "Choose how common treasures are.",
+    },
+    {
+      name = "config_cheapBoats",
+      label = "Boat Cost",
+      options = 
       {
-        name = "config_betterMoonstorms",
-        label = "Better Moonstorms",
-        options = {
-                    {description = "Enabled", data = 1},
-                    {description = "Disabled",data = 0},
-                  },
-        default = 1,
-        hover = "Makes the moonstorm event easier to repeat after the 1st.",
+        {description = "Default", data = 0},
+        {description = "Cheap",data = 1},
+        {description = "Cheapest",data = 2},
       },
-
-      {
-        name = "config_moreKeys",
-        label = "More keys",
-        options = {
-                    {description = "Enabled", data = 1},
-                    {description = "Disabled",data = 0},
-                  },
-        default = 1,
-        hover = "Requires unlockable sunken chest mod. Makes more things drop keys.",
-      },
-
-      {
-        name = "config_cheapBoats",
-        label = "Boat Cost",
-        options = {
-                    {description = "Default", data = 0},
-                    {description = "Cheap",data = 1},
-                    {description = "Cheapest",data = 2},
-
-                  },
-        default = 1,
-        hover = "Choose how cheap you want boat parts to be.",
-      },
-
-      {
-        name = "config_foodRebalance",
-        label = "Food Rebalance",
-        options = {
-                    {description = "Enabled", data = 1},
-                    {description = "Disabled",data = 0},
-                  },
-        default = 1,
-        hover = "Tweaks some weaker ocean foods so they get a chance in the spotlight.",
-      },
-
-      {
-        name = "config_thiccFish",
-        label = "Weight-based Fish",
-        options = {
-                    {description = "Enabled", data = 1},
-                    {description = "Disabled",data = 0},
-                  },
-        default = 1,
-        hover = "Fish drop meat based on weight.",
-      },
-      SkipSpace(),
-      Header("Creatures"),
-      SkipSpace(),
-      {
-        name = "config_easierSeaweed",
-        label = "Easier Seaweeds",
-        options = {
-                    {description = "Enabled", data = 1},
-                    {description = "Disabled",data = 0},
-                  },
-        default = 1,
-        hover = "Makes Seaweeds easier to fight.\nThey no longer cause leaks and deal less damage.",
-      },
-      {
-        name = "config_easierRockjaws",
-        label = "Easier Rockjaws",
-        options = {
-                    {description = "Enabled", data = 1},
-                    {description = "Disabled",data = 0},
-                  },
-        default = 1,
-        hover = "Makes Rockjaws easier to fight.\nThey now deal 50 total.",
-      },
-
-      {
-        name = "config_livinglogGators",
-        label = "Grassgators Buff",
-        options = {
-                    {description = "Enabled", data = 1},
-                    {description = "Disabled",data = 0},
-                  },
-        default = 1,
-        hover = "Makes grass gators drop living logs."
-      },
-
-      {
-        name = "config_hoarderCrabking",
-        label = "Crab King Treasure",
-        options = {
-                    {description = "Enabled", data = 1},
-                    {description = "Disabled",data = 0},
-                  },
-        default = 1,
-        hover = "Makes CK drop the treasures he once hoarded."
-      },
-      SkipSpace(),
-      Header("Boats & Ocean"),
-      SkipSpace(),
-      {
-        name = "config_turningBoats",
-        label = "Boat Turning",
-        options = {
-                    {description = "Enabled", data = 1},
-                    {description = "Disabled",data = 0},
-                  },
-        default = 1,
-        hover = "Enables the boat turning logic, which is off by default in vanilla.",
-      },
-
-      {
-        name = "config_seasonalShoals",
-        label = "Seasonal Shoals",
-        options = {
-                    {description = "Enabled", data = 1},
-                    {description = "Disabled",data = 0},
-                  },
-        default = 1,
-        hover = "Shoals have different kinds of fish, depending on the season.",
-      },
+      default = 1,
+      hover = "Choose how cheap you want boat parts to be.",
+    },
+    BinaryConfig("config_seasonalShoals", "Seasonal Shoals", "Shoals have different kinds of fish, depending on the season.", true),
 }
-
-
