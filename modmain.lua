@@ -518,8 +518,7 @@ STRINGS = GLOBAL.STRINGS
                 local royalpos = royalcount*0.33
                 local normalpos = normalcount*0.5
         
-                print(royalcount)
-                print(normalcount)
+
                 for i = 1, royalcount do
                     messagebottletreasures.GenerateTreasure(pos, "royal_sunkenchest").Transform:SetPosition(pos.x + math.random(-royalpos, royalpos), pos.y, pos.z + math.random(-royalpos, royalpos))
                 end
