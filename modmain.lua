@@ -618,11 +618,11 @@ STRINGS = GLOBAL.STRINGS
                     local x, y, z = inst.Transform:GetWorldPosition()
                     local loot = {}
                     for i = 1, inst.meatvalue-1 do
-                        table.insert(loot, SpawnPrefab(meatname))
+                        table.insert(loot, GLOBAL.SpawnPrefab(meatname))
                     end
                     if data[3] then
                         for k, v in pairs(data[3]) do
-                            table.insert(loot, SpawnPrefab(v))
+                            table.insert(loot, GLOBAL.SpawnPrefab(v))
                         end
                     end
                     for k, v in pairs(loot) do
