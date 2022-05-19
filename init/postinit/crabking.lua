@@ -38,9 +38,8 @@ if GetModConfigData("config_hoarderCrabking") then
             local royalcount = 3+(red + blue + purple + yellow + orange + green + pearl)*opal
             local normalcount = (1+(red + blue + purple + yellow + orange + green + pearl)*opal)/2
             local royalpos = royalcount*0.33
-            local normalpos = normalcount*0.5
+            local normalpos = normalcount*1.25
     
-
             for i = 1, royalcount do
                 messagebottletreasures.GenerateTreasure(pos, "sunkenchest_royal").Transform:SetPosition(pos.x + math.random(-royalpos, royalpos), pos.y, pos.z + math.random(-royalpos, royalpos))
             end
