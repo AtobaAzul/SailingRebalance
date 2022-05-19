@@ -154,22 +154,15 @@ local function sunken_onhit(inst, worker)
     end
 end
 
-local function sunken_OnUnequip(inst, owner)
-    owner.AnimState:ClearOverrideSymbol("swap_body")
-end
-
-local function sunken_OnEquip(inst, owner)
-    if inst.components.container ~= nil then
-		inst.components.container:Close()
-	end
-    owner.AnimState:OverrideSymbol("swap_body", "swap_sunken_treasurechest", "swap_body")
-end
-
 local function sunken_OnSubmerge(inst)
 	if inst.components.container ~= nil then
 		inst.components.container:Close()
 	end
-    inst:Remove() --temp solution...
+    inst:AddTag("saltbox")
+end
+
+local function sunken_OnLanded(inst)
+    inst:RemoveTag("saltbox")
 end
 
 local function sunken_GetStatus(inst)
@@ -179,8 +172,22 @@ end
 local function sunken_common_postinit(inst)
 	inst:AddTag("heavy")
 
-	MakeHeavyObstaclePhysics(inst, SUNKEN_PHYSICS_RADIUS)
-	inst:SetPhysicsRadiusOverride(SUNKEN_PHYSICS_RADIUS)
+	MakeHeavyObstaclePhysics(inst, 0.45)
+	inst:SetPhysicsRadiusOverride(0.45)
+
+    inst:DoPeriodicTask(1, function(inst)
+        if inst.components.container:IsEmpty() then
+            inst.components.container:Close()
+            inst.components.lootdropper:DropLoot()
+            local fx = SpawnPrefab("collapse_small")
+            fx.Transform:SetPosition(inst.Transform:GetWorldPosition())
+            fx:SetMaterial("wood")
+            inst:Remove()
+        end
+    end)
+	inst:AddComponent("submersible")
+    inst:DoTaskInTime(0.1, inst.components.submersible:Submerge())
+
 end
 
 local function sunken_master_postinit(inst)
@@ -188,27 +195,21 @@ local function sunken_master_postinit(inst)
 
     inst.components.inspectable.getstatus = sunken_GetStatus
 
+    inst.components.container.canbeopened = true
 	inst:AddComponent("heavyobstaclephysics")
 	inst.components.heavyobstaclephysics:SetRadius(0)
+
+	inst:AddComponent("submersible")
+    inst:DoTaskInTime(0.1, inst.components.submersible:Submerge())
 
     inst:AddComponent("inventoryitem")
     inst.components.inventoryitem.cangoincontainer = false
 
-    inst:AddComponent("equippable")
-    inst.components.equippable.equipslot = EQUIPSLOTS.BODY
-    inst.components.equippable:SetOnEquip(sunken_OnEquip)
-    inst.components.equippable:SetOnUnequip(sunken_OnUnequip)
-    inst.components.equippable.walkspeedmult = TUNING.HEAVY_SPEED_MULT
-
-    inst.components.container.canbeopened = false
-
-	inst:AddComponent("submersible")
 	inst:AddComponent("symbolswapdata")
     inst.components.symbolswapdata:SetData("swap_sunken_treasurechest", "swap_body")
 
-
-
 	inst:ListenForEvent("on_submerge", sunken_OnSubmerge)
+    inst:ListenForEvent("on_landed", sunken_OnLanded)
 end
 
-return MakeChest("royal_sunkenchest", "sunken_treasurechest", "sunken_treasurechest", false, sunken_master_postinit, { "collapse_small", "underwater_salvageable", "splash_green" }, { Asset("ANIM", "anim/swap_sunken_treasurechest.zip") }, sunken_common_postinit, true)
+return MakeChest("sunkenchest_royal", "sunken_treasurechest", "sunken_royalchest", false, sunken_master_postinit, { "collapse_small", "underwater_salvageable", "splash_green" }, { Asset("ANIM", "anim/swap_sunken_treasurechest.zip"), Asset("ANIM", "anim/sunken_royalchest.zip") }, sunken_common_postinit, true)

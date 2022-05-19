@@ -259,7 +259,7 @@ sunkenchest =
 
 		}
 	},
-royal_sunkenchest =
+sunkenchest_royal =
 {
 	treasure_type_weight = 0,
 
@@ -440,6 +440,10 @@ local function GenerateTreasure(pt, overrideprefab, spawn_as_empty, postfn)
 			local lootpreset = weighted_random_choice(weighted_treasure_contents[prefab])
 			local prefabstospawn = {}
 
+
+			if treasure.components.submersible ~= nil then
+				treasure.components.submersible:Submerge()
+			end
 			if lootpreset.guaranteed_loot ~= nil then
 				for itemprefab, count in pairs(lootpreset.guaranteed_loot) do
 					local total = type(count) ~= "table" and count or math.random(count[1], count[2])
@@ -466,7 +470,6 @@ local function GenerateTreasure(pt, overrideprefab, spawn_as_empty, postfn)
 					treasure.components.inventory:GiveItem(item)
 				end
 			end
-
 			if math.random() < TRINKET_CHANCE then
 				if treasure.components.container ~= nil then
 					if not treasure.components.container:IsFull() then
