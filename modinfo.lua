@@ -1,4 +1,4 @@
-name = "[DEV] Sailing Rebalance"
+name = "Sailing Rebalance"
 version = "1.11.0"
 description = [[
 Version 1.11.0
