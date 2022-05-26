@@ -3,7 +3,7 @@ if GetModConfigData("config_hoarderCrabking") then
     AddPrefabPostInit("crabking", function(inst)
         inst:ListenForEvent("death", function(inst)
             local pos = inst:GetPosition()
-            local messagebottletreasures = require("messagebottletreasures")
+            local messagebottletreasures = require("messagebottletreasures_sr")
             local red = inst.countgems(inst).red
             local blue = inst.countgems(inst).blue
             local purple = inst.countgems(inst).purple

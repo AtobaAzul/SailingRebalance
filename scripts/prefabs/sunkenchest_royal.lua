@@ -178,9 +178,21 @@ end
 
 local function sunken_common_postinit(inst)
 	inst:AddTag("heavy")
+	MakeHeavyObstaclePhysics(inst, 0.45)
+	inst:SetPhysicsRadiusOverride(0.45)
 
-	MakeHeavyObstaclePhysics(inst, SUNKEN_PHYSICS_RADIUS)
-	inst:SetPhysicsRadiusOverride(SUNKEN_PHYSICS_RADIUS)
+    inst:DoPeriodicTask(1, function(inst)
+        if inst.components.container:IsEmpty() then
+            inst.components.container:Close()
+            inst.components.lootdropper:DropLoot()
+            local fx = SpawnPrefab("collapse_small")
+            fx.Transform:SetPosition(inst.Transform:GetWorldPosition())
+            fx:SetMaterial("wood")
+            inst:Remove()
+        end
+    end)
+	inst:AddComponent("submersible")
+    --inst:DoTaskInTime(0.1, inst.components.submersible:Submerge())
 end
 
 local function sunken_master_postinit(inst)
@@ -190,6 +202,10 @@ local function sunken_master_postinit(inst)
 
 	inst:AddComponent("heavyobstaclephysics")
 	inst.components.heavyobstaclephysics:SetRadius(0)
+
+
+	inst:AddComponent("submersible")
+    --inst:DoTaskInTime(0.1, inst.components.submersible:Submerge())
 
     inst:AddComponent("inventoryitem")
     inst.components.inventoryitem.cangoincontainer = false

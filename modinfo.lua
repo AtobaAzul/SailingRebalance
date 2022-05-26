@@ -76,6 +76,7 @@ end
     SkipSpace(),
 
     BinaryConfig("config_turningBoats", "Boat Turning", "Enables the boat turning logic, which is off by default in vanilla.", true),
+    
     {
       name = "config_moreTreasure",
       label = "Higher treasure chance",
@@ -88,6 +89,7 @@ end
       default = 0.33,
       hover = "Choose how common treasures are.",
     },
+
     {
       name = "config_customTreasure",
       label = "Custom Treasure Presets",
@@ -101,6 +103,7 @@ end
       default = 0.50,
       hover = "Choose how common custom treasure presets are.",
     },
+
     {
       name = "config_cheapBoats",
       label = "Boat Cost",
