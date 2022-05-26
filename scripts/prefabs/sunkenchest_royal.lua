@@ -227,4 +227,4 @@ local function sunken_master_postinit(inst)
 	inst:ListenForEvent("on_submerge", sunken_OnSubmerge)
 end
 
-return MakeChest("royal_sunkenchest", "sunken_treasurechest", "sunken_treasurechest", false, sunken_master_postinit, { "collapse_small", "underwater_salvageable", "splash_green" }, { Asset("ANIM", "anim/swap_sunken_treasurechest.zip") }, sunken_common_postinit, true)
+return MakeChest("sunkenchest_royal", "sunken_treasurechest", "sunken_treasurechest", false, sunken_master_postinit, { "collapse_small", "underwater_salvageable", "splash_green" }, { Asset("ANIM", "anim/swap_sunken_treasurechest.zip") }, sunken_common_postinit, true)
