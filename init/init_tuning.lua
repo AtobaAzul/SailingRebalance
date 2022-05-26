@@ -16,3 +16,4 @@ if GetModConfigData("config_easierRockjaws") then
 end
 
 TUNING.MESSAGEBOTTLE_NOTE_CHANCE = GetModConfigData("config_moreTreasure")
+TUNING.MODDED_PRESET_TRESHHOLD = GetModConfigData("config_customTreasure")

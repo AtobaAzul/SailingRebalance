@@ -19,10 +19,9 @@ TUNING = GLOBAL.TUNING
 STRINGS = GLOBAL.STRINGS
 
 
-local postinit = {
+local postinit_prefabs = {
     "boat",
     "crabking",
-    "fishweight",
     "gnarwail",
     "grassgator",
     "malbatross",
@@ -30,7 +29,10 @@ local postinit = {
     "shark",
     "waterplant_bomb",
 }
-
+local postinit_components = {
+    "weighable",
+    "messagebottlemanager"
+}
 local init = {
     "food",
     "recipes",
@@ -39,8 +41,12 @@ local init = {
 
 --if not GLOBAL.KnownModIndex:IsModEnabled("workshop-2039181790") then
 
-for k, v in ipairs(postinit) do
-    modimport("init/postinit/"..v)
+for k, v in ipairs(postinit_prefabs) do
+    modimport("init/postinit/prefabs/"..v)
+end
+
+for k, v in ipairs(postinit_components) do
+    modimport("init/postinit/components/"..v)
 end
 
 for k, v in ipairs(init) do

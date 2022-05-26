@@ -89,6 +89,19 @@ end
       hover = "Choose how common treasures are.",
     },
     {
+      name = "config_customTreasure",
+      label = "Custom Treasure Presets",
+      options =
+      {
+        {description = "Often", data = 0.75},
+        {description = "Default", data = 0.50},
+        {description = "Rare", data = 0.33},
+        {description = "Disabled", data = 0},
+      },
+      default = 0.50,
+      hover = "Choose how common custom treasure presets are.",
+    },
+    {
       name = "config_cheapBoats",
       label = "Boat Cost",
       options = 
