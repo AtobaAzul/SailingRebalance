@@ -1,10 +1,9 @@
 --yes, this *is* essentially a copy-paste of the original messagebottletreasures.
---"why?"" you may ask - originally, you had to replace the whole file - which isn't exactly compatible
+--"why?" you may ask - originally, you had to replace the whole file - which isn't exactly compatible
 --with other mods and may break in the future. No, I can't use table.insert. I've tried. treasure_templates
 --is a "mod-hostile table". It only gets returned once *before* mods load. Any changes wouldn't work for
---treasures, despite existing in the table (checked with print).
---So, the current plan (at the time of writing this) is to do a postinit on messagebottlemanger
---and have this file be with the changed presets.
+--treasures, despite existing in the table (checked with prints).
+
 
 
 local treasure_templates =
