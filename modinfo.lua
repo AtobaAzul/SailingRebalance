@@ -14,7 +14,7 @@ Reworked Fish: Fish now drop meat based on their weight and some have extra drop
 
 A bunch of other misc. tweaks and changes!
 
-All features, except new treasure presets, can be configured.
+All features can be configured.
 ]]
 
 author = "Atobá Azul"
