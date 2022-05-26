@@ -186,7 +186,7 @@ local function sunken_common_postinit(inst)
         end
     end)
 	inst:AddComponent("submersible")
-    inst:DoTaskInTime(0.1, inst.components.submersible:Submerge())
+    --inst:DoTaskInTime(0.1, inst.components.submersible:Submerge())
 
 end
 
@@ -200,7 +200,7 @@ local function sunken_master_postinit(inst)
 	inst.components.heavyobstaclephysics:SetRadius(0)
 
 	inst:AddComponent("submersible")
-    inst:DoTaskInTime(0.1, inst.components.submersible:Submerge())
+    --inst:DoTaskInTime(0.1, inst.components.submersible:Submerge())
 
     inst:AddComponent("inventoryitem")
     inst.components.inventoryitem.cangoincontainer = false
