@@ -137,16 +137,13 @@ env.AddComponentPostInit("messagebottlemanager", function(self)
         
                     local rng = math.random()
                   
-                   print(rng)
-                   print(TUNING.MODDED_PRESET_TRESHHOLD)
+
                    if pos and pos.x ~= nil then
                        if rng > TUNING.MODDED_PRESET_TRESHHOLD then
-                           print("VANILLA treasures!")
                            local treasure = messagebottletreasures.GenerateTreasure(pos)
                            treasure.Transform:SetPosition(pos.x, pos.y, pos.z)
                            treasure:ListenForEvent("on_submerge", AddMinimapMarker)
                        else
-                           print("SAILING REBALANCE treasures!")
                            local treasure = messagebottletreasures_sr.GenerateTreasure(pos)
                            treasure.Transform:SetPosition(pos.x, pos.y, pos.z)
                            treasure:ListenForEvent("on_submerge", AddMinimapMarker)
