@@ -182,7 +182,7 @@ local function sunken_common_postinit(inst)
 	inst:SetPhysicsRadiusOverride(0.45)
 
     inst:DoPeriodicTask(1, function(inst)
-        if inst.components.container:IsEmpty() then
+        if inst.components.container ~= nil and inst.components.container:IsEmpty() then
             inst.components.container:Close()
             inst.components.lootdropper:DropLoot()
             local fx = SpawnPrefab("collapse_small")
