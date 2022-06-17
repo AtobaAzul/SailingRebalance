@@ -95,6 +95,7 @@ configuration_options = {
     },
     BinaryConfig("config_battlePaddle", "Battle Paddle Buff", "Increases durability, damage and speed.", false),
     SkipSpace(),
+
     Header("Items, Food & Recipes"),
     SkipSpace(),
     {
