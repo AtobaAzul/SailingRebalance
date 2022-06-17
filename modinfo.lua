@@ -1,5 +1,5 @@
 name = "Sailing Rebalance"
-version = "1.11.2"
+version = "1.11.3"
 description = [[
 Version 1.11.2
 
