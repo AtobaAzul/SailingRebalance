@@ -28,6 +28,7 @@ local postinit_prefabs = {
     "seasonal_shoals",
     "shark",
     "waterplant_bomb",
+    "beta_fixes",
 }
 local postinit_components = {
     "weighable",

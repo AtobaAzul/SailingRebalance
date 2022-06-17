@@ -110,6 +110,10 @@ elseif GetModConfigData("config_tridentBuff") == 2 then
     AllRecipes["trident"].ingredients = {Ingredient("boneshard", 3), Ingredient("kelp", 4),Ingredient("twigs", 2)}
 end
 
+if GetModConfigData("config_cheaperCannonballs") then
+    AllRecipes["cannonball_rock_item"].ingredients = {Ingredient("cutstone", 2), Ingredient("nitre", 1)}
+end
+
 STRINGS.RECIPE_DESC.WATERPLANT_PLANTER = "Grow your very own Sea Weed."
 STRINGS.RECIPE_DESC.BLUEPRINT = "Learn new things."
 STRINGS.RECIPE_DESC.PUMPKINCOOKIE = "Grandma's cookies."

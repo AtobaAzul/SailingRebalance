@@ -1,4 +1,4 @@
-if GetModConfigData("config_turningBoats") then
+if GetModConfigData("config_turningBoats_") then
     AddPrefabPostInit("boat", function(inst)
         if not GLOBAL.TheWorld.ismastersim then
             return
