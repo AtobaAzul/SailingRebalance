@@ -18,28 +18,31 @@ AllRecipes = GLOBAL.AllRecipes
 TUNING = GLOBAL.TUNING
 STRINGS = GLOBAL.STRINGS
 
-
 local postinit_prefabs = {
-    "boat",
+    "boat_bumper",
+    "boat_cannon",
     "crabking",
     "gnarwail",
     "grassgator",
     "malbatross",
-    "seasonal_shoals",
+    "oceanfish_",
     "shark",
+    "steeringwheel",
     "waterplant_bomb",
 }
+
 local postinit_components = {
+    "boatcannon",
+    "messagebottlemanager",
     "weighable",
-    "messagebottlemanager"
 }
+
+
 local init = {
     "food",
     "recipes",
     "tuning",
 }
-
---if not GLOBAL.KnownModIndex:IsModEnabled("workshop-2039181790") then
 
 for k, v in ipairs(postinit_prefabs) do
     modimport("init/postinit/prefabs/"..v)
@@ -53,9 +56,10 @@ for k, v in ipairs(init) do
     modimport("init/init_"..v)
 end
 
-    local containers = GLOBAL.require("containers")
+local containers = GLOBAL.require("containers")
+
+if containers.params.sunkenchest_royal == nil then
     containers.params.sunkenchest_royal = containers.params.shadowchester
     STRINGS.NAMES.SUNKENCHEST_ROYAL = "Royal Chest"
     STRINGS.CHARACTERS.GENERIC.DESCRIBE.SUNKENCHEST_ROYAL = "Seems awfully brittle."
-
---end
+end
