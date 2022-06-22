@@ -87,6 +87,13 @@ if GetModConfigData("config_betterMoonstorms") then
 
 end
 
+if GetModConfigData("config_betterBumpers") then
+    AllRecipes["boat_bumper_shell_kit"].numtogive = 8
+    AllRecipes["boat_bumper_kelp_kit"].numtogive = 8
+    AllRecipes["boat_bumper_shell_kit"].ingredients = {Ingredient("slurtle_shellpieces", 3), Ingredient("rope", 6)}
+    AllRecipes["boat_bumper_kelp_kit"].ingredients = {Ingredient("kelp", 3), Ingredient("cutgrass", 10)}
+end
+
 if GetModConfigData("config_cheapBoats") == 1 then
     AllRecipes["boat_item"].ingredients = {Ingredient("boards", 3)}
     AllRecipes["anchor_item"].ingredients = {Ingredient("boards", 2), Ingredient("rope", 2),Ingredient("cutstone", 2)}
@@ -94,6 +101,7 @@ if GetModConfigData("config_cheapBoats") == 1 then
     AllRecipes["mast_malbatross_item"].ingredients = {Ingredient("driftwood_log", 2), Ingredient("rope", 3),Ingredient("malbatross_feathered_weave", 4)}
     AllRecipes["steeringwheel_item"].ingredients = {Ingredient("boards", 1), Ingredient("rope", 1)}
     AllRecipes["fish_box"].ingredients = {Ingredient("cutstone", 1), 		Ingredient("rope", 2)}
+    AllRecipes["cannonball_rock_item"].ingredients = {Ingredient("cutstone", 1), Ingredient("nitre", 1)}
 elseif GetModConfigData("config_cheapBoats") == 2 then
     AllRecipes["boat_item"].ingredients = {Ingredient("log", 8)}
     AllRecipes["anchor_item"].ingredients = {Ingredient("boards", 2), Ingredient("rope", 1),Ingredient("cutstone", 1)}
@@ -102,12 +110,14 @@ elseif GetModConfigData("config_cheapBoats") == 2 then
     AllRecipes["steeringwheel_item"].ingredients = {Ingredient("boards", 1), Ingredient("rope", 1)}
     AllRecipes["fish_box"].ingredients = {Ingredient("cutstone", 1), 		Ingredient("rope", 1)}
     AllRecipes["waterpump"].ingredients = {Ingredient("boards", 2), Ingredient("rope", 1)}
+    AllRecipes["boat_cannon_kit"].ingredients = {Ingredient("palmcone_scale", 1), Ingredient("rope", 1), Ingredient("charcoal", 3)}
+    AllRecipes["cannonball_rock_item"].ingredients = {Ingredient("rocks", 1), Ingredient("nitre", 1)}
 end
 
 if GetModConfigData("config_tridentBuff") == 1 then
-    AllRecipes["trident"].ingredients = {Ingredient("boneshard", 2), Ingredient("gnarwail_horn", 1),Ingredient("twigs", 2)}
+    AllRecipes["trident"].ingredients = {Ingredient("boneshard", 2),Ingredient("gnarwail_horn", 1), Ingredient("kelp", 4), Ingredient("twigs", 2)}--hee hoo 4 item recipes are now REAL!
 elseif GetModConfigData("config_tridentBuff") == 2 then
-    AllRecipes["trident"].ingredients = {Ingredient("boneshard", 3), Ingredient("kelp", 4),Ingredient("twigs", 2)}
+    AllRecipes["trident"].ingredients = {Ingredient("boneshard", 3), Ingredient("kelp", 4), Ingredient("twigs", 2)}
 end
 
 STRINGS.RECIPE_DESC.WATERPLANT_PLANTER = "Grow your very own Sea Weed."
