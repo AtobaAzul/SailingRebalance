@@ -1,8 +1,8 @@
 name = "[BETA] Sailing Rebalance"
-version = "1.12"
+version = "1.12.5"
 description =
     [[
-Version 1.12
+Version 1.12.5
 
 This mod aims to tweak ocean content, making it more rewarding, without adding new content.
 Main Features:
@@ -50,50 +50,19 @@ end
 
 configuration_options = {
     Header("Beta Content"),
+    BinaryConfig("config_violentCannons", "Violent Cannons", "Less trajectory arch, much faster projectiles.", true),
+    BinaryConfig("config_betterBumpers", "Better Bumpers", "Each craft for bumpers gives 8, for a full coverage. Bumpers have had their health doubled.", true),
     {
-        name = "config_cannonPower",
-        label = "Cannon Power?",
+        name = "config_cannonFiremode",
+        label = "Cannon Fire Mode",
         options = {
-            {description = "0.25x", data = 0.25},
-            {description = "0.5x", data = 0.5},
-            {description = "0.75x", data = 0.75},
-            {description = "1x (Default)", data = 1},
-            {description = "2x", data = 2},
-            {description = "3x", data = 3},
-            {description = "4x", data = 4},
-            {description = "5x", data = 5}
+            {description = "Load & Shoot (Default)", data = "default"},
+            {description = "Volley Fire", data = "volley", hover = "Cannons will cause nearby loaded cannons to also fire."},
+            {description = "Automatic", data = "auto", hover = "Cannons immediatly fire after being loaded."},
         },
-        default = 1,
-        hover = "Choose how powerful cannon's ??? is."
+        default = "volley",
+        hover = "Choose how cannons will fire."
     },
-    BinaryConfig("config_cheaperCannonballs", "Cheaper Cannonballs", "Cannonballs are cheaper", false),
-    {
-        name = "config_bumperHealth",
-        label = "Bumper Health",
-        options = {
-            {description = "1x (Default)", data = 1},
-            {description = "2x", data = 2},
-            {description = "3x", data = 3},
-            {description = "4x", data = 4},
-            {description = "5x", data = 5}
-        },
-        default = 1,
-        hover = "Choose how much health boat bumpers have."
-    },
-    {
-        name = "config_islandSize",
-        label = "Island Dock Size",
-        options = {
-            {description = "1x (Default)", data = 1},
-            {description = "2x", data = 2},
-            {description = "3x", data = 3},
-            {description = "4x", data = 4},
-            {description = "5x", data = 5}
-        },
-        default = 1,
-        hover = "Choose how Big the new island's docks are!"
-    },
-    BinaryConfig("config_battlePaddle", "Battle Paddle Buff", "Increases durability, damage and speed.", false),
     SkipSpace(),
 
     Header("Items, Food & Recipes"),
@@ -125,7 +94,7 @@ configuration_options = {
     SkipSpace(),
     Header("Boats & Ocean"),
     SkipSpace(),
-    BinaryConfig("config_turningBoats_", "Boat Turning", "Makes it so steering wheels turn boats instead of Rudders, legacy feature. Off by default.", false),
+    BinaryConfig("config_turningBoats", "Steering Wheel Turning", "Steering Wheels will also rotate the boat if it has a rudder.", true),
     {
         name = "config_moreTreasure",
         label = "Higher treasure chance",
