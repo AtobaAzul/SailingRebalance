@@ -112,6 +112,8 @@ elseif GetModConfigData("config_cheapBoats") == 2 then
     AllRecipes["waterpump"].ingredients = {Ingredient("boards", 2), Ingredient("rope", 1)}
     AllRecipes["boat_cannon_kit"].ingredients = {Ingredient("palmcone_scale", 1), Ingredient("rope", 1), Ingredient("charcoal", 3)}
     AllRecipes["cannonball_rock_item"].ingredients = {Ingredient("rocks", 1), Ingredient("nitre", 1)}
+    AllRecipes["boat_magnet_kit"].ingredients = {Ingredient("boards", 2), Ingredient("cutstone", 2), Ingredient("transistor", 1)}
+    AllRecipes["boat_magnet_beacon"].ingredients = {Ingredient("cutstone", 2), Ingredient("transistor", 1)}
 end
 
 if GetModConfigData("config_tridentBuff") == 1 then
