@@ -113,11 +113,11 @@ if GetModConfigData("config_thiccFish") then
                     local holder = owner ~= nil and (owner.components.inventory or owner.components.container)
                     local loot = {}
                     for i = 1, inst.meatvalue do
-                        table.insert(loot, SpawnPrefab(data[1]))
+                        table.insert(loot, GLOBAL.SpawnPrefab(data[1]))
                     end
                     if data[3] then
                         for k, v in pairs(data[3]) do
-                            table.insert(loot, SpawnPrefab(v))
+                            table.insert(loot, GLOBAL.SpawnPrefab(v))
                         end
                     end
                     local slot = holder and holder:GetItemSlot(inst)

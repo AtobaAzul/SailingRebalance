@@ -6,6 +6,7 @@ Assets = {
 
 PrefabFiles = {
     "sunkenchest_royal",
+    "sunkenchest_spawner",
 }
 
 GLOBAL.require("recipe")
