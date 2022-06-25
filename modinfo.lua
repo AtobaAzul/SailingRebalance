@@ -50,6 +50,7 @@ end
 configuration_options = {
     Header("Items, Food & Recipes"),
     SkipSpace(),
+
     {
         name = "config_tridentBuff",
         label = "Trident Buff",
@@ -68,16 +69,20 @@ configuration_options = {
     BinaryConfig("config_foodRebalance", "Food Rebalance", "Tweaks some weaker ocean foods so they get a chance in the spotlight.\nCertain foods are further buffed if Feast & Famine is active.", true),
     BinaryConfig("config_thiccFish", "Better Ocean fish", "Changes ocean fishes to drop meat based on their weight.\nSome fish have extra loot.", true),
     SkipSpace(),
+
     Header("Creatures"),
     SkipSpace(),
+
     BinaryConfig("config_easierSeaweed", "Easier Seaweeds", "Makes Seaweeds easier to fight.\nThey no longer cause leaks and deal less damage.", true),
     BinaryConfig("config_easierRockjaws", "Easier Rockjaws", "Makes Rockjaws easier to fight.\nThey now deal 50 total damage.", true),
     BinaryConfig("config_livinglogGators", "Grassgators Buff", "Makes grass gators drop living logs.", true),
     BinaryConfig("config_hoarderCrabking", "Crab King Treasure", "Makes CK drop the treasures he once hoarded.", true),
     BinaryConfig("config_seasonalShoals", "Seasonal Shoals", "Shoals have different kinds of fish, depending on the season.", true),
     SkipSpace(),
+
     Header("Boats & Ocean"),
     SkipSpace(),
+
     BinaryConfig("config_turningBoats", "Steering Wheel Turning", "Steering Wheels will also rotate the boat if it has a rudder.", true),
     {
         name = "config_moreTreasure",
@@ -113,17 +118,6 @@ configuration_options = {
         default = 1,
         hover = "Choose how cheap you want boat parts to be."
     },
-    BinaryConfig("config_violentCannons", "Violent Cannons", "Less trajectory arch, much faster projectiles.", true),
+    BinaryConfig("config_violentCannons", "Better Cannons", "Faster projectiles with increased range, damage, radius and AoE.", true),
     BinaryConfig("config_betterBumpers", "Better Bumpers", "Each craft for bumpers gives 8, for a full coverage. Bumpers have had their health doubled.", true),
-    {
-        name = "config_cannonFiremode",
-        label = "Cannon Fire Mode",
-        options = {
-            {description = "Load & Shoot (Default)", data = "default"},
-            {description = "Volley Fire", data = "volley", hover = "Cannons will cause nearby loaded cannons to also fire."},
-            {description = "Automatic", data = "auto", hover = "Cannons immediatly fire after being loaded."},
-        },
-        default = "volley",
-        hover = "Choose how cannons will fire."
-    },
 }

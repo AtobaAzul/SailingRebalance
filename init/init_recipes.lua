@@ -31,8 +31,6 @@ if GetModConfigData("config_hermitRecipes") then
     AddRecipe2("hermit_cookies", {Ingredient("messagebottleempty", 1)}, TECH.HERMITCRABSHOP_SEVEN, {nounlock = true, product = "pumpkincookie", sg_state = "give"})
 
     AddRecipe2("normal_chum", {Ingredient("spoiled_food", 2), Ingredient("rope", 1)}, TECH.FISHING_ONE, {product = "chum"}, {"FISHING"})
-
-    AllRecipes["hermitshop_chum"].ingredients = {Ingredient("messagebottleempty", 1)}
     AllRecipes["hermitshop_chum"].numtogive = 3
 
     --[[if GLOBAL.KnownModIndex:IsModEnabled("workshop-2039181790") then

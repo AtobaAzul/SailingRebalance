@@ -32,7 +32,6 @@ local postinit_prefabs = {
 }
 
 local postinit_components = {
-    "boatcannon",
     "messagebottlemanager",
     "weighable",
 }
