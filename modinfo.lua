@@ -1,21 +1,14 @@
 name = "[BETA] Sailing Rebalance"
-version = "1.12.5"
+version = "1.12.6"
 description =
     [[
-Version 1.12.5
-
-This mod aims to tweak ocean content, making it more rewarding, without adding new content.
-Main Features:
-
-Trident Buff: Stats increased and costs 1 horn and 2 Bone shards.
-
-New Sunken treasure presets: Scientist, Inventor and Farmer, and many more, with some tweaks to existing ones!
-
-Reworked Fish: Fish now drop meat based on their weight and some have extra drops!
-
-A bunch of other misc. tweaks and changes!
-
-All features can be configured.
+Version 1.12.6
+The Beta branch version of Sailing Rebalance - Expect features to be added/removed fequently. May break often.name
+Current beta features:
+- Boat Cannon and Bumper Buffs
+- Fixed/Tweaked Trident Changes
+- Added new boat things to Cheaper Boats config
+- Reworked boat turning
 ]]
 
 author = "Atobá Azul"
