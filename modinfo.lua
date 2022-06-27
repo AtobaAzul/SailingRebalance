@@ -1,8 +1,8 @@
 name = "[BETA] Sailing Rebalance"
-version = "1.12.6"
+version = "1.12.10"
 description =
     [[
-Version 1.12.6
+Version 1.12.10
 The Beta branch version of Sailing Rebalance - Expect features to be added/removed fequently. May break often.name
 Current beta features:
 - Boat Cannon and Bumper Buffs
@@ -42,22 +42,6 @@ local function BinaryConfig(name, label, hover, default)
 end
 
 configuration_options = {
-    Header("Beta Content"),
-    BinaryConfig("config_violentCannons", "Violent Cannons", "Less trajectory arch, much faster projectiles.", true),
-    BinaryConfig("config_betterBumpers", "Better Bumpers", "Each craft for bumpers gives 8, for a full coverage. Bumpers have had their health doubled.", true),
-    {
-        name = "config_cannonFiremode",
-        label = "Cannon Fire Mode",
-        options = {
-            {description = "Load & Shoot (Default)", data = "default"},
-            {description = "Volley Fire", data = "volley", hover = "Cannons will cause nearby loaded cannons to also fire."},
-            {description = "Automatic", data = "auto", hover = "Cannons immediatly fire after being loaded."},
-        },
-        default = "volley",
-        hover = "Choose how cannons will fire."
-    },
-    SkipSpace(),
-
     Header("Items, Food & Recipes"),
     SkipSpace(),
 
