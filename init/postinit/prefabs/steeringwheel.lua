@@ -2,14 +2,16 @@ local env = env
 GLOBAL.setfenv(1, GLOBAL)
 
 if env.GetModConfigData("config_turningBoats") then
+    print("adding steering wheel postinit")
     env.AddPrefabPostInit("steeringwheel", function(inst)
-        if not TheWorld.ismastersim then
+        if not TheWorld.ismastersim then 
             return
         end
 
-        local OldSetOnStartSteering = inst.components.steeringwheel.onstartfn
+        local on_start_steering_old = inst.components.steeringwheel.onstartfn
+
         inst.components.steeringwheel.onstartfn = function(inst, sailor)
-            local ret = OldSetOnStartSteering(inst, sailor)
+            local ret = on_start_steering_old(inst, sailor)
             local boat = inst:GetCurrentPlatform()
             if boat ~= nil then
                 local x, y, z = boat.Transform:GetWorldPosition()
@@ -18,8 +20,7 @@ if env.GetModConfigData("config_turningBoats") then
                     if k > 0 then
                         if boat.components.boatphysics ~= nil then
                             boat.components.boatphysics:SetCanSteeringRotate(true)
-                            v:RemoveComponent("boatrotator")
-                            --so you can't interact
+                            v:RemoveComponent("boatrotator") -- so you can't interact
                         end
                     end
                 end
@@ -27,24 +28,26 @@ if env.GetModConfigData("config_turningBoats") then
             return ret
         end
 
-        local OldSetOnStopSteering = inst.components.steeringwheel.onstopfn
+        local on_stop_steering_old = inst.components.steeringwheel.onstopfn
         inst.components.steeringwheel.onstopfn = function(inst, sailor)
             print("onstop")
             local boat = inst:GetCurrentPlatform()
             local x, y, z = boat.Transform:GetWorldPosition()
-            local ret = OldSetOnStopSteering(inst, sailor)
-            local rudder = TheSim:FindEntities(x, y, z, TUNING.MAX_WALKABLE_PLATFORM_RADIUS, {"boatrotator"}, {"burnt"})
+            local ret = on_stop_steering_old(inst, sailor)
+            local rudder = TheSim:FindEntities(x, y, z, TUNING.MAX_WALKABLE_PLATFORM_RADIUS, {"boatrotator"}, {"burnt", "INLIMBO", "_inventoryitem"})
             if boat ~= nil then
                 boat.components.boatphysics:SetCanSteeringRotate(false)
-                print("removing steering rotate")
                 if rudder ~= nil then
                     for k, v in ipairs(rudder) do
                         v:AddComponent("boatrotator")
-                        print("re-added rotator component")
                     end
                 end
             end
             return ret
         end
+    end)
+
+    env.AddPrefabPostInit("boat_rotator", function(inst)
+        inst:AddTag("boatrotator") -- KLEI WHY
     end)
 end
