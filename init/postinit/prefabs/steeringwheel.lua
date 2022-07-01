@@ -30,7 +30,6 @@ if env.GetModConfigData("config_turningBoats") then
 
         local on_stop_steering_old = inst.components.steeringwheel.onstopfn
         inst.components.steeringwheel.onstopfn = function(inst, sailor)
-            print("onstop")
             local boat = inst:GetCurrentPlatform()
             local x, y, z = boat.Transform:GetWorldPosition()
             local ret = on_stop_steering_old(inst, sailor)
