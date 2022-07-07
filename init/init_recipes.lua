@@ -86,10 +86,10 @@ if GetModConfigData("config_betterMoonstorms") then
 end
 
 if GetModConfigData("config_betterBumpers") then
-    AllRecipes["boat_bumper_shell_kit"].numtogive = 8
-    AllRecipes["boat_bumper_kelp_kit"].numtogive = 8
-    AllRecipes["boat_bumper_shell_kit"].ingredients = {Ingredient("slurtle_shellpieces", 3), Ingredient("rope", 6)}
-    AllRecipes["boat_bumper_kelp_kit"].ingredients = {Ingredient("kelp", 3), Ingredient("cutgrass", 10)}
+    AllRecipes["boat_bumper_shell_kit"].numtogive = 4--8
+    AllRecipes["boat_bumper_kelp_kit"].numtogive = 4--8
+    AllRecipes["boat_bumper_shell_kit"].ingredients = {Ingredient("slurtle_shellpieces", 3), Ingredient("rope", 3)}
+    AllRecipes["boat_bumper_kelp_kit"].ingredients = {Ingredient("kelp", 3), Ingredient("cutgrass", 6)}
 end
 
 if GetModConfigData("config_cheapBoats") == 1 then
@@ -119,6 +119,8 @@ if GetModConfigData("config_tridentBuff") == 1 then
 elseif GetModConfigData("config_tridentBuff") == 2 then
     AllRecipes["trident"].ingredients = {Ingredient("boneshard", 3), Ingredient("kelp", 4), Ingredient("twigs", 2)}
 end
+
+AllRecipes["fish_box"].testfn = function(pt) return GLOBAL.TheWorld.Map:GetPlatformAtPoint(pt.x, 0, pt.z, -0.5) ~= nil or GLOBAL.TheWorld.Map:GetTileAtPoint(pt.x, 0, pt.z) == GLOBAL.WORLD_TILES.MONKEY_DOCK end
 
 STRINGS.RECIPE_DESC.WATERPLANT_PLANTER = "Grow your very own Sea Weed."
 STRINGS.RECIPE_DESC.BLUEPRINT = "Learn new things."

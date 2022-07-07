@@ -120,5 +120,5 @@ configuration_options = {
         hover = "Choose how cheap you want boat parts to be."
     },
     BinaryConfig("config_violentCannons", "Better Cannons", "Faster projectiles with increased range, damage, radius and AoE.", true),
-    BinaryConfig("config_betterBumpers", "Better Bumpers", "Each craft for bumpers gives 8, for a full coverage. Bumpers have had their health doubled.", true),
+    BinaryConfig("config_betterBumpers", "Better Bumpers", "Each craft for bumpers gives 4. Bumpers have had their health doubled.", true),
 }
