@@ -21,7 +21,6 @@ STRINGS = GLOBAL.STRINGS
 
 local postinit_prefabs = {
     "boat_bumper",
-    "boat_cannon",
     "crabking",
     "gnarwail",
     "grassgator",
@@ -36,7 +35,6 @@ local postinit_components = {
     "messagebottlemanager",
     "weighable",
 }
-
 
 local init = {
     "food",
