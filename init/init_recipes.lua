@@ -93,7 +93,6 @@ if GetModConfigData("config_betterBumpers") then
 end
 
 if GetModConfigData("config_cheapBoats") == 1 then
-    AllRecipes["boat_item"].ingredients = {Ingredient("boards", 3)}
     AllRecipes["anchor_item"].ingredients = {Ingredient("boards", 2), Ingredient("rope", 2),Ingredient("cutstone", 2)}
     AllRecipes["mast_item"].ingredients = {Ingredient("boards", 2), Ingredient("rope", 2),Ingredient("silk", 6)}
     AllRecipes["mast_malbatross_item"].ingredients = {Ingredient("driftwood_log", 2), Ingredient("rope", 3),Ingredient("malbatross_feathered_weave", 4)}
@@ -101,7 +100,7 @@ if GetModConfigData("config_cheapBoats") == 1 then
     AllRecipes["fish_box"].ingredients = {Ingredient("cutstone", 1), 		Ingredient("rope", 2)}
     AllRecipes["cannonball_rock_item"].ingredients = {Ingredient("cutstone", 1), Ingredient("nitre", 1)}
 elseif GetModConfigData("config_cheapBoats") == 2 then
-    AllRecipes["boat_item"].ingredients = {Ingredient("log", 8)}
+    AllRecipes["boat_item"].ingredients = {Ingredient("log", 12)}
     AllRecipes["anchor_item"].ingredients = {Ingredient("boards", 2), Ingredient("rope", 1),Ingredient("cutstone", 1)}
     AllRecipes["mast_item"].ingredients = {Ingredient("boards", 1), Ingredient("rope", 2),Ingredient("silk", 4)}
     AllRecipes["mast_malbatross_item"].ingredients = {Ingredient("driftwood_log", 1), Ingredient("rope", 2),Ingredient("malbatross_feathered_weave", 2)}
