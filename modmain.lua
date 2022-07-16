@@ -42,22 +42,26 @@ local init = {
     "tuning",
 }
 
-for k, v in ipairs(postinit_prefabs) do
-    modimport("init/postinit/prefabs/"..v)
-end
+if not GLOBAL.KnownModIndex:IsModEnabled("workshop-2833663814") then
+    for k, v in ipairs(postinit_prefabs) do
+        modimport("init/postinit/prefabs/"..v)
+    end
 
-for k, v in ipairs(postinit_components) do
-    modimport("init/postinit/components/"..v)
-end
+    for k, v in ipairs(postinit_components) do
+        modimport("init/postinit/components/"..v)
+    end
 
-for k, v in ipairs(init) do
-    modimport("init/init_"..v)
-end
+    for k, v in ipairs(init) do
+        modimport("init/init_"..v)
+    end
 
-local containers = GLOBAL.require("containers")
+    local containers = GLOBAL.require("containers")
 
-if containers.params.sunkenchest_royal == nil then
-    containers.params.sunkenchest_royal = containers.params.shadowchester
-    STRINGS.NAMES.SUNKENCHEST_ROYAL = "Royal Chest"
-    STRINGS.CHARACTERS.GENERIC.DESCRIBE.SUNKENCHEST_ROYAL = "Seems awfully brittle."
+    if containers.params.sunkenchest_royal == nil then
+        containers.params.sunkenchest_royal = containers.params.shadowchester
+        STRINGS.NAMES.SUNKENCHEST_ROYAL = "Royal Chest"
+        STRINGS.CHARACTERS.GENERIC.DESCRIBE.SUNKENCHEST_ROYAL = "Seems awfully brittle."
+    end
+else
+    print("Sailing Rebalance has been merged into Uncompromising Mode! The mod is functionally disabled.")
 end
