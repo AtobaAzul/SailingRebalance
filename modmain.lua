@@ -29,6 +29,9 @@ local postinit_prefabs = {
     "shark",
     "steeringwheel",
     "waterplant_bomb",
+    "trident",
+    "boat_pirate",
+    "slurtle_shellpieces"
 }
 
 local postinit_components = {
