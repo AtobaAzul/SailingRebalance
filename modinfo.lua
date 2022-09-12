@@ -1,7 +1,7 @@
 name = "Sailing Rebalance"
-version = "1.12.7"
+version = "1.12.8"
 description = [[
-Version 1.12.7
+Version 1.12.8
 
 This mod aims to tweak ocean content, making it more rewarding, without adding new content.
 Main Features:
@@ -86,6 +86,7 @@ configuration_options = {
     BinaryConfig("config_foodRebalance", "Food Rebalance", "Tweaks some weaker ocean foods so they get a chance in the spotlight.\nCertain foods are further buffed if Feast & Famine is active.", true),
     BinaryConfig("config_thiccFish", "Better Ocean fish", "Changes ocean fishes to drop meat based on their weight.\nSome fish have extra loot.", true),
     BinaryConfig("config_seasonalShoals", "Seasonal Shoals", "Shoals have different kinds of fish, depending on the season.", true),
+    BinaryConfig("config_waterplantItemBuff", "Player Seedshell Damage Buff", "Seedshells thrown by players deal more damage.",true),
     SkipSpace(),
 
     Header("Creatures"),
@@ -138,4 +139,5 @@ configuration_options = {
     },
     BinaryConfig("config_violentCannons", "Better Cannons", "Faster projectiles with increased range, damage, radius and AoE.", true),
     BinaryConfig("config_betterBumpers", "Better Bumpers", "Each craft for bumpers gives 4. Bumpers have had their health doubled.", true),
+    BinaryConfig("config_nautopilotBuff", "Nautopilot Buff", "Buffs all nautopilot stats by 100x. That sounds like a lot but really isn't.", true)
 }
