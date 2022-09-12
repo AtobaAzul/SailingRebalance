@@ -1,7 +1,7 @@
 name = "Sailing Rebalance"
-version = "1.12.6"
+version = "1.12.7"
 description = [[
-Version 1.12.6
+Version 1.12.7
 
 This mod aims to tweak ocean content, making it more rewarding, without adding new content.
 Main Features:
@@ -47,21 +47,38 @@ local function BinaryConfig(name, label, hover, default)
     }
 end
 
+local function MultiplierConfig(name, label, hover, min, max, step, default)
+    local return_table = {name = name, label = label, hover = hover, options = {}, default = default}
+    for i = min or 1, max, step or 1 do
+        return_table.options[#return_table.options + 1] = {description = i.."x", data = i}
+    end
+    return return_table
+end
+
+local function PercentConfig(name, label, hover, min, max, step, default)
+    local return_table = {name = name, label = label, hover = hover, options = {}, default = default}
+    for i = min or 0.1, max+step, step or 0.1 do
+        return_table.options[#return_table.options + 1] = {description = 100*i.."%", data = i}
+    end
+    return return_table
+end
+
 configuration_options = {
     Header("Items, Food & Recipes"),
     SkipSpace(),
 
     {
-        name = "config_tridentBuff",
-        label = "Trident Buff",
+        name = "config_tridentRecipeBuff",
+        label = "Trident Recipe Buff",
         options = {
-            {description = "Easier(3 Bones)", data = 2},
-            {description = "Default(1 Horn)", data = 1},
-            {description = "Disabled", data = 0}
+            {description = "Easier", data = 2, hover = "Costs 3 bone shards instead of Gnarlwail horns."},
+            {description = "Default", data = 1, hover = "Costs 2 Bone Shards and 1 Gnarlwail horn."},
+            {description = "Disabled", data = 0, hover = "Disabled."}
         },
         default = 1,
-        hover = "Buffs trident.\nTrident's stats generally have been improved and recipe made easier."
+        hover = "Tweaks the trident recipe."
     },
+    BinaryConfig("config_tridentStatBuff", "Trident Staff Buffs", "General all-rounder buff to the Trident's stats.", true),
     BinaryConfig("config_hermitRecipes", "More Pearl trades", "Adds more trades to Pearl's shop.", true),
     BinaryConfig("config_pearlRusher", "Easier Hermit House Upgrade", "Makes it so the Tier 3 house doesn't cost cactus flowers.", true),
     BinaryConfig("config_betterMoonstorms", "Better Moonstorms", "Makes the moonstorm event easier to repeat after the 1st.", true),

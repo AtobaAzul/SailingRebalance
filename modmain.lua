@@ -68,3 +68,5 @@ if not GLOBAL.KnownModIndex:IsModEnabled("workshop-2833663814") then
 else
     print("Sailing Rebalance has been merged into Uncompromising Mode! The mod is functionally disabled.")
 end
+
+modimport("init/postinit/components/drownable")

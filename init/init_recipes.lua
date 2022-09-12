@@ -113,9 +113,9 @@ elseif GetModConfigData("config_cheapBoats") == 2 then
     AllRecipes["boat_magnet_beacon"].ingredients = {Ingredient("cutstone", 2), Ingredient("transistor", 1)}
 end
 
-if GetModConfigData("config_tridentBuff") == 1 then
+if GetModConfigData("config_tridentRecipeBuff") == 1 then
     AllRecipes["trident"].ingredients = {Ingredient("boneshard", 2),Ingredient("gnarwail_horn", 1), Ingredient("kelp", 4), Ingredient("twigs", 2)}--hee hoo 4 item recipes are now REAL!
-elseif GetModConfigData("config_tridentBuff") == 2 then
+elseif GetModConfigData("config_tridentRecipeBuff") == 2 then
     AllRecipes["trident"].ingredients = {Ingredient("boneshard", 3), Ingredient("kelp", 4), Ingredient("twigs", 2)}
 end
 
