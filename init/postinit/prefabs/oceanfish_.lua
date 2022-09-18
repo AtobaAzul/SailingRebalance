@@ -23,7 +23,7 @@ if GetModConfigData("config_seasonalShoals") then
     
     env.AddPrefabPostInit("oceanfish_shoalspawner", function(inst)
         --if not TheWorld.ismastersim then
-        --    print("NOT MASTERSIM")
+        --   --print"NOT MASTERSIM")
         --    return
         --end
         inst:DoTaskInTime(0, OnSeasonTick)

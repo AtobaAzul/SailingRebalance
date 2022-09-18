@@ -2,7 +2,7 @@ local env = env
 GLOBAL.setfenv(1, GLOBAL)
 
 if env.GetModConfigData("config_turningBoats") then
-    print("adding steering wheel postinit")
+   --print"adding steering wheel postinit")
     env.AddPrefabPostInit("steeringwheel", function(inst)
         if not TheWorld.ismastersim then 
             return

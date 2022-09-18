@@ -37,6 +37,7 @@ local postinit_prefabs = {
 local postinit_components = {
     "messagebottlemanager",
     "weighable",
+    "hullhealth",
 }
 
 local init = {
@@ -66,7 +67,7 @@ if not GLOBAL.KnownModIndex:IsModEnabled("workshop-2833663814") then
         STRINGS.CHARACTERS.GENERIC.DESCRIBE.SUNKENCHEST_ROYAL = "Seems awfully brittle."
     end
 else
-    print("Sailing Rebalance has been merged into Uncompromising Mode! The mod is functionally disabled.")
+   print("Sailing Rebalance has been merged into Uncompromising Mode! The mod is functionally disabled.")
 end
 
 modimport("init/postinit/components/drownable")
