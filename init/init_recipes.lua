@@ -44,14 +44,6 @@ if GetModConfigData("config_hermitRecipes") then
     end AAAAAAAAAAAAAAAAAA]]
 end
 
-if GetModConfigData("config_pearlRusher") then
-    GLOBAL.CONSTRUCTION_PLANS["hermithouse_construction3"] = {
-        Ingredient("moonrocknugget", 5),
-        Ingredient("petals", 15),
-        Ingredient("moonglass", 10)
-    }
-end
-
 if GetModConfigData("config_betterMoonstorms") then
     AddRecipe2(
         "moonstorm_static_item",

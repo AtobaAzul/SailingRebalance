@@ -80,7 +80,6 @@ configuration_options = {
     },
     BinaryConfig("config_tridentStatBuff", "Trident Staff Buffs", "General all-rounder buff to the Trident's stats.", true),
     BinaryConfig("config_hermitRecipes", "More Pearl trades", "Adds more trades to Pearl's shop.", true),
-    BinaryConfig("config_pearlRusher", "Easier Hermit House Upgrade", "Makes it so the Tier 3 house doesn't cost cactus flowers.", true),
     BinaryConfig("config_betterMoonstorms", "Better Moonstorms", "Makes the moonstorm event easier to repeat after the 1st.", true),
     BinaryConfig("config_moreKeys", "More keys", "Requires unlockable sunken chest mod.\nMakes more things drop keys.", true),
     BinaryConfig("config_foodRebalance", "Food Rebalance", "Tweaks some weaker ocean foods so they get a chance in the spotlight.\nCertain foods are further buffed if Feast & Famine is active.", true),
