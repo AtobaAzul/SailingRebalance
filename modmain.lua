@@ -22,16 +22,19 @@ STRINGS = GLOBAL.STRINGS
 local postinit_prefabs = {
     "boat_bumper",
     "crabking",
-    "gnarwail",
-    "grassgator",
-    "malbatross",
     "oceanfish_",
-    "shark",
-    "steeringwheel",
     "waterplant_bomb",
     "trident",
     "boat_pirate",
     "slurtle_shellpieces"
+}
+
+local postinit_prefabs_um = {--these features work with UM.
+    "gnarwail",
+    "grassgator",
+    "malbatross",
+    "shark",
+    "steeringwheel",
 }
 
 local postinit_components = {
@@ -46,17 +49,14 @@ local init = {
     "tuning",
 }
 
-if not GLOBAL.KnownModIndex:IsModEnabled("workshop-2833663814") then
+if not GLOBAL.KnownModIndex:IsModEnabled("workshop-2039181790") then
+
     for k, v in ipairs(postinit_prefabs) do
         modimport("init/postinit/prefabs/"..v)
     end
 
     for k, v in ipairs(postinit_components) do
         modimport("init/postinit/components/"..v)
-    end
-
-    for k, v in ipairs(init) do
-        modimport("init/init_"..v)
     end
 
     local containers = GLOBAL.require("containers")
@@ -67,7 +67,15 @@ if not GLOBAL.KnownModIndex:IsModEnabled("workshop-2833663814") then
         STRINGS.CHARACTERS.GENERIC.DESCRIBE.SUNKENCHEST_ROYAL = "Seems awfully brittle."
     end
 else
-   print("Sailing Rebalance has been merged into Uncompromising Mode! The mod is functionally disabled.")
+   print("Sailing Rebalance has been merged into Uncompromising Mode! Most features are disabled.")
+end
+
+for k, v in ipairs(init) do
+    modimport("init/init_"..v)
+end
+
+for k,v in ipairs(postinit_prefabs_um) do
+    modimport("init/postinit/prefabs/"..v)
 end
 
 modimport("init/postinit/components/drownable")

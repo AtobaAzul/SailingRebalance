@@ -1,7 +1,7 @@
 name = "Sailing Rebalance"
-version = "1.12.8"
+version = "1.12.9"
 description = [[
-Version 1.12.8
+Version 1.12.9
 
 This mod aims to tweak ocean content, making it more rewarding, without adding new content.
 Main Features:
@@ -94,7 +94,7 @@ configuration_options = {
     BinaryConfig("config_easierSeaweed", "Easier Seaweeds", "Makes Seaweeds easier to fight.\nThey no longer cause leaks and deal less damage.", true),
     BinaryConfig("config_easierRockjaws", "Easier Rockjaws", "Makes Rockjaws easier to fight.\nThey now deal 50 total damage.", true),
     BinaryConfig("config_livinglogGators", "Grassgators Buff", "Makes grass gators drop living logs.", false),
-    BinaryConfig("config_hoarderCrabking", "Crab King Treasure", "Makes CK drop the treasures he once hoarded.", true),
+    BinaryConfig("config_hoarderCrabking", "Crab King Treasure", "Makes CK drop the treasures he once hoarded.", false),
     BinaryConfig("config_seasonalShoals", "Seasonal Shoals", "Shoals have different kinds of fish, depending on the season.", true),
     SkipSpace(),
 
