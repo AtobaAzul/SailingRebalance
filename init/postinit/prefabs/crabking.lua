@@ -157,7 +157,9 @@ local function DoSeekingAttack(inst)
     end
 end
 
-local function spawnwaves(inst, numWaves, totalAngle, waveSpeed, wavePrefab, initialOffset, idleTime, instantActivate, random_angle) SpawnAttackWaves(inst:GetPosition(), (not random_angle and inst.Transform:GetRotation()) or nil, initialOffset or (inst.Physics and inst.Physics:GetRadius()) or nil, numWaves, totalAngle, waveSpeed, wavePrefab, idleTime, instantActivate) end
+local function spawnwaves(inst, numWaves, totalAngle, waveSpeed, wavePrefab, initialOffset, idleTime, instantActivate, random_angle)
+    SpawnAttackWaves(inst:GetPosition(), (not random_angle and inst.Transform:GetRotation()) or nil, initialOffset or (inst.Physics and inst.Physics:GetRadius()) or nil, numWaves, totalAngle, waveSpeed, wavePrefab, idleTime, instantActivate)
+end
 
 local function spawnwave(inst, time)
     spawnwaves(inst, 12, 360, Lerp(2, 6, inst.countgems(inst).blue / 10), nil, 2.5, time or 2, true, true)
@@ -189,26 +191,11 @@ end
 
 local gems = {"blue", "red", "purple", "orange", "yellow", "green"}
 
-local function OnAttacked(inst, data)
-    if data.attacker.ck_attack_quote_cd ~= nil then
-        data.attacker.ck_attack_quote_cd:Cancel()
-        data.attacker.ck_attack_quote_cd = nil
-        data.attacker.ck_attack_quote_cd = data.attacker:DoTaskInTime(10, function() end)
-    end
-
-    if data.attacker:HasTag("player") and data.attacker.components.talker ~= nil and data.attacker.ck_attack_quote_cd == nil then
-        data.attacker.components.talker:Say(GetString(inst, "ATTACKED_CRABKING"))
-        data.attacker.ck_attack_quote_cd = data.attacker:DoTaskInTime(10, function() end)
-    end
-end
-
 if env.GetModConfigData("config_crabkingRework") then
     env.AddPrefabPostInit("crabking", function(inst)
         inst:AddTag("crab")
 
         if not TheWorld.ismastersim then return end
-
-        inst:ListenForEvent("attacked", OnAttacked)
 
         inst:RemoveComponent("burnable")
         inst:RemoveComponent("propagator")
