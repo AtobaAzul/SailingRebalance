@@ -3,11 +3,12 @@ GLOBAL.setfenv(1, GLOBAL)
 
 if env.GetModConfigData("config_crabkingRework") then
     env.AddComponentPostInit("combat", function(self)
-        if not TheWorld.ismastersim then return end
 
         local _GetAttacked = self.GetAttacked
 
         function self:GetAttacked(attacker, damage, weapon, stimuli, ...)
+            local weapon_check = weapon ~= nil and weapon:IsValid() and weapon or nil
+
             if (self.inst ~= nil and (self.inst.prefab == "crabking" or self.inst.prefab == "crabking_claw") and attacker ~= nil and (attacker.prefab == "cannonball_rock")) then
                 damage = damage * (attacker.prefab == "cannonball_rock" and 4 or attacker.prefab == "cannonball_sludge" and 3)
                 if self.inst.attack_count ~= nil then self.inst.attack_count = math.clamp(self.inst.attack_count - 1, 0, 10) end
