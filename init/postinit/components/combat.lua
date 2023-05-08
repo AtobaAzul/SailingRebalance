@@ -21,6 +21,8 @@ if env.GetModConfigData("config_crabkingRework") then
                 end
 
                 return _GetAttacked(self, attacker, damage, weapon_check, stimuli)
+            else
+                return _GetAttacked(self, atatcker, damage, weapon, stimuli, ...)
             end
         end
     end)
