@@ -7,7 +7,7 @@ env.AddComponentPostInit("drownable", function(self)
 
     function self:OnFallInOcean(shore_x, shore_y, shore_z)
         local inv = self.inst.components.inventory
-        if inv ~= nil and inv:GetEquippedItem(EQUIPSLOTS.BODY).prefab == "armormarble" then
+        if inv ~= nil and inv:GetEquippedItem(EQUIPSLOTS.BODY) ~= nil and inv:GetEquippedItem(EQUIPSLOTS.BODY).prefab == "armormarble" then
             self.inst:DoTaskInTime(0.5, function(inst)
                 inst.AnimState:SetMultColour(1, 1, 1, 0)
                 inst.components.health:Kill()
@@ -15,7 +15,7 @@ env.AddComponentPostInit("drownable", function(self)
                     inst.AnimState:SetMultColour(1, 1, 1, 1)
                 end)
             end)
-    
+
             local active_item = inv:GetActiveItem()
             if active_item ~= nil and not active_item:HasTag("irreplaceable") and
                 not active_item.components.inventoryitem.keepondrown then
