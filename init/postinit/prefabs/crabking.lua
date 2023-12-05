@@ -43,7 +43,7 @@ local function removecrab(inst)
     inst:Remove()
 end
 
-local CRABKING_SPELLGENERATOR_TAGS = {"crabking_spellgenerator"}
+local CRABKING_SPELLGENERATOR_TAGS = { "crabking_spellgenerator" }
 
 -- I LOVE MATH!!!
 -- I almost went down a Bézier curve rabbithole.
@@ -53,7 +53,7 @@ local function DoLineAttack(inst, rand_start)
     local target = #inst.all_targets > 1 and inst.all_targets[math.random(#inst.all_targets)] or inst.components.combat ~= nil and inst.components.combat.target
 
     if target == nil then
-        local boats = TheSim:FindEntities(ck_x, ck_y, ck_z, 25, {"boat"})
+        local boats = TheSim:FindEntities(ck_x, ck_y, ck_z, 25, { "boat" })
         if #boats > 0 then target = boats[math.random(#boats)] end
     end
 
@@ -116,7 +116,7 @@ local function DoSeekingAttack(inst)
     local target = #inst.all_targets > 1 and inst.all_targets[math.random(#inst.all_targets)] or inst.components.combat ~= nil and inst.components.combat.target
 
     if target == nil then
-        local boats = TheSim:FindEntities(ck_x, ck_y, ck_z, 25, {"boat"})
+        local boats = TheSim:FindEntities(ck_x, ck_y, ck_z, 25, { "boat" })
         if #boats > 0 then target = boats[math.random(#boats)] end
     end
 
@@ -166,7 +166,7 @@ local function spawnwave(inst, time)
 
     -- need to manually push boats without being the waves, as the waves can try spawning on the boat itself, and then not moving it.
     local x, y, z = inst.Transform:GetWorldPosition()
-    local boats = TheSim:FindEntities(x, y, z, 12, nil, nil, {"boat"})
+    local boats = TheSim:FindEntities(x, y, z, 12, nil, nil, { "boat" })
     for k, v in ipairs(boats) do
         local bx, by, bz = v.Transform:GetWorldPosition()
         local push_dir_x, push_dir_z = VecUtil_Normalize(bx - x, bz - z)
@@ -174,8 +174,8 @@ local function spawnwave(inst, time)
     end
 end
 
-local RETARGET_MUST_TAGS = {"_combat"}
-local RETARGET_CANT_TAGS = {"wall", "INLIMBO", "prey", "bird", "crab"}
+local RETARGET_MUST_TAGS = { "_combat" }
+local RETARGET_CANT_TAGS = { "wall", "INLIMBO", "prey", "bird", "crab" }
 local TARGET_DIST = 48
 
 local function RetargetFn(inst)
@@ -189,7 +189,7 @@ local function RetargetFn(inst)
     return FindEntity(inst, TARGET_DIST, function(guy) return inst.components.combat:CanTarget(guy) and (guy.components.combat:TargetIs(inst) or guy:IsNear(inst, range)) end, RETARGET_MUST_TAGS, RETARGET_CANT_TAGS)
 end
 
-local gems = {"blue", "red", "purple", "orange", "yellow", "green"}
+local gems = { "blue", "red", "purple", "orange", "yellow", "green" }
 
 if env.GetModConfigData("config_crabkingRework") then
     env.AddPrefabPostInit("crabking", function(inst)
@@ -211,8 +211,9 @@ if env.GetModConfigData("config_crabkingRework") then
 
         inst.endcastspell = function(inst, lastwasfreeze)
             _endcastspell(inst, lastwasfreeze)
-
-            local atk_cd = (TUNING.CRABKING_CAST_TIME - math.floor(inst.countgems(inst).yellow * 0.75)) * 0.2
+            local boat_mult = FindEntity(inst, 40, nil, {"boat"}) ~= nil and 1 or 0.125
+            print("boatmult ck", boat_mult)
+            local atk_cd = ((TUNING.CRABKING_CAST_TIME - math.floor(inst.countgems(inst).yellow * 0.75)) * 0.2)*boat_mult
 
             if inst.components.timer:TimerExists("spell_cooldown") then inst.components.timer:StopTimer("spell_cooldown") end
 
