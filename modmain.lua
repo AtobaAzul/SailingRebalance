@@ -55,7 +55,10 @@ for k, v in ipairs(init) do
     modimport("init/init_"..v)
 end
 
+modimport("init/postinit/any")
+
 local containers = GLOBAL.require("containers")
+
 
 if containers.params.sunkenchest_royal == nil then
     containers.params.sunkenchest_royal = containers.params.shadowchester
