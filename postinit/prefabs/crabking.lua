@@ -191,7 +191,7 @@ end
 
 local gems = { "blue", "red", "purple", "orange", "yellow", "green" }
 
-if env.GetModConfigData("config_crabkingRework") then
+if env.GetModConfigData("config_crabkingRework") and not UPDATE_CHECK then
     env.AddPrefabPostInit("crabking", function(inst)
         inst:AddTag("crab")
 

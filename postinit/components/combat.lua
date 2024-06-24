@@ -1,7 +1,7 @@
 local env = env
 GLOBAL.setfenv(1, GLOBAL)
 
-if env.GetModConfigData("config_crabkingRework") then
+if env.GetModConfigData("config_crabkingRework") and not UPDATE_CHECK then
     env.AddComponentPostInit("combat", function(self)
         local _GetAttacked = self.GetAttacked
 

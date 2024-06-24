@@ -1,11 +1,11 @@
 local env = env
 GLOBAL.setfenv(1, GLOBAL)
 
-env.AddPrefabPostInit("boat_rotator", function(inst)
-    inst:AddTag("boatrotator") -- They removed this during the beta, guh
-end)
-
 if env.GetModConfigData("config_adjustedSteering") then
+    env.AddPrefabPostInit("boat_rotator", function(inst)
+        inst:AddTag("boatrotator") -- They removed this during the beta, guh
+    end)
+
     env.AddComponentPostInit("boatphysics", function(self)
         function self:GetBoatRotatorDrag()
             local x, y, z = self.inst.Transform:GetWorldPosition()

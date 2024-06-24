@@ -1,4 +1,4 @@
-if GetModConfigData("config_thiccFish") then
+if GetModConfigData("config_thiccFish") and not UPDATE_CHECK then
     --fish meat buff code by Electroely#0066, tysm!!
     --1. remove existing drops (cook, perish, murder)
     --2. add fns in place of those drops to give the meat according to a variable inst.meatvalue

@@ -9,7 +9,7 @@ if GetModConfigData("config_tridentRework") then
     TUNING.TRIDENT.SPELL.DAMAGE = wilson_attack * 1.33
 end
 
-if GetModConfigData("config_easierRockjaws") then TUNING.SHARK.DAMAGE = 50 / 3 end
+if GetModConfigData("config_easierRockjaws") and not UPDATE_CHECK then TUNING.SHARK.DAMAGE = 50 / 3 end
 
 TUNING.MESSAGEBOTTLE_NOTE_CHANCE = GetModConfigData("config_moreTreasure")
 TUNING.MODDED_PRESET_TRESHHOLD = GetModConfigData("config_customTreasure")
@@ -39,7 +39,12 @@ if GetModConfigData("config_nautopilotBuff") then
     TUNING.BOAT.BOAT_MAGNET.CATCH_UP_SPEED = TUNING.BOAT.BOAT_MAGNET.CATCH_UP_SPEED * 100
 end
 
-if GetModConfigData("config_crabkingRework") then
+if GetModConfigData("config_crabkingRework") and not UPDATE_CHECK then
     TUNING.CRABKING_REGEN = TUNING.CRABKING_REGEN * 0.33
     TUNING.CRABKING_REGEN_BUFF = TUNING.CRABKING_REGEN * 0.33
+end
+
+
+if UPDATE_CHECK then
+    TUNING.MONKEY_PIRATE_TREASURE_BOAT_CHANCE = GetModConfigData("config_deliveryRaidChance")
 end

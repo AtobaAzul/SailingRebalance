@@ -9,7 +9,7 @@ local BORDER_SCALE = .85 -- 0 < BORDER_SCALE < 1
 local SPAWN_POINTS_PER_SIDE = 8
 local SPAWN_OFFSET_ATTEMPTS = 8
 
-local DOER_CHECK_RADIUS_SQ = 200 * 200 -- Minimum distance a treasure can spawn from the player using the message bottle
+local DOER_CHECK_RADIUS_SQ = 200 * 200     -- Minimum distance a treasure can spawn from the player using the message bottle
 local ALLPLAYERS_CHECK_RADIUS_SQ = 50 * 50 -- Minimum distance from any player
 
 local WATER_RADIUS_CHECK_BIAS = -4
@@ -17,7 +17,7 @@ local WATER_RADIUS_CHECK_BIAS = -4
 local SHORE_CHECK_RADIUS = 2
 local SHORE_CHECK_ATTEMPTS = 12
 
-local MAX_ACTIVE_TREASURE_HUNTS = 4
+local MAX_ACTIVE_TREASURE_HUNTS = 8
 
 local treasure_spawn_positions = nil
 
@@ -98,14 +98,14 @@ end
 local messagebottletreasures_sr = require("messagebottletreasures_sr")
 local messagebottletreasures = require("messagebottletreasures")
 
-env.AddComponentPostInit("messagebottlemanager", function(self)
 
+env.AddComponentPostInit("messagebottlemanager", function(self)
     function self:UseMessageBottle(bottle, doer, is_not_from_hermit)
         -- I should really, really use function hooking here, but I just woke up and want to get this done with.
         local hermitcrab = self:GetHermitCrab()
 
         if not is_not_from_hermit and hermitcrab ~= nil and not self:GetPlayerHasFoundHermit(doer) then
-            return hermitcrab:GetPosition() -- , reason=nil
+            return hermitcrab:GetPosition()     -- , reason=nil
         else
             local pos, reason
             local num_active_hunts = GetTableSize(self.active_treasure_hunt_markers)
@@ -143,7 +143,7 @@ env.AddComponentPostInit("messagebottlemanager", function(self)
                     active_hunt = keys[ind]
 
                     if active_hunt ~= nil and active_hunt:IsValid() then
-                        return active_hunt:GetPosition() -- , reason=nil
+                        return active_hunt:GetPosition()     -- , reason=nil
                     else
                         self.active_treasure_hunt_markers[keys[ind]] = nil
                     end

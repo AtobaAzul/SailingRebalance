@@ -1,6 +1,8 @@
-Assets = {Asset("ATLAS", "images/inventoryimages/diseasecurebomb.xml"), Asset("IMAGE", "images/inventoryimages/diseasecurebomb.tex"), Asset("ANIM", "anim/sunken_royalchest.zip")}
+Assets = { Asset("ATLAS", "images/inventoryimages/diseasecurebomb.xml"), Asset("IMAGE", "images/inventoryimages/diseasecurebomb.tex"), Asset("ANIM", "anim/sunken_royalchest.zip") }
+PrefabFiles = { "sunkenchest_royal", "sunkenchest_spawner", "crabking_geyser_single", "trident_ground_fx" }
 
-PrefabFiles = {"sunkenchest_royal", "sunkenchest_spawner", "crabking_geyser_single", "trident_ground_fx"}
+GLOBAL.UPDATE_CHECK = CurrentRelease.GreaterOrEqualTo("R34_OCEANQOL_WINONAWURT") -- REMEMBER TO ALWAYS UPDATE THIS WITH NEW BETAS.
+local UPDATE_CHECK = GLOBAL.UPDATE_CHECK
 
 GLOBAL.require("recipe")
 TechTree = GLOBAL.require("techtree")
@@ -12,7 +14,7 @@ AllRecipes = GLOBAL.AllRecipes
 TUNING = GLOBAL.TUNING
 STRINGS = GLOBAL.STRINGS
 
-local postinit_prefabs = {"boat_bumper", "oceanfish_", "waterplant_bomb", "trident", "boat_pirate", "slurtle_shellpieces", "crabking", "crabking_claw"}
+local postinit_prefabs = { "boat_bumper", "oceanfish_", "waterplant_bomb", "trident", "boat_pirate",  "crabking", "crabking_claw" }
 
 local postinit_prefabs_um = { -- these features work with UM.
     "gnarwail",
@@ -22,17 +24,17 @@ local postinit_prefabs_um = { -- these features work with UM.
     "steeringwheel"
 }
 
-local postinit_components = {"messagebottlemanager", "weighable", "hullhealth", "boatphysics", "combat"}
-
-local init = {"food", "recipes", "tuning"}
+local postinit_components = { "messagebottlemanager", "weighable", "hullhealth", "boatphysics", "combat" }
+local init = { "food", "recipes", "tuning" }
 
 if not GLOBAL.KnownModIndex:IsModEnabled("workshop-2039181790") then
+    for k, v in ipairs(postinit_prefabs) do
+        modimport("postinit/prefabs/" .. v)
+    end
 
-    for k, v in ipairs(postinit_prefabs) do modimport("init/postinit/prefabs/" .. v) end
+    for k, v in ipairs(postinit_components) do modimport("postinit/components/" .. v) end
 
-    for k, v in ipairs(postinit_components) do modimport("init/postinit/components/" .. v) end
-
-    modimport("init/postinit/stategraphs/SGcrabkingclaw")
+    modimport("postinit/stategraphs/SGcrabkingclaw")
 
     local containers = GLOBAL.require("containers")
 
@@ -41,13 +43,10 @@ if not GLOBAL.KnownModIndex:IsModEnabled("workshop-2039181790") then
         STRINGS.NAMES.SUNKENCHEST_ROYAL = "Royal Chest"
         STRINGS.CHARACTERS.GENERIC.DESCRIBE.SUNKENCHEST_ROYAL = "Seems awfully brittle."
     end
-
 else
     print("WARNING: Sailing Rebalance has been merged into Uncompromising Mode! Most SR features are overwritten.")
 end
 
 for k, v in ipairs(init) do modimport("init/init_" .. v) end
 
-for k, v in ipairs(postinit_prefabs_um) do modimport("init/postinit/prefabs/" .. v) end
-
-modimport("init/postinit/components/drownable")
+for k, v in ipairs(postinit_prefabs_um) do modimport("postinit/prefabs/" .. v) end

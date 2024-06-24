@@ -1,7 +1,7 @@
 local env = env
 GLOBAL.setfenv(1, GLOBAL)
 
-if env.GetModConfigData("config_crabkingRework") then
+if env.GetModConfigData("config_crabkingRework") and not UPDATE_CHECK then
     local function BonusDamage(inst)
         local x, y, z = inst.Transform:GetWorldPosition()
         local ents = TheSim:FindEntities(x, y, z, 40, {"crabking"})

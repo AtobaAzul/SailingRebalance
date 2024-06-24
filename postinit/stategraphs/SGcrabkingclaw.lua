@@ -7,7 +7,7 @@ local function play_shadow_animation(inst, anim, loop)
     if inst.shadow then inst.shadow.AnimState:PlayAnimation(anim, loop) end
 end
 
-if env.GetModConfigData("config_crabkingRework") then
+if env.GetModConfigData("config_crabkingRework") and not UPDATE_CHECK then
     env.AddStategraphPostInit("crabkingclaw", function(sg)
         local states = {
             State {

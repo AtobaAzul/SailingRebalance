@@ -13,36 +13,37 @@ STRINGS = GLOBAL.STRINGS
 
 if not GLOBAL.KnownModIndex:IsModEnabled("workshop-2039181790") then
     if GetModConfigData("config_tridentRecipeBuff") == 1 then
-        AllRecipes["trident"].ingredients = {Ingredient("boneshard", 2),Ingredient("gnarwail_horn", 1), Ingredient("kelp", 4), Ingredient("twigs", 2)}--hee hoo 4 item recipes are now REAL!
+        AllRecipes["trident"].ingredients = { Ingredient("boneshard", 2), Ingredient("gnarwail_horn", 1), Ingredient("kelp", 4), Ingredient("twigs", 2) } --hee hoo 4 item recipes are now REAL!
     elseif GetModConfigData("config_tridentRecipeBuff") == 2 then
-        AllRecipes["trident"].ingredients = {Ingredient("boneshard", 3), Ingredient("kelp", 4), Ingredient("twigs", 2)}
+        AllRecipes["trident"].ingredients = { Ingredient("boneshard", 3), Ingredient("kelp", 4), Ingredient("twigs", 2) }
     end
 
     if GetModConfigData("config_hermitRecipes") then
+        AddRecipe2("hermit_oceanfishinglure_spoon_red", { Ingredient("messagebottleempty", 1) }, TECH.HERMITCRABSHOP_ONE, { nounlock = true, numtogive = 2, product = "oceanfishinglure_spoon_red", sg_state = "give" })
+        AddRecipe2("hermit_oceanfishinglure_spoon_green", { Ingredient("messagebottleempty", 1) }, TECH.HERMITCRABSHOP_ONE, { nounlock = true, numtogive = 2, product = "oceanfishinglure_spoon_green", sg_state = "give" })
+        AddRecipe2("hermit_oceanfishinglure_spoon_blue", { Ingredient("messagebottleempty", 1) }, TECH.HERMITCRABSHOP_ONE, { nounlock = true, numtogive = 2, product = "oceanfishinglure_spoon_blue", sg_state = "give" })
+        AddRecipe2("hermit_oceanfishinglure_spinner_red", { Ingredient("messagebottleempty", 1) }, TECH.HERMITCRABSHOP_ONE, { nounlock = true, numtogive = 2, product = "oceanfishinglure_spinner_red", sg_state = "give" })
+        AddRecipe2("hermit_oceanfishinglure_spinner_green", { Ingredient("messagebottleempty", 1) }, TECH.HERMITCRABSHOP_ONE, { nounlock = true, numtogive = 2, product = "oceanfishinglure_spinner_green", sg_state = "give" })
+        AddRecipe2("hermit_oceanfishinglure_spinner_blue", { Ingredient("messagebottleempty", 1) }, TECH.HERMITCRABSHOP_ONE, { nounlock = true, numtogive = 2, product = "oceanfishinglure_spinner_blue", sg_state = "give" })
 
-        AddRecipe2("hermit_oceanfishinglure_spoon_red", {Ingredient("messagebottleempty", 1)}, TECH.HERMITCRABSHOP_ONE, {nounlock = true, numtogive = 2, product = "oceanfishinglure_spoon_red", sg_state = "give"})
-        AddRecipe2("hermit_oceanfishinglure_spoon_green", {Ingredient("messagebottleempty", 1)}, TECH.HERMITCRABSHOP_ONE, {nounlock = true, numtogive = 2, product = "oceanfishinglure_spoon_green", sg_state = "give"})
-        AddRecipe2("hermit_oceanfishinglure_spoon_blue", {Ingredient("messagebottleempty", 1)}, TECH.HERMITCRABSHOP_ONE, {nounlock = true, numtogive = 2, product = "oceanfishinglure_spoon_blue", sg_state = "give"})
-        AddRecipe2("hermit_oceanfishinglure_spinner_red", {Ingredient("messagebottleempty", 1)}, TECH.HERMITCRABSHOP_ONE, {nounlock = true, numtogive = 2, product = "oceanfishinglure_spinner_red", sg_state = "give"})
-        AddRecipe2("hermit_oceanfishinglure_spinner_green", {Ingredient("messagebottleempty", 1)}, TECH.HERMITCRABSHOP_ONE, {nounlock = true, numtogive = 2, product = "oceanfishinglure_spinner_green", sg_state = "give"})
-        AddRecipe2("hermit_oceanfishinglure_spinner_blue",	{Ingredient("messagebottleempty", 1)}, TECH.HERMITCRABSHOP_ONE, {nounlock = true, numtogive = 2, product = "oceanfishinglure_spinner_blue", sg_state = "give"})
+        AddRecipe2("hermit_boat", { Ingredient("messagebottleempty", 1) }, TECH.HERMITCRABSHOP_ONE, { nounlock = true, product = "boat_item", sg_state = "give" })
+        AddRecipe2("hermit_mast", { Ingredient("messagebottleempty", 1) }, TECH.HERMITCRABSHOP_ONE, { nounlock = true, product = "mast_item", sg_state = "give" })
+        AddRecipe2("hermit_anchor", { Ingredient("messagebottleempty", 1) }, TECH.HERMITCRABSHOP_ONE, { nounlock = true, product = "anchor_item", sg_state = "give" })
+        AddRecipe2("hermit_steeringwheel", { Ingredient("messagebottleempty", 1) }, TECH.HERMITCRABSHOP_ONE, { nounlock = true, product = "steeringwheel_item", sg_state = "give" })
+        AddRecipe2("hermit_patch", { Ingredient("messagebottleempty", 1) }, TECH.HERMITCRABSHOP_ONE, { nounlock = true, product = "boatpatch", sg_state = "give", numtogive = 4 })
+        AddRecipe2("hermit_blueprint", { Ingredient("messagebottleempty", 1) }, GLOBAL.TECH.HERMITCRABSHOP_THREE, { nounlock = true, product = "blueprint", sg_state = "give" })
+        AddRecipe2("hermit_waterplant", { Ingredient("messagebottleempty", 3) }, TECH.HERMITCRABSHOP_FIVE, { nounlock = true, product = "waterplant_planter", sg_state = "give" })
+        AddRecipe2("hermit_cookies", { Ingredient("messagebottleempty", 1) }, TECH.HERMITCRABSHOP_SEVEN, { nounlock = true, product = "pumpkincookie", sg_state = "give" })
 
-        AddRecipe2("hermit_boat", {Ingredient("messagebottleempty", 1)}, TECH.HERMITCRABSHOP_ONE, {nounlock = true, product = "boat_item", sg_state = "give"})
-        AddRecipe2("hermit_mast", {Ingredient("messagebottleempty", 1)}, TECH.HERMITCRABSHOP_ONE, {nounlock = true, product = "mast_item", sg_state = "give"})
-        AddRecipe2("hermit_anchor", {Ingredient("messagebottleempty", 1)}, TECH.HERMITCRABSHOP_ONE, {nounlock = true, product = "anchor_item", sg_state = "give"})
-        AddRecipe2("hermit_steeringwheel", {Ingredient("messagebottleempty", 1)}, TECH.HERMITCRABSHOP_ONE, {nounlock = true, product = "steeringwheel_item", sg_state = "give"})
-        AddRecipe2("hermit_patch", {Ingredient("messagebottleempty", 1)}, TECH.HERMITCRABSHOP_ONE, {nounlock = true, product = "boatpatch", sg_state = "give", numtogive = 4})
-        AddRecipe2("hermit_blueprint", {Ingredient("messagebottleempty", 1)}, GLOBAL.TECH.HERMITCRABSHOP_THREE, {nounlock = true, product = "blueprint", sg_state = "give"})
-        AddRecipe2("hermit_waterplant", {Ingredient("messagebottleempty", 3)}, TECH.HERMITCRABSHOP_FIVE, {nounlock = true, product = "waterplant_planter", sg_state = "give"})
-        AddRecipe2("hermit_cookies", {Ingredient("messagebottleempty", 1)}, TECH.HERMITCRABSHOP_SEVEN, {nounlock = true, product = "pumpkincookie", sg_state = "give"})
-
-        AddRecipe2(
-            "normal_chum",
-            {Ingredient("spoiled_food", 2), Ingredient("rope", 1), Ingredient("waterplant_bomb", 1)},
-            TECH.FISHING_ONE,
-            {product = "chum", nounlock = false, numtogive = 2},
-            {"FISHING"}
-        )
+        if not UPDATE_CHECK then
+            AddRecipe2(
+                "normal_chum",
+                { Ingredient("spoiled_food", 2), Ingredient("rope", 1), Ingredient("waterplant_bomb", 1) },
+                TECH.FISHING_ONE,
+                { product = "chum", nounlock = false, numtogive = 2 },
+                { "FISHING" }
+            )
+        end
         AllRecipes["hermitshop_chum"].numtogive = 3
 
         --[[if GLOBAL.KnownModIndex:IsModEnabled("workshop-2039181790") then
@@ -59,10 +60,10 @@ if not GLOBAL.KnownModIndex:IsModEnabled("workshop-2039181790") then
     if GetModConfigData("config_betterMoonstorms") then
         AddRecipe2(
             "moonstorm_static_item",
-            {Ingredient("transistor", 1), Ingredient("moonstorm_spark", 2), Ingredient("goldnugget", 3)},
+            { Ingredient("transistor", 1), Ingredient("moonstorm_spark", 2), Ingredient("goldnugget", 3) },
             TECH.LOST,
             nil,
-            {"REFINE"}
+            { "REFINE" }
         )
 
         AddPrefabPostInit(
@@ -77,23 +78,22 @@ if not GLOBAL.KnownModIndex:IsModEnabled("workshop-2039181790") then
 
         AddRecipe2(
             "alterguardianhatshard",
-            {Ingredient("moonglass_charged", 1), Ingredient("moonstorm_spark", 2), Ingredient("lightbulb", 1)},
+            { Ingredient("moonglass_charged", 1), Ingredient("moonstorm_spark", 2), Ingredient("lightbulb", 1) },
             TECH.LOST,
             nil,
-            {"LIGHT"}
+            { "LIGHT" }
         )
         AddDeconstructRecipe(
             "alterguardianhat",
-            {Ingredient("alterguardianhatshard", 5), Ingredient("alterguardianhatshard_blueprint", 1)}
+            { Ingredient("alterguardianhatshard", 5), Ingredient("alterguardianhatshard_blueprint", 1) }
         )
-
     end
 
     if GetModConfigData("config_betterBumpers") then
-        AllRecipes["boat_bumper_shell_kit"].numtogive = 4--8
-        AllRecipes["boat_bumper_kelp_kit"].numtogive = 4--8
-        AllRecipes["boat_bumper_shell_kit"].ingredients = {Ingredient("slurtle_shellpieces", 3), Ingredient("rope", 3)}
-        AllRecipes["boat_bumper_kelp_kit"].ingredients = {Ingredient("kelp", 3), Ingredient("cutgrass", 6)}
+        AllRecipes["boat_bumper_shell_kit"].numtogive = 4 --8
+        AllRecipes["boat_bumper_kelp_kit"].numtogive = 4  --8
+        AllRecipes["boat_bumper_shell_kit"].ingredients = { Ingredient("slurtle_shellpieces", 3), Ingredient("rope", 3) }
+        AllRecipes["boat_bumper_kelp_kit"].ingredients = { Ingredient("kelp", 3), Ingredient("cutgrass", 6) }
     end
 
     STRINGS.RECIPE_DESC.WATERPLANT_PLANTER = "Grow your very own Sea Weed."
@@ -104,22 +104,22 @@ if not GLOBAL.KnownModIndex:IsModEnabled("workshop-2039181790") then
 end
 
 if GetModConfigData("config_cheapBoats") == 1 then
-    AllRecipes["anchor_item"].ingredients = {Ingredient("boards", 2), Ingredient("rope", 2),Ingredient("cutstone", 2)}
-    AllRecipes["mast_item"].ingredients = {Ingredient("boards", 2), Ingredient("rope", 2),Ingredient("silk", 6)}
-    AllRecipes["mast_malbatross_item"].ingredients = {Ingredient("driftwood_log", 2), Ingredient("rope", 3),Ingredient("malbatross_feathered_weave", 4)}
-    AllRecipes["steeringwheel_item"].ingredients = {Ingredient("boards", 1), Ingredient("rope", 1)}
-    AllRecipes["fish_box"].ingredients = {Ingredient("cutstone", 1), 		Ingredient("rope", 2)}
-    AllRecipes["cannonball_rock_item"].ingredients = {Ingredient("cutstone", 1), Ingredient("nitre", 1)}
+    AllRecipes["anchor_item"].ingredients = { Ingredient("boards", 2), Ingredient("rope", 2), Ingredient("cutstone", 2) }
+    AllRecipes["mast_item"].ingredients = { Ingredient("boards", 2), Ingredient("rope", 2), Ingredient("silk", 6) }
+    AllRecipes["mast_malbatross_item"].ingredients = { Ingredient("driftwood_log", 2), Ingredient("rope", 3), Ingredient("malbatross_feathered_weave", 4) }
+    AllRecipes["steeringwheel_item"].ingredients = { Ingredient("boards", 1), Ingredient("rope", 1) }
+    AllRecipes["fish_box"].ingredients = { Ingredient("cutstone", 1), Ingredient("rope", 2) }
+    AllRecipes["cannonball_rock_item"].ingredients = { Ingredient("cutstone", 1), Ingredient("nitre", 1) }
 elseif GetModConfigData("config_cheapBoats") == 2 then
-    AllRecipes["boat_item"].ingredients = {Ingredient("log", 12)}
-    AllRecipes["anchor_item"].ingredients = {Ingredient("boards", 2), Ingredient("rope", 1),Ingredient("cutstone", 1)}
-    AllRecipes["mast_item"].ingredients = {Ingredient("boards", 1), Ingredient("rope", 2),Ingredient("silk", 4)}
-    AllRecipes["mast_malbatross_item"].ingredients = {Ingredient("driftwood_log", 1), Ingredient("rope", 2),Ingredient("malbatross_feathered_weave", 2)}
-    AllRecipes["steeringwheel_item"].ingredients = {Ingredient("boards", 1), Ingredient("rope", 1)}
-    AllRecipes["fish_box"].ingredients = {Ingredient("cutstone", 1), 		Ingredient("rope", 1)}
-    AllRecipes["waterpump"].ingredients = {Ingredient("boards", 2), Ingredient("rope", 1)}
-    AllRecipes["boat_cannon_kit"].ingredients = {Ingredient("palmcone_scale", 1), Ingredient("rope", 1), Ingredient("charcoal", 3)}
-    AllRecipes["cannonball_rock_item"].ingredients = {Ingredient("rocks", 1), Ingredient("nitre", 1)}
-    AllRecipes["boat_magnet_kit"].ingredients = {Ingredient("boards", 2), Ingredient("cutstone", 2), Ingredient("transistor", 1)}
-    AllRecipes["boat_magnet_beacon"].ingredients = {Ingredient("cutstone", 2), Ingredient("transistor", 1)}
+    AllRecipes["boat_item"].ingredients = { Ingredient("log", 12) }
+    AllRecipes["anchor_item"].ingredients = { Ingredient("boards", 2), Ingredient("rope", 1), Ingredient("cutstone", 1) }
+    AllRecipes["mast_item"].ingredients = { Ingredient("boards", 1), Ingredient("rope", 2), Ingredient("silk", 4) }
+    AllRecipes["mast_malbatross_item"].ingredients = { Ingredient("driftwood_log", 1), Ingredient("rope", 2), Ingredient("malbatross_feathered_weave", 2) }
+    AllRecipes["steeringwheel_item"].ingredients = { Ingredient("boards", 1), Ingredient("rope", 1) }
+    AllRecipes["fish_box"].ingredients = { Ingredient("cutstone", 1), Ingredient("rope", 1) }
+    AllRecipes["waterpump"].ingredients = { Ingredient("boards", 2), Ingredient("rope", 1) }
+    AllRecipes["boat_cannon_kit"].ingredients = { Ingredient("palmcone_scale", 1), Ingredient("rope", 1), Ingredient("charcoal", 3) }
+    AllRecipes["cannonball_rock_item"].ingredients = { Ingredient("rocks", 1), Ingredient("nitre", 1) }
+    AllRecipes["boat_magnet_kit"].ingredients = { Ingredient("boards", 2), Ingredient("cutstone", 2), Ingredient("transistor", 1) }
+    AllRecipes["boat_magnet_beacon"].ingredients = { Ingredient("cutstone", 2), Ingredient("transistor", 1) }
 end
