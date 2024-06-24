@@ -1,7 +1,7 @@
 name = "Sailing Rebalance"
-version = "1.13.1.3"
+version = "1.13.1.4"
 description = [[
-Version 1.13.1.3
+Version 1.13.1.4
 
 This mod aims to tweak ocean content, making it more rewarding, without adding new content.
 Main Features:
