@@ -2,7 +2,7 @@ local env = env
 GLOBAL.setfenv(1, GLOBAL)
 
 if env.GetModConfigData("config_turningBoats") then
-   --print"adding steering wheel postinit")
+    print("adding steering wheel postinit")
     env.AddPrefabPostInit("steeringwheel", function(inst)
         if not TheWorld.ismastersim then 
             return
@@ -30,6 +30,8 @@ if env.GetModConfigData("config_turningBoats") then
 
         local on_stop_steering_old = inst.components.steeringwheel.onstopfn
         inst.components.steeringwheel.onstopfn = function(inst, sailor)
+            inst:AddComponent("machine")
+            print("onstop")
             local boat = inst:GetCurrentPlatform()
             local x, y, z = boat.Transform:GetWorldPosition()
             local ret = on_stop_steering_old(inst, sailor)

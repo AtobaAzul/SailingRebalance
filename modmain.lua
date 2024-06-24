@@ -1,6 +1,12 @@
-Assets = {Asset("ATLAS", "images/inventoryimages/diseasecurebomb.xml"), Asset("IMAGE", "images/inventoryimages/diseasecurebomb.tex"), Asset("ANIM", "anim/sunken_royalchest.zip")}
+Assets = {
+	Asset("ATLAS", "images/inventoryimages/diseasecurebomb.xml"),
+	Asset("IMAGE", "images/inventoryimages/diseasecurebomb.tex"),
+    Asset("ANIM", "anim/sunken_royalchest.zip")
+}
 
-PrefabFiles = {"sunkenchest_royal", "sunkenchest_spawner", "crabking_geyser_single", "trident_ground_fx"}
+PrefabFiles = {
+    "sunkenchest_royal",
+}
 
 GLOBAL.require("recipe")
 TechTree = GLOBAL.require("techtree")
@@ -12,42 +18,51 @@ AllRecipes = GLOBAL.AllRecipes
 TUNING = GLOBAL.TUNING
 STRINGS = GLOBAL.STRINGS
 
-local postinit_prefabs = {"boat_bumper", "oceanfish_", "waterplant_bomb", "trident", "boat_pirate", "slurtle_shellpieces", "crabking", "crabking_claw"}
-
-local postinit_prefabs_um = { -- these features work with UM.
+local postinit_prefabs = {
+    "boat_bumper",
+    "boat_cannon",
+    "crabking",
     "gnarwail",
     "grassgator",
     "malbatross",
+    "oceanfish_",
     "shark",
-    "steeringwheel"
+    "steeringwheel",
+    "waterplant_bomb",
+    "cannonballs"
 }
 
-local postinit_components = {"messagebottlemanager", "weighable", "hullhealth", "boatphysics", "combat"}
+local postinit_components = {
+    "messagebottlemanager",
+    "weighable",
+}
 
-local init = {"food", "recipes", "tuning"}
 
-if not GLOBAL.KnownModIndex:IsModEnabled("workshop-2039181790") then
+local init = {
+    "food",
+    "recipes",
+    "tuning",
+}
 
-    for k, v in ipairs(postinit_prefabs) do modimport("init/postinit/prefabs/" .. v) end
-
-    for k, v in ipairs(postinit_components) do modimport("init/postinit/components/" .. v) end
-
-    modimport("init/postinit/stategraphs/SGcrabkingclaw")
-
-    local containers = GLOBAL.require("containers")
-
-    if containers.params.sunkenchest_royal == nil then
-        containers.params.sunkenchest_royal = containers.params.shadowchester
-        STRINGS.NAMES.SUNKENCHEST_ROYAL = "Royal Chest"
-        STRINGS.CHARACTERS.GENERIC.DESCRIBE.SUNKENCHEST_ROYAL = "Seems awfully brittle."
-    end
-
-else
-    print("WARNING: Sailing Rebalance has been merged into Uncompromising Mode! Most SR features are overwritten.")
+for k, v in ipairs(postinit_prefabs) do
+    modimport("init/postinit/prefabs/"..v)
 end
 
-for k, v in ipairs(init) do modimport("init/init_" .. v) end
+for k, v in ipairs(postinit_components) do
+    modimport("init/postinit/components/"..v)
+end
 
-for k, v in ipairs(postinit_prefabs_um) do modimport("init/postinit/prefabs/" .. v) end
+for k, v in ipairs(init) do
+    modimport("init/init_"..v)
+end
 
-modimport("init/postinit/components/drownable")
+modimport("init/postinit/any")
+
+local containers = GLOBAL.require("containers")
+
+
+if containers.params.sunkenchest_royal == nil then
+    containers.params.sunkenchest_royal = containers.params.shadowchester
+    STRINGS.NAMES.SUNKENCHEST_ROYAL = "Royal Chest"
+    STRINGS.CHARACTERS.GENERIC.DESCRIBE.SUNKENCHEST_ROYAL = "Seems awfully brittle."
+end
